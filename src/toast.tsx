@@ -22,14 +22,24 @@ function getToastIcon(type: ToastType) {
 	return <>&#10003;</>
 }
 
-export function Toast({ type = ToastType.SUCCESS }: ToastProps) {
+export function Toast({
+	children,
+	autoHide = false,
+	type = ToastType.SUCCESS,
+}: ToastProps) {
 	const [opacity, setOpacity] = useState('opacity-0')
 	const [display, setDisplay] = useState('block')
 
 	const className = getToastClassName(type) + ' ' + opacity + ' ' + display
+	const onDismiss = (dismissAfter = 500) =>
+		setTimeout(() => setOpacity('opacity-0'), dismissAfter)
 
 	useEffect(() => {
 		setOpacity('opacity-100')
+		const timeOut = autoHide ? onDismiss(3000) : null
+		return () => {
+			if (timeOut) clearTimeout(timeOut)
+		}
 	}, [])
 
 	useEffect(() => {
@@ -45,13 +55,15 @@ export function Toast({ type = ToastType.SUCCESS }: ToastProps) {
 		<aside {...{ className }}>
 			<h4>Lorem Ipsum</h4>
 			<span className="icon">{getToastIcon(type)}</span>
-			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit, facilis
-				necessitatibus sunt quisquam officia quidem.
-			</p>
-			<span className="dismiss" onClick={() => setOpacity('opacity-0')}>
-				&#x2715;
-			</span>
+			<div>{children}</div>
+			{!autoHide && (
+				<span
+					className="dismiss"
+					onClick={() => setOpacity('opacity-0')}
+				>
+					&#x2715;
+				</span>
+			)}
 		</aside>
 	)
 }
