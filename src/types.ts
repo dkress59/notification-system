@@ -7,13 +7,20 @@ export enum ToastType {
 	WARNING = 'warning',
 }
 
-export type ToastProps = PropsWithChildren<{
+export type FinalToastProps = PropsWithChildren<{
 	autoHide?: boolean
 	type?: ToastType
 	title?: string | JSX.Element
+	removeToastFromDom: () => void
 }>
+export type ToastProps = Omit<FinalToastProps, 'removeToastFromDom'>
 
-export type SpawnToastProps = PropsWithChildren<{
-	type?: ToastType
-	title?: string | JSX.Element
-}>
+export enum ToastAction {
+	PUSH = 'push',
+	POP = 'pop',
+}
+
+export interface ToastInCollection {
+	collectionId: string
+	props: ToastProps
+}

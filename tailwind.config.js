@@ -22,7 +22,14 @@ module.exports = {
 				light: '#fff6e5',
 			},
 		},
-		extend: {},
+		extend: {
+			maxWidth: {
+				'1/2': '50%',
+			},
+			minWidth: {
+				60: '240px',
+			},
+		},
 	},
 	plugins: [],
 }

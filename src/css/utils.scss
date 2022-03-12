@@ -4,44 +4,44 @@
 
 @layer utilities {
 	.sosafe-toast {
-		@apply w-max m-8 mb-4 relative right-0 py-4 px-12 pointer-events-auto transition-opacity duration-500;
+		@apply w-max max-w-1/2 min-w-60 m-8 mb-4 relative right-0 py-4 px-12 pointer-events-auto transition-opacity duration-500  border-2 rounded-md shadow-lg;
 
 		&-type {
 			&-success {
-				@apply bg-green-light border-green border-2 rounded-md shadow-lg;
+				@apply bg-green-light border-green;
 
 				.icon {
-					@apply text-green border-green border-2;
+					@apply text-green border-green;
 				}
 			}
 
 			&-info {
-				@apply bg-blue-light border-blue border-2 rounded-md shadow-lg;
+				@apply bg-blue-light border-blue;
 
 				.icon {
-					@apply text-blue border-blue border-2;
+					@apply text-blue border-blue;
 				}
 			}
 
 			&-error {
-				@apply bg-red-light border-red border-2 rounded-md shadow-lg;
+				@apply bg-red-light border-red;
 
 				.icon {
-					@apply text-red border-red border-2;
+					@apply text-red border-red;
 				}
 			}
 
 			&-warning {
-				@apply bg-yellow-light border-yellow border-2 rounded-md shadow-lg;
+				@apply bg-yellow-light border-yellow;
 
 				.icon {
-					@apply text-yellow border-yellow border-2;
+					@apply text-yellow border-yellow;
 				}
 			}
 		}
 
 		>.icon {
-			@apply absolute top-4 left-4 h-6 text-center aspect-square text-xs leading-5 font-bold rounded-full overflow-hidden;
+			@apply absolute top-4 left-4 h-6 text-center aspect-square text-xs leading-5 font-bold rounded-full overflow-hidden border-2;
 		}
 
 		>h4 {

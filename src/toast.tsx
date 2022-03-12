@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { ToastProps, ToastType } from './types'
+import { FinalToastProps, ToastType } from './types'
 
 function getToastClassName(type: ToastType) {
 	if (type === ToastType.INFO) return 'sosafe-toast sosafe-toast-type-info'
@@ -23,29 +23,32 @@ function getToastIcon(type: ToastType) {
 }
 
 export function Toast({
-	children,
 	autoHide = false,
+	children,
+	removeToastFromDom,
 	type = ToastType.SUCCESS,
-}: ToastProps) {
+}: FinalToastProps) {
 	const [opacity, setOpacity] = useState('opacity-0')
-	const [display, setDisplay] = useState('block')
 
-	const className = getToastClassName(type) + ' ' + opacity + ' ' + display
-	const onDismiss = (dismissAfter = 500) =>
-		setTimeout(() => setOpacity('opacity-0'), dismissAfter)
+	const className = getToastClassName(type) + ' ' + opacity
+
+	const onDismiss = () => {
+		setOpacity('opacity-0')
+	}
 
 	useEffect(() => {
 		setOpacity('opacity-100')
-		const timeOut = autoHide ? onDismiss(3000) : null
+		const timeOut = autoHide ? setTimeout(() => onDismiss(), 3000) : null
 		return () => {
 			if (timeOut) clearTimeout(timeOut)
 		}
 	}, [])
 
 	useEffect(() => {
-		let timeOut: NodeJS.Timeout | null = null
-		if (opacity === 'opacity-0')
-			timeOut = setTimeout(() => setDisplay('hidden'), 500)
+		const timeOut =
+			opacity === 'opacity-0'
+				? setTimeout(() => removeToastFromDom(), 500)
+				: null
 		return () => {
 			if (timeOut) clearTimeout(timeOut)
 		}
@@ -57,10 +60,7 @@ export function Toast({
 			<span className="icon">{getToastIcon(type)}</span>
 			<div>{children}</div>
 			{!autoHide && (
-				<span
-					className="dismiss"
-					onClick={() => setOpacity('opacity-0')}
-				>
+				<span className="dismiss" onClick={() => onDismiss()}>
 					&#x2715;
 				</span>
 			)}

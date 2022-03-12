@@ -4,11 +4,15 @@
 
 @layer base {
 	html, body {
-		@apply w-full max-w-full overflow-x-hidden min-h-screen h-auto;
+		@apply w-full max-w-full overflow-x-hidden min-h-screen h-auto text-black;
 	}
 
-	h1 {
+	main {
 		@apply text-center;
+	}
+
+	button {
+		@apply border-2 border-black leading-none p-4 m-4;
 	}
 
 	#toast-wrapper {
