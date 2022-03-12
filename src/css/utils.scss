@@ -4,7 +4,7 @@
 
 @layer utilities {
 	.sosafe-toast {
-		@apply w-max mb-8 relative right-0 py-4 px-12 pointer-events-auto;
+		@apply w-max mb-8 relative right-0 py-4 px-12 pointer-events-auto transition-opacity duration-500;
 
 		&-type {
 			&-success {
