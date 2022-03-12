@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.sosafe-toast {
+		@apply w-max mb-8 relative right-0 py-4 px-12 pointer-events-auto;
+
+		&-type {
+			&-success {
+				@apply bg-green-light border-green border-2 rounded-md shadow-lg;
+				.icon {
+					@apply text-green border-green border-2;
+				}
+			}
+			&-info {
+				@apply bg-blue-light border-blue border-2 rounded-md shadow-lg;
+				.icon {
+					@apply text-blue border-blue border-2;
+				}
+			}
+			&-error {
+				@apply bg-red-light border-red border-2 rounded-md shadow-lg;
+				.icon {
+					@apply text-red border-red border-2;
+				}
+			}
+			&-warning {
+				@apply bg-yellow-light border-yellow border-2 rounded-md shadow-lg;
+				.icon {
+					@apply text-yellow border-yellow border-2;
+				}
+			}
+		}
+
+		>.icon {
+			@apply absolute top-4 left-4 h-6 text-center aspect-square text-xs leading-5 font-bold rounded-full overflow-hidden;
+		}
+
+		>h4 {
+			@apply font-bold text-lg text-grey;
+		}
+
+		>p {
+			@apply text-grey;
+		}
+
+		>.dismiss {
+			@apply absolute top-4 right-4 font-bold cursor-pointer;
+		}
+
+	}
+}

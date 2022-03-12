@@ -6,4 +6,12 @@
 	html, body {
 		@apply w-full max-w-full overflow-x-hidden min-h-screen h-auto;
 	}
+
+	h1 {
+		@apply text-center;
+	}
+
+	#toast-wrapper {
+		@apply fixed z-50 inset-8 pointer-events-none flex flex-col items-end;
+	}
 }
