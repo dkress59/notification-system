@@ -1,0 +1,10 @@
+{
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	},
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+}

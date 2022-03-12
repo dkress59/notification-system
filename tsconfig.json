@@ -1,0 +1,38 @@
+{
+	"compilerOptions": {
+    "baseUrl": "./",
+	  "target": "ESNext",
+	  "lib": [
+		"dom",
+		"dom.iterable",
+		"esnext"
+	  ],
+	  "allowJs": true,
+	  "skipLibCheck": true,
+	  "esModuleInterop": true,
+	  "allowSyntheticDefaultImports": true,
+	  "strict": true,
+	  "forceConsistentCasingInFileNames": true,
+	  "noFallthroughCasesInSwitch": true,
+	  "module": "commonjs",
+	  "moduleResolution": "node",
+	  "resolveJsonModule": true,
+	  "isolatedModules": true,
+	  "noEmit": true,
+	  "jsx": "react-jsx",
+		"paths": {
+			"@common/*": [
+				"apps/_common/src/*"
+			],
+		}
+	},
+	"include": [
+	  "src",
+	  ".eslintrc.js",
+	  "babel.config.js",
+	  "postcss.config.js",
+	  "tailwind.config.js",
+	  "webpack.config*.ts",
+	]
+  }
+  
