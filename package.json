@@ -74,6 +74,9 @@
   "scripts": {
     "start": "webpack-dev-server --port 3000",
     "build": "webpack --mode=production --progress",
-    "css": "npx tailwindcss -i ./src/index.css -o ./dist/index.css"
+    "check:script": "eslint  --fix-dry-run apps/**/src --ext .js,.jsx,.ts,.tsx",
+    "check:style": "npx stylelint '**/*.scss'",
+    "fix:script": "eslint --fix apps/**/src --ext .js,.jsx,.ts,.tsx",
+    "fix:style": "npx stylelint --fix --quiet '**/*.scss'"
   }
 }
