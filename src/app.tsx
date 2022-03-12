@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useToast } from './hooks'
+import { Toast } from './toast'
 import { ToastType } from './types'
 
 const demoTitle = 'Lorem Ipsum'
@@ -12,7 +13,7 @@ const demoContent = (
 )
 
 export function App() {
-	const { ToastProvider, spawnToast } = useToast()
+	const { spawnToast, collection, removeToastFromDom } = useToast()
 
 	return (
 		<>
@@ -81,7 +82,15 @@ export function App() {
 				</button>
 				<br />
 			</main>
-			<ToastProvider />
+			<footer id="toast-wrapper">
+				{collection.map(({ props, id }) => (
+					<Toast
+						{...props}
+						key={id}
+						removeToastFromDom={() => removeToastFromDom(id)}
+					/>
+				))}
+			</footer>
 		</>
 	)
 }
