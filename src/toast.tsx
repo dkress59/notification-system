@@ -55,9 +55,11 @@ export function Toast({
 	}, [opacity])
 
 	return (
-		<aside {...{ className }}>
+		<aside {...{ className }} data-testid="toast-component">
 			<h4>Lorem Ipsum</h4>
-			<span className="icon">{getToastIcon(type)}</span>
+			<span className="icon" data-testid="toast-icon">
+				{getToastIcon(type)}
+			</span>
 			<div>{children}</div>
 			{!autoHide && (
 				<span className="dismiss" onClick={() => onDismiss()}>

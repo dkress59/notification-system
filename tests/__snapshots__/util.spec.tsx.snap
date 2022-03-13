@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utilities getCollectionMapper correctly maps collection 1`] = `
+<Toast
+  autoHide={false}
+  removeToastFromDom={[Function]}
+  title="Mock Title"
+  type="info"
+>
+  <React.Fragment>
+    Mock Content
+  </React.Fragment>
+</Toast>
+`;

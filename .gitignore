@@ -7,8 +7,11 @@
 !.yarn/sdks
 !.yarn/versions
 
+# Jest
+.jest/cache
+coverage
+
 # Misc
 .DS_Store
-.jest/cache
 build
 node_modules

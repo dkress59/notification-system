@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Toast /> initialises to correct defaults 1`] = `
+<div>
+  <aside
+    class="sosafe-toast sosafe-toast-type-success opacity-100"
+    data-testid="toast-component"
+  >
+    <h4>
+      Lorem Ipsum
+    </h4>
+    <span
+      class="icon"
+      data-testid="toast-icon"
+    >
+      ✓
+    </span>
+    <div />
+    <span
+      class="dismiss"
+    >
+      ✕
+    </span>
+  </aside>
+</div>
+`;
