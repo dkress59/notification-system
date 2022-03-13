@@ -9,5 +9,6 @@
 
 # Misc
 .DS_Store
+.jest/cache
 build
 node_modules

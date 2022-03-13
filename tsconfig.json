@@ -27,11 +27,14 @@
 		}
 	},
 	"include": [
+	  "tests",
 	  "src",
 	  ".eslintrc.js",
 	  "babel.config.js",
+	  "jest.config.ts",
 	  "postcss.config.js",
 	  "tailwind.config.js",
+	  "setupTests.ts",
 	  "webpack.config*.ts",
 	]
   }
