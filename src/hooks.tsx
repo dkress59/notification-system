@@ -1,25 +1,44 @@
 import { nanoid } from 'nanoid'
-import { useCallback, useState } from 'react'
+import { useReducer } from 'react'
 
-import { ToastInCollection, ToastProps } from './types'
+import { ToastAction, ToastInCollection, ToastProps } from './types'
 
 export function useToast() {
-	const [collection, setCollection] = useState<ToastInCollection[]>([])
+	function toastReducer(
+		state: ToastInCollection[],
+		action: { type: ToastAction; payload: ToastInCollection },
+	): ToastInCollection[] {
+		switch (action.type) {
+			case ToastAction.PUSH:
+				return [...state, action.payload]
+			case ToastAction.POP:
+				return state.filter(toast => toast.id !== action.payload.id)
+		}
+	}
 
-	const removeToastFromDom = useCallback(
-		(collectionId: string) =>
-			setCollection(collection.filter(({ id }) => id !== collectionId)),
-		[collection],
+	const [collection, dispatch] = useReducer(
+		toastReducer,
+		[] as ToastInCollection[],
 	)
 
 	const spawnToast = (props: ToastProps) => {
-		const id = nanoid()
-		const newToast = {
-			id,
-			props,
+		const collectionId = nanoid()
+		const newToast: ToastInCollection = {
+			id: collectionId,
+			props: {
+				...props,
+				removeToastFromDom: () =>
+					dispatch({
+						type: ToastAction.POP,
+						payload: { id: collectionId } as ToastInCollection,
+					}),
+			},
 		}
-		setCollection([...collection, newToast])
+		dispatch({ type: ToastAction.PUSH, payload: newToast })
 	}
 
-	return { spawnToast, removeToastFromDom, collection }
+	return {
+		collection,
+		spawnToast,
+	}
 }

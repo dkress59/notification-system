@@ -22,5 +22,5 @@ export enum ToastAction {
 
 export interface ToastInCollection {
 	id: string
-	props: ToastProps
+	props: FinalToastProps
 }

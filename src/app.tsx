@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useToast } from './hooks'
 import { ToastType } from './types'
-import { getCollectionMapper } from './util'
+import { collectionMapper } from './util'
 
 const demoTitle = 'Lorem Ipsum'
 const demoContent = (
@@ -13,7 +13,7 @@ const demoContent = (
 )
 
 export function App() {
-	const { spawnToast, collection, removeToastFromDom } = useToast()
+	const { spawnToast, collection } = useToast()
 
 	return (
 		<>
@@ -83,7 +83,7 @@ export function App() {
 				<br />
 			</main>
 			<footer id="toast-wrapper">
-				{collection.map(getCollectionMapper(removeToastFromDom))}
+				{collection.map(collectionMapper)}
 			</footer>
 		</>
 	)
