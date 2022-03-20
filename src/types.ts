@@ -24,3 +24,8 @@ export interface ToastInCollection {
 	id: string
 	props: FinalToastProps
 }
+
+export interface NotificationContextType {
+	toasts: ToastInCollection[]
+	spawnToast: (props: ToastProps) => void
+}

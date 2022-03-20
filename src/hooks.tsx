@@ -1,9 +1,27 @@
 import { nanoid } from 'nanoid'
-import { useReducer } from 'react'
+import React, { ReactNode, useReducer } from 'react'
 
+import { NotificationContext } from './context'
+import { Toast } from './toast'
 import { ToastAction, ToastInCollection, ToastProps } from './types'
 
-export function useToast() {
+export const NotificationProvider = ({ children }: { children: ReactNode }) => {
+	const { collection, spawnToast } = useToast()
+	return (
+		<NotificationContext.Provider
+			value={{ toasts: collection, spawnToast }}
+		>
+			{children}
+			<footer id="toast-wrapper">
+				{collection.map(({ props, id }: ToastInCollection) => (
+					<Toast {...props} key={id} />
+				))}
+			</footer>
+		</NotificationContext.Provider>
+	)
+}
+
+function useToast() {
 	function toastReducer(
 		state: ToastInCollection[],
 		action: { type: ToastAction; payload: ToastInCollection },
@@ -38,7 +56,7 @@ export function useToast() {
 	}
 
 	return {
-		collection,
 		spawnToast,
+		collection,
 	}
 }

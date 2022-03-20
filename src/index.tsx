@@ -4,10 +4,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { App } from './app'
+import { NotificationProvider } from './hooks'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<NotificationProvider>
+			<App />
+		</NotificationProvider>
 	</React.StrictMode>,
 	document.getElementById('app'),
 )

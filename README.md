@@ -13,4 +13,4 @@ This repo started out as a coding challenge.
 
 * [X] useReducer
 * [ ] add missing unit tests
-* [ ] wrap everything in a context provider (global state)
+* [X] wrap everything in a context provider (global state)
