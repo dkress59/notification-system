@@ -1,4 +1,6 @@
-# SoSafe Coding Chalennge Case Study
+# Notification System
+
+This repo started out as a coding challenge.
 
 * run `yarn` to install the package's dependencies
 * run `yarn start` to start webpack-dev-server on port 3000
