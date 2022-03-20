@@ -1,10 +1,20 @@
 {
 	"extends": [
+		"stylelint-config-prettier-scss",
+		"stylelint-config-recess-order",
 		"stylelint-config-standard-scss",
-		"stylelint-config-prettier-scss"
+		"stylelint-scss"
 	],
+	"plugins": ["stylelint-csstree-validator", "stylelint-selector-no-empty"],
 	"rules": {
-    "scss/at-import-partial-extension": "always",
+		"csstree/validator": {
+			"atrules": false,
+			"syntaxExtensions": ["sass"]
+		  },
+		"no-descending-specificity": true,
+		"plugin/stylelint-selector-no-empty": true,
+		"selector-pseudo-element-no-unknown": true,
+    	"scss/at-import-partial-extension": "always",
 		"scss/at-rule-no-unknown": [
 			true,
 			{
@@ -14,6 +24,7 @@
 					"tailwind"
 				]
 			}
-		]
+		],
+		"scss/no-duplicate-dollar-variables": true
 	}
 }

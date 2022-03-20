@@ -7,4 +7,6 @@
     "**/.pnp.*": true
   },
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "css.validate": false,
+  "scss.validate": false
 }

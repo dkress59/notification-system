@@ -3,19 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-	html, body {
-		@apply w-full max-w-full overflow-x-hidden min-h-screen h-auto text-black;
-	}
+  html,
+  body {
+    @apply w-full max-w-full overflow-x-hidden min-h-screen h-auto text-black;
+  }
 
-	main {
-		@apply text-center;
-	}
+  main {
+    @apply text-center;
+  }
 
-	button {
-		@apply border-2 border-black leading-none p-4 m-4;
-	}
+  button {
+    @apply border-2 border-black leading-none p-4 m-4;
+  }
 
-	#toast-wrapper {
-		@apply fixed z-50 inset-0 pointer-events-none flex flex-col items-end overflow-y-auto;
-	}
+  #toast-wrapper {
+    @apply fixed z-50 inset-0 pointer-events-none flex flex-col items-end overflow-y-auto;
+  }
 }

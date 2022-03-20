@@ -3,58 +3,60 @@
 @tailwind utilities;
 
 @layer utilities {
-	.sosafe-toast {
-		@apply w-max max-w-1/2 min-w-60 m-8 mb-4 relative right-0 py-4 px-12 pointer-events-auto transition-opacity duration-500  border-2 rounded-md shadow-lg;
+  .sosafe-toast {
+    @apply relative right-0 w-max max-w-1/2 min-w-60 py-4 px-12 m-8 mb-4;
+    @apply pointer-events-auto border-2 rounded-md shadow-lg;
+    @apply transition-opacity duration-500;
 
-		&-type {
-			&-success {
-				@apply bg-green-light border-green;
+    &-type {
+      &-success {
+        @apply bg-green-light border-green;
 
-				.icon {
-					@apply text-green border-green;
-				}
-			}
+        .icon {
+          @apply text-green border-green;
+        }
+      }
 
-			&-info {
-				@apply bg-blue-light border-blue;
+      &-info {
+        @apply bg-blue-light border-blue;
 
-				.icon {
-					@apply text-blue border-blue;
-				}
-			}
+        .icon {
+          @apply text-blue border-blue;
+        }
+      }
 
-			&-error {
-				@apply bg-red-light border-red;
+      &-error {
+        @apply bg-red-light border-red;
 
-				.icon {
-					@apply text-red border-red;
-				}
-			}
+        .icon {
+          @apply text-red border-red;
+        }
+      }
 
-			&-warning {
-				@apply bg-yellow-light border-yellow;
+      &-warning {
+        @apply bg-yellow-light border-yellow;
 
-				.icon {
-					@apply text-yellow border-yellow;
-				}
-			}
-		}
+        .icon {
+          @apply text-yellow border-yellow;
+        }
+      }
+    }
 
-		>.icon {
-			@apply absolute top-4 left-4 h-6 text-center aspect-square text-xs leading-5 font-bold rounded-full overflow-hidden border-2;
-		}
+    >.icon {
+      @apply absolute top-4 left-4 h-6 aspect-square rounded-full overflow-hidden border-2;
+      @apply text-center text-xs leading-5 font-bold;
+    }
 
-		>h4 {
-			@apply font-bold text-lg text-grey leading-snug;
-		}
+    >h4 {
+      @apply font-bold text-lg text-grey leading-snug;
+    }
 
-		>div {
-			@apply text-grey;
-		}
+    >div {
+      @apply text-grey;
+    }
 
-		>.dismiss {
-			@apply absolute top-4 right-4 font-bold cursor-pointer;
-		}
-
-	}
+    >.dismiss {
+      @apply absolute top-4 right-4 font-bold cursor-pointer;
+    }
+  }
 }
