@@ -22,6 +22,7 @@ export function DemoApp() {
 				<br />
 				<h1>Webpack Development Server is running!</h1>
 				<button
+					data-testid="spawn-success-toast"
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
@@ -33,6 +34,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
+					data-testid="spawn-autHide-toast"
 					onClick={() =>
 						spawnToast({
 							autoHide: true,
@@ -45,6 +47,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
+					data-testid="spawn-info-toast"
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
@@ -57,6 +60,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
+					data-testid="spawn-error-toast"
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
@@ -69,6 +73,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
+					data-testid="spawn-warning-toast"
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
@@ -87,6 +92,7 @@ export function DemoApp() {
 				<br />
 				<h1>Webpack Development Server is running!</h1>
 				<button
+					data-testid="spawn-success-modal"
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,
@@ -98,18 +104,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
-					onClick={() =>
-						spawnModal({
-							autoHide: true,
-							title: demoTitle,
-							children: demoContent,
-						})
-					}
-				>
-					Spawn an automatically hiding success modal
-				</button>
-				<br />
-				<button
+					data-testid="spawn-info-modal"
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,
@@ -122,6 +117,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
+					data-testid="spawn-error-modal"
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,
@@ -134,6 +130,7 @@ export function DemoApp() {
 				</button>
 				<br />
 				<button
+					data-testid="spawn-warning-modal"
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,

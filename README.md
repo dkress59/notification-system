@@ -1,6 +1,12 @@
 # Notification System
 
-This repo started out as a coding challenge.
+This repo started out as a coding challenge. Now it is a library for a reusable notification system.
+
+## Usage
+
+Wrap your top-level component in the `<NotificationProvider />`, then you will be able to use the `spawnToast` and `spawnModal` methods from the `NotificationContext`. See the [`<DemoApp />`](src/demo-app.tsx) for reference.
+
+## Development
 
 * run `yarn` to install the package's dependencies
 * run `yarn start` to start webpack-dev-server on port 3000
@@ -12,7 +18,7 @@ This repo started out as a coding challenge.
 ## ToDo
 
 * [X] useReducer
-* [ ] add missing unit tests
+* [X] add missing unit tests
 * [X] wrap everything in a context provider (global state)
 * [X] add notification alerts (modals)
 * [ ] add notification banners (?)

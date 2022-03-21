@@ -42,5 +42,5 @@ export interface NotificationContextType {
 	toasts: NotificationInCollection[]
 	spawnToast: (props: ToastProps) => void
 	modals: NotificationInCollection[]
-	spawnModal: (props: ToastProps) => void
+	spawnModal: (props: ModalProps) => void
 }
