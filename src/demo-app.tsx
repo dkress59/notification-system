@@ -11,7 +11,7 @@ const demoContent = (
 	</>
 )
 
-export function App() {
+export function DemoApp() {
 	const { spawnToast } = useContext(NotificationContext)
 
 	return (
