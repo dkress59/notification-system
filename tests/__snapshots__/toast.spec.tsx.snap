@@ -3,7 +3,7 @@
 exports[`<Toast /> initialises to correct defaults 1`] = `
 <div>
   <aside
-    class="sosafe-toast sosafe-toast-type-success opacity-100"
+    class="custom-toast custom-toast-type-success opacity-100"
     data-testid="toast-component"
   >
     <h4>

@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { FinalToastProps, ToastType } from './types'
 
 function getToastClassName(type: ToastType) {
-	if (type === ToastType.INFO) return 'sosafe-toast sosafe-toast-type-info'
-	if (type === ToastType.ERROR) return 'sosafe-toast sosafe-toast-type-error'
+	if (type === ToastType.INFO) return 'custom-toast custom-toast-type-info'
+	if (type === ToastType.ERROR) return 'custom-toast custom-toast-type-error'
 	if (type === ToastType.WARNING)
-		return 'sosafe-toast sosafe-toast-type-warning'
-	return 'sosafe-toast sosafe-toast-type-success'
+		return 'custom-toast custom-toast-type-warning'
+	return 'custom-toast custom-toast-type-success'
 }
 
 function getToastIcon(type: ToastType) {

@@ -19,17 +19,17 @@ describe('<Toast />', () => {
 	it('type=success applies correct className', () => {
 		render(<Toast {...mockProps} />)
 		const toast = screen.getByTestId('toast-component')
-		expect(toast.classList).toContain('sosafe-toast-type-success')
+		expect(toast.classList).toContain('custom-toast-type-success')
 	})
 	it('type=info applies correct className', () => {
 		render(<Toast {...mockProps} type={ToastType.INFO} />)
 		const toast = screen.getByTestId('toast-component')
-		expect(toast.classList).toContain('sosafe-toast-type-info')
+		expect(toast.classList).toContain('custom-toast-type-info')
 	})
 	it('type=warning applies correct className', () => {
 		render(<Toast {...mockProps} type={ToastType.WARNING} />)
 		const toast = screen.getByTestId('toast-component')
-		expect(toast.classList).toContain('sosafe-toast-type-warning')
+		expect(toast.classList).toContain('custom-toast-type-warning')
 	})
 	it('type=error displays the correct icon for', () => {
 		render(<Toast {...mockProps} type={ToastType.ERROR} />)
