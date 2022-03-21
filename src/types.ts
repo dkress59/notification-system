@@ -7,30 +7,40 @@ export enum NotificationType {
 	WARNING = 'warning',
 }
 
-export type FinalNotificationProps = PropsWithChildren<{
+type FinalProps<T> = T & { removeThisFromDom: () => void }
+
+export type ToastProps = PropsWithChildren<{
 	autoHide?: boolean
 	type?: NotificationType
 	title?: string | JSX.Element
-	removeToastFromDom: () => void
 }>
-export type NotificationProps = Omit<
-	FinalNotificationProps,
-	'removeToastFromDom'
->
 
-export enum ToastAction {
+export type FinalToastProps = FinalProps<ToastProps>
+
+export type ModalProps = PropsWithChildren<{
+	type?: NotificationType
+	title?: string | JSX.Element
+	labelAccept?: string | JSX.Element
+	labelDecline?: string | JSX.Element
+	onAccept?: () => void
+	onDecline?: () => void
+}>
+
+export type FinalModalProps = FinalProps<ModalProps>
+
+export enum NotificationReducerAction {
 	PUSH = 'push',
 	POP = 'pop',
 }
 
 export interface NotificationInCollection {
 	id: string
-	props: FinalNotificationProps
+	props: FinalToastProps
 }
 
 export interface NotificationContextType {
 	toasts: NotificationInCollection[]
-	spawnToast: (props: NotificationProps) => void
+	spawnToast: (props: ToastProps) => void
 	modals: NotificationInCollection[]
-	spawnModal: (props: NotificationProps) => void
+	spawnModal: (props: ToastProps) => void
 }

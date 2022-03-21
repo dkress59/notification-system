@@ -6,9 +6,6 @@ exports[`<Toast /> initialises to correct defaults 1`] = `
     class="custom-toast custom-toast-type-success opacity-100"
     data-testid="toast-component"
   >
-    <h4>
-      Lorem Ipsum
-    </h4>
     <span
       class="icon"
       data-testid="toast-icon"

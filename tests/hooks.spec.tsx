@@ -21,6 +21,23 @@ function SpawnToastButton() {
 	)
 }
 
+function SpawnModalButton() {
+	const { spawnModal } = useContext(NotificationContext)
+	return (
+		<button
+			data-testid="spawn-button"
+			onClick={() =>
+				spawnModal({
+					title: 'Mock Modal',
+					children: 'Mock Modal Content',
+				})
+			}
+		>
+			Spawn a modal
+		</button>
+	)
+}
+
 describe('Custom Hooks', () => {
 	describe('NotificationProvider', () => {
 		describe('useToast', () => {
@@ -64,6 +81,20 @@ describe('Custom Hooks', () => {
 				fireEvent.click(spawnToastButton)
 				await act(() => Promise.resolve())
 				expect(notificationWrapper.children).toHaveLength(2)
+			})
+			it('correctly adds a modal to the collection', async () => {
+				render(
+					<NotificationProvider>
+						<SpawnModalButton />
+					</NotificationProvider>,
+				)
+				const notificationWrapper = screen.getByTestId(
+					'notification-wrapper',
+				)!
+				const spawnModalButton = screen.getByTestId('spawn-button')
+				fireEvent.click(spawnModalButton)
+				await act(() => Promise.resolve())
+				expect(notificationWrapper.children).toHaveLength(1)
 			})
 			it('correctly removes DOM node from collection', async () => {
 				render(

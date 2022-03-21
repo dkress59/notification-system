@@ -1,10 +1,10 @@
 import { act, fireEvent, render, screen } from '@testing-library/react'
 
 import { Toast } from '../src/toast'
-import { FinalNotificationProps, NotificationType } from '../src/types'
+import { FinalToastProps, NotificationType } from '../src/types'
 
-const mockProps: FinalNotificationProps = {
-	removeToastFromDom: () => {},
+const mockProps: FinalToastProps = {
+	removeThisFromDom: () => {},
 	autoHide: false,
 	children: <>Mock Content</>,
 	title: 'Mock Title',
@@ -13,7 +13,7 @@ const mockProps: FinalNotificationProps = {
 
 describe('<Toast />', () => {
 	it('initialises to correct defaults', () => {
-		const { container } = render(<Toast removeToastFromDom={() => {}} />)
+		const { container } = render(<Toast removeThisFromDom={() => {}} />)
 		expect(container).toMatchSnapshot()
 	})
 	it('type=success applies correct className', () => {
@@ -49,7 +49,7 @@ describe('<Toast />', () => {
 	})
 	it('removes itself from DOM after fading out', async () => {
 		const mockRemoveFromDom = jest.fn()
-		render(<Toast {...mockProps} removeToastFromDom={mockRemoveFromDom} />)
+		render(<Toast {...mockProps} removeThisFromDom={mockRemoveFromDom} />)
 		const toast = screen.getByTestId('toast-component')
 		const dismissButton = toast.querySelector('.dismiss')!
 		fireEvent.click(dismissButton)
@@ -71,7 +71,7 @@ describe('<Toast />', () => {
 		render(
 			<Toast
 				{...mockProps}
-				removeToastFromDom={mockRemoveFromDom}
+				removeThisFromDom={mockRemoveFromDom}
 				autoHide={true}
 			/>,
 		)

@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react'
 
-import { FinalNotificationProps, NotificationType } from './types'
-import { getClassName, getIcon } from './util'
+import { FinalModalProps, NotificationType } from './types'
+import { getIcon, getModalClassName } from './util'
 
 export function Modal({
-	autoHide = false,
 	children,
-	removeToastFromDom,
+	removeThisFromDom,
+	labelAccept,
+	labelDecline,
+	onAccept,
+	onDecline,
+	title,
 	type = NotificationType.SUCCESS,
-}: FinalNotificationProps) {
-	const hiddenClassName = 'opacity-0 mt-8'
-	const visibleClassName = 'opacity-100 mt-0'
+}: FinalModalProps) {
+	const hiddenClassName = 'opacity-0 mt-8 scale-95'
+	const visibleClassName = 'opacity-100 mt-0 scale-100'
 
 	const [transition, setTransition] = useState(hiddenClassName)
 
-	const className = getClassName(type) + ' ' + transition
-	const onDismiss = () => setTransition(hiddenClassName)
+	const className = getModalClassName(type) + ' ' + transition
+	const onDismiss = () => {
+		if (onDecline) onDecline()
+		setTransition(hiddenClassName)
+	}
 
 	useEffect(() => {
 		setTransition(visibleClassName)
-		const timeOut = autoHide ? setTimeout(() => onDismiss(), 3000) : null
-		return () => {
-			if (timeOut) clearTimeout(timeOut)
-		}
 	}, [])
 
 	useEffect(() => {
 		const timeOut =
 			transition === hiddenClassName
-				? setTimeout(() => removeToastFromDom(), 500)
+				? setTimeout(() => removeThisFromDom(), 500)
 				: null
 		return () => {
 			if (timeOut) clearTimeout(timeOut)
@@ -36,20 +39,28 @@ export function Modal({
 	}, [transition])
 
 	return (
-		<aside {...{ className }} data-testid="toast-component">
-			<h4>Lorem Ipsum</h4>
-			<span className="icon" data-testid="toast-icon">
+		<aside {...{ className }} data-testid="modal-component">
+			{title && <h4>{title}</h4>}
+			<span className="icon" data-testid="modal-icon">
 				{getIcon(type)}
 			</span>
 			<div>{children}</div>
-			{!autoHide && (
-				<span
-					className="dismiss"
-					data-testid="dismiss-button"
-					onClick={() => onDismiss()}
-				>
-					&#x2715;
-				</span>
+			<span
+				className="dismiss"
+				data-testid="dismiss-button"
+				onClick={onDismiss}
+			>
+				&#x2715;
+			</span>
+			{onAccept && (
+				<button onClick={onAccept} data-testid="accept-button">
+					{labelAccept ?? 'Accept'}
+				</button>
+			)}
+			{onDecline && (
+				<button onClick={onDismiss} data-testid="decline-button">
+					{labelDecline ?? 'Decline'}
+				</button>
 			)}
 		</aside>
 	)

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> initialises to correct default labels 1`] = `
+<div>
+  <aside
+    class="custom-modal custom-modal-type-success opacity-100 mt-0 scale-100"
+    data-testid="modal-component"
+  >
+    <span
+      class="icon"
+      data-testid="modal-icon"
+    >
+      ✓
+    </span>
+    <div />
+    <span
+      class="dismiss"
+      data-testid="dismiss-button"
+    >
+      ✕
+    </span>
+    <button
+      data-testid="accept-button"
+    >
+      Accept
+    </button>
+    <button
+      data-testid="decline-button"
+    >
+      Decline
+    </button>
+  </aside>
+</div>
+`;
+
+exports[`<Modal /> initialises to correct defaults 1`] = `
+<div>
+  <aside
+    class="custom-modal custom-modal-type-success opacity-100 mt-0 scale-100"
+    data-testid="modal-component"
+  >
+    <span
+      class="icon"
+      data-testid="modal-icon"
+    >
+      ✓
+    </span>
+    <div />
+    <span
+      class="dismiss"
+      data-testid="dismiss-button"
+    >
+      ✕
+    </span>
+  </aside>
+</div>
+`;

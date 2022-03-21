@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react'
 
-import { FinalNotificationProps, NotificationType } from './types'
-import { getClassName, getIcon } from './util'
+import { FinalToastProps, NotificationType } from './types'
+import { getIcon, getToastClassName } from './util'
 
 export function Toast({
 	autoHide = false,
 	children,
-	removeToastFromDom,
+	removeThisFromDom,
+	title,
 	type = NotificationType.SUCCESS,
-}: FinalNotificationProps) {
+}: FinalToastProps) {
+	const autoHideAfterMs = 3000
 	const hiddenClassName = 'opacity-0'
 	const visibleClassName = 'opacity-100'
 
 	const [transition, setTransition] = useState(hiddenClassName)
 
-	const className = getClassName(type) + ' ' + transition
+	const className = getToastClassName(type) + ' ' + transition
 	const onDismiss = () => setTransition(hiddenClassName)
 
 	useEffect(() => {
 		setTransition(visibleClassName)
-		const timeOut = autoHide ? setTimeout(() => onDismiss(), 3000) : null
+		const timeOut = autoHide
+			? setTimeout(() => onDismiss(), autoHideAfterMs)
+			: null
 		return () => {
 			if (timeOut) clearTimeout(timeOut)
 		}
@@ -28,7 +32,7 @@ export function Toast({
 	useEffect(() => {
 		const timeOut =
 			transition === hiddenClassName
-				? setTimeout(() => removeToastFromDom(), 500)
+				? setTimeout(() => removeThisFromDom(), 500)
 				: null
 		return () => {
 			if (timeOut) clearTimeout(timeOut)
@@ -37,7 +41,7 @@ export function Toast({
 
 	return (
 		<aside {...{ className }} data-testid="toast-component">
-			<h4>Lorem Ipsum</h4>
+			{title && <h4>{title}</h4>}
 			<span className="icon" data-testid="toast-icon">
 				{getIcon(type)}
 			</span>
@@ -46,7 +50,7 @@ export function Toast({
 				<span
 					className="dismiss"
 					data-testid="dismiss-button"
-					onClick={() => onDismiss()}
+					onClick={onDismiss}
 				>
 					&#x2715;
 				</span>
