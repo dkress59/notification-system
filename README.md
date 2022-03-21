@@ -14,5 +14,5 @@ This repo started out as a coding challenge.
 * [X] useReducer
 * [ ] add missing unit tests
 * [X] wrap everything in a context provider (global state)
-* [ ] add notification alerts (modals)
+* [X] add notification alerts (modals)
 * [ ] add notification banners (?)
