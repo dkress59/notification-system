@@ -11,7 +11,7 @@
 			"atrules": false,
 			"syntaxExtensions": ["sass"]
 		  },
-		"no-descending-specificity": true,
+		"no-descending-specificity": null,
 		"plugin/stylelint-selector-no-empty": true,
 		"selector-pseudo-element-no-unknown": true,
     	"scss/at-import-partial-extension": "always",

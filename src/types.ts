@@ -1,33 +1,36 @@
 import { PropsWithChildren } from 'react'
 
-export enum ToastType {
+export enum NotificationType {
 	SUCCESS = 'success',
 	INFO = 'info',
 	ERROR = 'error',
 	WARNING = 'warning',
 }
 
-export type FinalToastProps = PropsWithChildren<{
+export type FinalNotificationProps = PropsWithChildren<{
 	autoHide?: boolean
-	type?: ToastType
+	type?: NotificationType
 	title?: string | JSX.Element
 	removeToastFromDom: () => void
 }>
-export type ToastProps = Omit<FinalToastProps, 'removeToastFromDom'>
+export type NotificationProps = Omit<
+	FinalNotificationProps,
+	'removeToastFromDom'
+>
 
 export enum ToastAction {
 	PUSH = 'push',
 	POP = 'pop',
 }
 
-export interface ToastInCollection {
+export interface NotificationInCollection {
 	id: string
-	props: FinalToastProps
+	props: FinalNotificationProps
 }
 
 export interface NotificationContextType {
-	toasts: ToastInCollection[]
-	spawnToast: (props: ToastProps) => void
-	modals: ToastInCollection[]
-	spawnModal: (props: ToastProps) => void
+	toasts: NotificationInCollection[]
+	spawnToast: (props: NotificationProps) => void
+	modals: NotificationInCollection[]
+	spawnModal: (props: NotificationProps) => void
 }

@@ -5,7 +5,11 @@ import React, { ReactNode, useReducer } from 'react'
 import { NotificationContext } from './context'
 import { Modal } from './modal'
 import { Toast } from './toast'
-import { ToastAction, ToastInCollection, ToastProps } from './types'
+import {
+	NotificationInCollection,
+	NotificationProps,
+	ToastAction,
+} from './types'
 
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 	const { toasts, spawnToast } = useToast()
@@ -19,10 +23,10 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 				id="notification-wrapper"
 				data-testid="notification-wrapper"
 			>
-				{toasts.map(({ props, id }: ToastInCollection) => (
+				{toasts.map(({ props, id }: NotificationInCollection) => (
 					<Toast {...props} key={id} />
 				))}
-				{modals.map(({ props, id }: ToastInCollection) => (
+				{modals.map(({ props, id }: NotificationInCollection) => (
 					<Modal {...props} key={id} />
 				))}
 			</footer>
@@ -31,9 +35,9 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 }
 
 function notificationReducer(
-	state: ToastInCollection[],
-	action: { type: ToastAction; payload: ToastInCollection },
-): ToastInCollection[] {
+	state: NotificationInCollection[],
+	action: { type: ToastAction; payload: NotificationInCollection },
+): NotificationInCollection[] {
 	switch (action.type) {
 		case ToastAction.PUSH:
 			return [...state, action.payload]
@@ -45,19 +49,21 @@ function notificationReducer(
 function useToast() {
 	const [toasts, dispatch] = useReducer(
 		notificationReducer,
-		[] as ToastInCollection[],
+		[] as NotificationInCollection[],
 	)
 
-	const spawnToast = (props: ToastProps) => {
+	const spawnToast = (props: NotificationProps) => {
 		const collectionId = nanoid()
-		const newToast: ToastInCollection = {
+		const newToast: NotificationInCollection = {
 			id: collectionId,
 			props: {
 				...props,
 				removeToastFromDom: () =>
 					dispatch({
 						type: ToastAction.POP,
-						payload: { id: collectionId } as ToastInCollection,
+						payload: {
+							id: collectionId,
+						} as NotificationInCollection,
 					}),
 			},
 		}
@@ -73,19 +79,21 @@ function useToast() {
 function useModal() {
 	const [modals, dispatch] = useReducer(
 		notificationReducer,
-		[] as ToastInCollection[],
+		[] as NotificationInCollection[],
 	)
 
-	const spawnModal = (props: ToastProps) => {
+	const spawnModal = (props: NotificationProps) => {
 		const collectionId = nanoid()
-		const newToast: ToastInCollection = {
+		const newToast: NotificationInCollection = {
 			id: collectionId,
 			props: {
 				...props,
 				removeToastFromDom: () =>
 					dispatch({
 						type: ToastAction.POP,
-						payload: { id: collectionId } as ToastInCollection,
+						payload: {
+							id: collectionId,
+						} as NotificationInCollection,
 					}),
 			},
 		}

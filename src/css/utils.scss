@@ -4,9 +4,9 @@
 
 @layer utilities {
   .custom {
-
     &-toast {
       @apply relative right-0 w-max max-w-1/2 min-w-60 my-4 mx-8;
+
       &:first-of-type {
         @apply mt-8;
       }

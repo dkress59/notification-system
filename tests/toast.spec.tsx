@@ -1,14 +1,14 @@
 import { act, fireEvent, render, screen } from '@testing-library/react'
 
 import { Toast } from '../src/toast'
-import { FinalToastProps, ToastType } from '../src/types'
+import { FinalNotificationProps, NotificationType } from '../src/types'
 
-const mockProps: FinalToastProps = {
+const mockProps: FinalNotificationProps = {
 	removeToastFromDom: () => {},
 	autoHide: false,
 	children: <>Mock Content</>,
 	title: 'Mock Title',
-	type: ToastType.SUCCESS,
+	type: NotificationType.SUCCESS,
 }
 
 describe('<Toast />', () => {
@@ -22,24 +22,24 @@ describe('<Toast />', () => {
 		expect(toast.classList).toContain('custom-toast-type-success')
 	})
 	it('type=info applies correct className', () => {
-		render(<Toast {...mockProps} type={ToastType.INFO} />)
+		render(<Toast {...mockProps} type={NotificationType.INFO} />)
 		const toast = screen.getByTestId('toast-component')
 		expect(toast.classList).toContain('custom-toast-type-info')
 	})
 	it('type=warning applies correct className', () => {
-		render(<Toast {...mockProps} type={ToastType.WARNING} />)
+		render(<Toast {...mockProps} type={NotificationType.WARNING} />)
 		const toast = screen.getByTestId('toast-component')
 		expect(toast.classList).toContain('custom-toast-type-warning')
 	})
 	it('type=error displays the correct icon for', () => {
-		render(<Toast {...mockProps} type={ToastType.ERROR} />)
+		render(<Toast {...mockProps} type={NotificationType.ERROR} />)
 		const icon = screen.getByTestId('toast-icon')
 		expect(icon.innerHTML).toBe(
 			'<span class="text-xl inline-block -mt-1 transform-gpu -rotate-12">╲</span>',
 		)
 	})
 	it('fades out on dismissal', async () => {
-		render(<Toast {...mockProps} type={ToastType.ERROR} />)
+		render(<Toast {...mockProps} type={NotificationType.ERROR} />)
 		const toast = screen.getByTestId('toast-component')
 		const dismissButton = toast.querySelector('.dismiss')!
 		expect(toast.classList).toContain('opacity-100')

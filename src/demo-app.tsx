@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { NotificationContext } from './context'
-import { ToastType } from './types'
+import { NotificationType } from './types'
 
 const demoTitle = 'Lorem Ipsum'
 const demoContent = (
@@ -48,7 +48,7 @@ export function DemoApp() {
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
-							type: ToastType.INFO,
+							type: NotificationType.INFO,
 							children: demoContent,
 						})
 					}
@@ -60,7 +60,7 @@ export function DemoApp() {
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
-							type: ToastType.ERROR,
+							type: NotificationType.ERROR,
 							children: demoContent,
 						})
 					}
@@ -72,7 +72,7 @@ export function DemoApp() {
 					onClick={() =>
 						spawnToast({
 							title: demoTitle,
-							type: ToastType.WARNING,
+							type: NotificationType.WARNING,
 							children: demoContent,
 						})
 					}
@@ -113,7 +113,7 @@ export function DemoApp() {
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,
-							type: ToastType.INFO,
+							type: NotificationType.INFO,
 							children: demoContent,
 						})
 					}
@@ -125,7 +125,7 @@ export function DemoApp() {
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,
-							type: ToastType.ERROR,
+							type: NotificationType.ERROR,
 							children: demoContent,
 						})
 					}
@@ -137,7 +137,7 @@ export function DemoApp() {
 					onClick={() =>
 						spawnModal({
 							title: demoTitle,
-							type: ToastType.WARNING,
+							type: NotificationType.WARNING,
 							children: demoContent,
 						})
 					}
