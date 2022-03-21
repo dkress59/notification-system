@@ -3,64 +3,75 @@
 @tailwind utilities;
 
 @layer utilities {
-  .custom-toast {
-    @apply relative right-0 w-max max-w-1/2 min-w-60 py-4 px-12 my-4 mx-8;
-    @apply pointer-events-auto border-2 rounded-md shadow-lg;
-    @apply transition-opacity duration-500;
+  .custom {
 
-    &:first-of-type {
-      @apply mt-8;
-    }
-
-    &-type {
-      &-success {
-        @apply bg-green-light border-green;
-
-        .icon {
-          @apply text-green border-green;
-        }
-      }
-
-      &-info {
-        @apply bg-blue-light border-blue;
-
-        .icon {
-          @apply text-blue border-blue;
-        }
-      }
-
-      &-error {
-        @apply bg-red-light border-red;
-
-        .icon {
-          @apply text-red border-red;
-        }
-      }
-
-      &-warning {
-        @apply bg-yellow-light border-yellow;
-
-        .icon {
-          @apply text-yellow border-yellow;
-        }
+    &-toast {
+      @apply relative right-0 w-max max-w-1/2 min-w-60 my-4 mx-8;
+      &:first-of-type {
+        @apply mt-8;
       }
     }
 
-    >.icon {
-      @apply absolute top-4 left-4 h-6 aspect-square rounded-full overflow-hidden border-2;
-      @apply text-center text-xs leading-5 font-bold;
+    &-modal {
+      @apply fixed top-1/2 left-1/2 w-1/2 h-1/2 min-w-60 max-w-2xl;
+      @apply transform-gpu -translate-x-1/2 -translate-y-1/2;
     }
 
-    >h4 {
-      @apply font-bold text-lg text-grey leading-snug;
-    }
+    &-toast,
+    &-modal {
+      @apply py-4 px-12 pointer-events-auto border-2 rounded-md shadow-lg;
+      @apply transition-all duration-500;
 
-    >div {
-      @apply text-grey;
-    }
+      &-type {
+        &-success {
+          @apply bg-green-light border-green;
 
-    >.dismiss {
-      @apply absolute top-4 right-4 font-bold cursor-pointer;
+          .icon {
+            @apply text-green border-green;
+          }
+        }
+
+        &-info {
+          @apply bg-blue-light border-blue;
+
+          .icon {
+            @apply text-blue border-blue;
+          }
+        }
+
+        &-error {
+          @apply bg-red-light border-red;
+
+          .icon {
+            @apply text-red border-red;
+          }
+        }
+
+        &-warning {
+          @apply bg-yellow-light border-yellow;
+
+          .icon {
+            @apply text-yellow border-yellow;
+          }
+        }
+      }
+
+      >.icon {
+        @apply absolute top-4 left-4 h-6 aspect-square rounded-full overflow-hidden border-2;
+        @apply text-center text-xs leading-5 font-bold;
+      }
+
+      >h4 {
+        @apply font-bold text-lg text-grey leading-snug;
+      }
+
+      >div {
+        @apply text-grey;
+      }
+
+      >.dismiss {
+        @apply absolute top-4 right-4 font-bold cursor-pointer;
+      }
     }
   }
 }

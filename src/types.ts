@@ -28,4 +28,6 @@ export interface ToastInCollection {
 export interface NotificationContextType {
 	toasts: ToastInCollection[]
 	spawnToast: (props: ToastProps) => void
+	modals: ToastInCollection[]
+	spawnModal: (props: ToastProps) => void
 }
