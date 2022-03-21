@@ -12,7 +12,10 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 			value={{ toasts: collection, spawnToast }}
 		>
 			{children}
-			<footer id="toast-wrapper">
+			<footer
+				id="notification-wrapper"
+				data-testid="notification-wrapper"
+			>
 				{collection.map(({ props, id }: ToastInCollection) => (
 					<Toast {...props} key={id} />
 				))}

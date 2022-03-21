@@ -62,7 +62,11 @@ export function Toast({
 			</span>
 			<div>{children}</div>
 			{!autoHide && (
-				<span className="dismiss" onClick={() => onDismiss()}>
+				<span
+					className="dismiss"
+					data-testid="dismiss-button"
+					onClick={() => onDismiss()}
+				>
 					&#x2715;
 				</span>
 			)}

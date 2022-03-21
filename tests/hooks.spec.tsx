@@ -1,41 +1,97 @@
-import { act, renderHook } from '@testing-library/react-hooks'
+import { act, fireEvent, render, screen } from '@testing-library/react'
+import React, { useContext } from 'react'
 
-import { useToast } from '../src/hooks'
-import { ToastInCollection, ToastProps } from '../src/types'
+import { NotificationContext } from '../src/context'
+import { NotificationProvider } from '../src/hooks'
 
-interface UseToastValue {
-	spawnToast: (props: ToastProps) => void
-	removeToastFromDom: (id: string) => void
-	collection: ToastInCollection[]
+function SpawnToastButton() {
+	const { spawnToast } = useContext(NotificationContext)
+	return (
+		<button
+			data-testid="spawn-button"
+			onClick={() =>
+				spawnToast({
+					title: 'Mock Toast',
+					children: 'Mock Toast Content',
+				})
+			}
+		>
+			Spawn a toast
+		</button>
+	)
 }
 
 describe('Custom Hooks', () => {
-	describe('useToast', () => {
-		it('initialises with empty collection', () => {
-			const { result } = renderHook(() => useToast())
-			expect(result.current.collection).toEqual([])
-		})
-		it('correctly adds a toast to the collection', () => {
-			const { result } = renderHook(() => useToast())
-			act(() => result.current.spawnToast({}))
-			expect(result.current.collection).toHaveLength(1)
-		})
-		it('correctly adds additional toast to the collection', () => {
-			const { result } = renderHook(() => useToast())
-			act(() => result.current.spawnToast({}))
-			act(() => result.current.spawnToast({}))
-			expect(result.current.collection).toHaveLength(2)
-		})
-		it('correctly removes DOM node from collection', () => {
-			const { result } = renderHook(() => useToast())
-			act(() => result.current.spawnToast({}))
-			act(() => result.current.spawnToast({}))
-			const secondToast = (result.all.pop() as UseToastValue)
-				.collection[1]
-			act(() => result.current.removeToastFromDom(secondToast.id))
-			expect((result.all.pop() as UseToastValue).collection).toHaveLength(
-				1,
-			)
+	describe('NotificationProvider', () => {
+		describe('useToast', () => {
+			it('initialises with empty collection', () => {
+				render(
+					<NotificationProvider>
+						<React.Fragment />
+					</NotificationProvider>,
+				)
+				const notificationWrapper = screen.getByTestId(
+					'notification-wrapper',
+				)!
+				expect(notificationWrapper.children).toHaveLength(0)
+			})
+			it('correctly adds a toast to the collection', async () => {
+				render(
+					<NotificationProvider>
+						<SpawnToastButton />
+					</NotificationProvider>,
+				)
+				const notificationWrapper = screen.getByTestId(
+					'notification-wrapper',
+				)!
+				const spawnToastButton = screen.getByTestId('spawn-button')
+				fireEvent.click(spawnToastButton)
+				await act(() => Promise.resolve())
+				expect(notificationWrapper.children).toHaveLength(1)
+			})
+			it('correctly adds additional toast to the collection', async () => {
+				render(
+					<NotificationProvider>
+						<SpawnToastButton />
+					</NotificationProvider>,
+				)
+				const notificationWrapper = screen.getByTestId(
+					'notification-wrapper',
+				)!
+				const spawnToastButton = screen.getByTestId('spawn-button')
+				fireEvent.click(spawnToastButton)
+				await act(() => Promise.resolve())
+				fireEvent.click(spawnToastButton)
+				await act(() => Promise.resolve())
+				expect(notificationWrapper.children).toHaveLength(2)
+			})
+			it('correctly removes DOM node from collection', async () => {
+				render(
+					<NotificationProvider>
+						<SpawnToastButton />
+					</NotificationProvider>,
+				)
+				const notificationWrapper = screen.getByTestId(
+					'notification-wrapper',
+				)!
+				const spawnToastButton = screen.getByTestId('spawn-button')
+				fireEvent.click(spawnToastButton)
+				await act(() => Promise.resolve())
+				fireEvent.click(spawnToastButton)
+				await act(() => Promise.resolve())
+
+				const dismissButton = screen.getAllByTestId('dismiss-button')[1]
+				fireEvent.click(dismissButton)
+				await act(() => Promise.resolve())
+				await act(
+					() =>
+						new Promise(resolve =>
+							setTimeout(() => resolve(), 600),
+						),
+				)
+
+				expect(notificationWrapper.children).toHaveLength(1)
+			})
 		})
 	})
 })

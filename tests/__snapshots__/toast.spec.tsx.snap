@@ -18,6 +18,7 @@ exports[`<Toast /> initialises to correct defaults 1`] = `
     <div />
     <span
       class="dismiss"
+      data-testid="dismiss-button"
     >
       ✕
     </span>
