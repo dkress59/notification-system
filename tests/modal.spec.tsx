@@ -5,11 +5,12 @@ import { FinalModalProps, NotificationType } from '../src/types'
 
 const mockProps: FinalModalProps = {
 	children: <>Mock Content</>,
-	removeThisFromDom: jest.fn(),
+	condition: true,
 	labelConfirm: 'Mock Accept Label',
 	labelDecline: 'Mock Decline Label',
 	onConfirm: jest.fn(),
 	onDecline: jest.fn(),
+	removeThisFromDom: jest.fn(),
 	title: 'Mock Title',
 	type: NotificationType.SUCCESS,
 }
@@ -110,5 +111,25 @@ describe('<Modal />', () => {
 			() => new Promise(resolve => setTimeout(() => resolve(), 600)),
 		)
 		expect(mockRemoveFromDom).toHaveBeenCalled()
+	})
+	it('does not allow onAccept if condition=false', async () => {
+		const mockRemoveFromDom = jest.fn()
+		const mockOnConfirm = jest.fn()
+		render(
+			<Modal
+				{...mockProps}
+				removeThisFromDom={mockRemoveFromDom}
+				onConfirm={mockOnConfirm}
+				condition={false}
+			/>,
+		)
+		const confirmButton = screen.getByTestId('confirm-button')!
+		fireEvent.click(confirmButton)
+		await act(() => Promise.resolve())
+		expect(mockOnConfirm).not.toHaveBeenCalled()
+		await act(
+			() => new Promise(resolve => setTimeout(() => resolve(), 600)),
+		)
+		expect(mockRemoveFromDom).not.toHaveBeenCalled()
 	})
 })

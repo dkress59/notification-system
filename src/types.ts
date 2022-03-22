@@ -18,12 +18,13 @@ export type ToastProps = PropsWithChildren<{
 export type FinalToastProps = FinalProps<ToastProps>
 
 export type ModalProps = PropsWithChildren<{
-	type?: NotificationType
-	title?: string | JSX.Element
+	condition?: boolean
 	labelConfirm?: string | JSX.Element
 	labelDecline?: string | JSX.Element
 	onConfirm?: () => void
 	onDecline?: () => void
+	type?: NotificationType
+	title?: string | JSX.Element
 }>
 
 export type FinalModalProps = FinalProps<ModalProps>
