@@ -1,10 +1,10 @@
 # Notification System
 
-This repo started out as a coding challenge. Now it is a library for a reusable notification system.
+This repo started out as a coding challenge. Now it is a reusable library for a notification system.
 
 ## Usage
 
-Wrap your top-level component in the `<NotificationProvider />`, then you will be able to use the `spawnToast` and `spawnModal` methods from the `NotificationContext`. See the [`<DemoApp />`](src/demo-app.tsx) for reference.
+Wrap your top-level component in the `<NotificationProvider />` and insert the `<BannerArea />` component as one of its children, in order to use the `spawnBanner`, `spawnModal` and `spawnToast` methods from the `NotificationContext`. See the [`<DemoApp />`](src/demo-app.tsx) for reference.
 
 ## Development
 
@@ -21,4 +21,4 @@ Wrap your top-level component in the `<NotificationProvider />`, then you will b
 * [X] add missing unit tests
 * [X] wrap everything in a context provider (global state)
 * [X] add notification alerts (modals)
-* [ ] add notification banners (?)
+* [X] add notification banners

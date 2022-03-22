@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid'
-import React, { ReactNode, useReducer } from 'react'
+import React, { ReactNode, useContext, useReducer } from 'react'
 
+import { Banner } from './banner'
 import { NotificationContext } from './context'
 import { Modal } from './modal'
 import { Toast } from './toast'
@@ -11,16 +12,24 @@ import {
 } from './types'
 
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
-	const { toasts, spawnToast } = useToast()
+	const { banners, spawnBanner } = useBanner()
 	const { modals, spawnModal } = useModal()
+	const { toasts, spawnToast } = useToast()
 	return (
 		<NotificationContext.Provider
-			value={{ toasts, spawnToast, modals, spawnModal }}
+			value={{
+				banners,
+				modals,
+				toasts,
+				spawnBanner,
+				spawnModal,
+				spawnToast,
+			}}
 		>
 			{children}
 			<footer
-				id="notification-wrapper"
-				data-testid="notification-wrapper"
+				id="notification-container"
+				data-testid="notification-container"
 			>
 				{toasts.map(({ props, id }: NotificationInCollection) => (
 					<Toast {...props} key={id} />
@@ -30,6 +39,17 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
 				))}
 			</footer>
 		</NotificationContext.Provider>
+	)
+}
+
+export const BannerArea = () => {
+	const { banners } = useContext(NotificationContext)
+	return (
+		<header id="banner-container" data-testid="banner-container">
+			{banners.map(({ props, id }) => (
+				<Banner {...props} key={id} />
+			))}
+		</header>
 	)
 }
 
@@ -97,5 +117,19 @@ function useModal() {
 	return {
 		spawnModal,
 		modals,
+	}
+}
+
+function useBanner() {
+	const [banners, dispatch] = useReducer(
+		notificationReducer,
+		[] as NotificationInCollection[],
+	)
+
+	const spawnBanner = getSpawnAction(dispatch)
+
+	return {
+		spawnBanner,
+		banners,
 	}
 }

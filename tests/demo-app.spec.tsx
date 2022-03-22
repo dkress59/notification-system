@@ -16,104 +16,104 @@ describe('<DemoApp />', () => {
 		it('of type success', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-success-toast')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type autHide', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-autHide-toast')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type info', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-info-toast')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type error', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-error-toast')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type warning', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-warning-toast')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 	})
 	describe('Spawning works correctly for <Modal />', () => {
 		it('of type success', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-success-modal')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('with buttons', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-button-modal')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type info', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-info-modal')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type error', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-error-modal')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 		it('of type warning', async () => {
 			render(<Stage />)
 			const button = screen.getByTestId('spawn-warning-modal')
-			const notificationWrapper = screen.getByTestId(
-				'notification-wrapper',
+			const notificationContainer = screen.getByTestId(
+				'notification-container',
 			)
 			fireEvent.click(button)
 			await act(() => Promise.resolve())
-			expect(notificationWrapper.children).toHaveLength(1)
+			expect(notificationContainer.children).toHaveLength(1)
 		})
 	})
 	it('redundant confirm-button test, purely for test coverage', async () => {
@@ -130,5 +130,47 @@ describe('<DemoApp />', () => {
 			message: 'Button clicked!',
 		})
 		console.log = originalConsoleLog
+	})
+	describe('Spawning works correctly for <Banner />', () => {
+		it('of type success', async () => {
+			render(<Stage />)
+			const button = screen.getByTestId('spawn-success-banner')
+			const notificationContainer = screen.getByTestId('banner-container')
+			fireEvent.click(button)
+			await act(() => Promise.resolve())
+			expect(notificationContainer.children).toHaveLength(1)
+		})
+		it('of type autHide', async () => {
+			render(<Stage />)
+			const button = screen.getByTestId('spawn-autHide-banner')
+			const notificationContainer = screen.getByTestId('banner-container')
+			fireEvent.click(button)
+			await act(() => Promise.resolve())
+			expect(notificationContainer.children).toHaveLength(1)
+		})
+		it('of type info', async () => {
+			render(<Stage />)
+			const button = screen.getByTestId('spawn-info-banner')
+			const notificationContainer = screen.getByTestId('banner-container')
+			fireEvent.click(button)
+			await act(() => Promise.resolve())
+			expect(notificationContainer.children).toHaveLength(1)
+		})
+		it('of type error', async () => {
+			render(<Stage />)
+			const button = screen.getByTestId('spawn-error-banner')
+			const notificationContainer = screen.getByTestId('banner-container')
+			fireEvent.click(button)
+			await act(() => Promise.resolve())
+			expect(notificationContainer.children).toHaveLength(1)
+		})
+		it('of type warning', async () => {
+			render(<Stage />)
+			const button = screen.getByTestId('spawn-warning-banner')
+			const notificationContainer = screen.getByTestId('banner-container')
+			fireEvent.click(button)
+			await act(() => Promise.resolve())
+			expect(notificationContainer.children).toHaveLength(1)
+		})
 	})
 })

@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react'
 import React, { useContext } from 'react'
 
 import { NotificationContext } from '../src/context'
-import { NotificationProvider } from '../src/hooks'
+import { BannerArea, NotificationProvider } from '../src/hooks'
 
 function SpawnToastButton() {
 	const { spawnToast } = useContext(NotificationContext)
@@ -38,6 +38,23 @@ function SpawnModalButton() {
 	)
 }
 
+function SpawnBannerButton() {
+	const { spawnBanner } = useContext(NotificationContext)
+	return (
+		<button
+			data-testid="spawn-button"
+			onClick={() =>
+				spawnBanner({
+					title: 'Mock Banner',
+					children: 'Mock Banner Content',
+				})
+			}
+		>
+			Spawn a banner
+		</button>
+	)
+}
+
 describe('Custom Hooks', () => {
 	describe('NotificationProvider', () => {
 		describe('useToast', () => {
@@ -47,10 +64,10 @@ describe('Custom Hooks', () => {
 						<React.Fragment />
 					</NotificationProvider>,
 				)
-				const notificationWrapper = screen.getByTestId(
-					'notification-wrapper',
+				const notificationContainer = screen.getByTestId(
+					'notification-container',
 				)!
-				expect(notificationWrapper.children).toHaveLength(0)
+				expect(notificationContainer.children).toHaveLength(0)
 			})
 			it('correctly adds a toast to the collection', async () => {
 				render(
@@ -58,13 +75,13 @@ describe('Custom Hooks', () => {
 						<SpawnToastButton />
 					</NotificationProvider>,
 				)
-				const notificationWrapper = screen.getByTestId(
-					'notification-wrapper',
+				const notificationContainer = screen.getByTestId(
+					'notification-container',
 				)!
 				const spawnToastButton = screen.getByTestId('spawn-button')
 				fireEvent.click(spawnToastButton)
 				await act(() => Promise.resolve())
-				expect(notificationWrapper.children).toHaveLength(1)
+				expect(notificationContainer.children).toHaveLength(1)
 			})
 			it('correctly adds additional toast to the collection', async () => {
 				render(
@@ -72,15 +89,15 @@ describe('Custom Hooks', () => {
 						<SpawnToastButton />
 					</NotificationProvider>,
 				)
-				const notificationWrapper = screen.getByTestId(
-					'notification-wrapper',
+				const notificationContainer = screen.getByTestId(
+					'notification-container',
 				)!
 				const spawnToastButton = screen.getByTestId('spawn-button')
 				fireEvent.click(spawnToastButton)
 				await act(() => Promise.resolve())
 				fireEvent.click(spawnToastButton)
 				await act(() => Promise.resolve())
-				expect(notificationWrapper.children).toHaveLength(2)
+				expect(notificationContainer.children).toHaveLength(2)
 			})
 			it('correctly adds a modal to the collection', async () => {
 				render(
@@ -88,13 +105,26 @@ describe('Custom Hooks', () => {
 						<SpawnModalButton />
 					</NotificationProvider>,
 				)
-				const notificationWrapper = screen.getByTestId(
-					'notification-wrapper',
+				const notificationContainer = screen.getByTestId(
+					'notification-container',
 				)!
 				const spawnModalButton = screen.getByTestId('spawn-button')
 				fireEvent.click(spawnModalButton)
 				await act(() => Promise.resolve())
-				expect(notificationWrapper.children).toHaveLength(1)
+				expect(notificationContainer.children).toHaveLength(1)
+			})
+			it('correctly adds a banner to the collection', async () => {
+				render(
+					<NotificationProvider>
+						<BannerArea />
+						<SpawnBannerButton />
+					</NotificationProvider>,
+				)
+				const bannerContainer = screen.getByTestId('banner-container')!
+				const spawnBannerButton = screen.getByTestId('spawn-button')
+				fireEvent.click(spawnBannerButton)
+				await act(() => Promise.resolve())
+				expect(bannerContainer.children).toHaveLength(1)
 			})
 			it('correctly removes DOM node from collection', async () => {
 				render(
@@ -102,8 +132,8 @@ describe('Custom Hooks', () => {
 						<SpawnToastButton />
 					</NotificationProvider>,
 				)
-				const notificationWrapper = screen.getByTestId(
-					'notification-wrapper',
+				const notificationContainer = screen.getByTestId(
+					'notification-container',
 				)!
 				const spawnToastButton = screen.getByTestId('spawn-button')
 				fireEvent.click(spawnToastButton)
@@ -121,7 +151,7 @@ describe('Custom Hooks', () => {
 						),
 				)
 
-				expect(notificationWrapper.children).toHaveLength(1)
+				expect(notificationContainer.children).toHaveLength(1)
 			})
 		})
 	})

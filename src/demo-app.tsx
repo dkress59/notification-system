@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 
 import { NotificationContext } from './context'
+import { BannerArea } from './hooks'
 import { NotificationType } from './types'
 
-const demoToastTitle = 'Lorem Ipsum'
-const demoToastContent = (
+const demoBannerTitle = undefined
+const demoBannerContent = (
 	<>
 		Lorem ipsum dolor sit amet consectetur adipisicing elit, facilis
 		necessitatibus sunt quisquam officia quidem.
@@ -25,21 +26,95 @@ const demoModalContent = (
 	</>
 )
 
+const demoToastTitle = 'Lorem Ipsum'
+const demoToastContent = (
+	<>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit, facilis
+		necessitatibus sunt quisquam officia quidem.
+	</>
+)
+
 const onButtonClick = () => {
 	// eslint-disable-next-line no-console
 	console.log({ message: 'Button clicked!' })
 }
 
 export function DemoApp() {
-	const { spawnToast, spawnModal } = useContext(NotificationContext)
+	const { spawnBanner, spawnModal, spawnToast } =
+		useContext(NotificationContext)
 
 	return (
-		<main className="flex">
-			<article className="w-1/2">
+		<main className="flex flex-wrap" id="demo-app">
+			<BannerArea />
+			<article className="w-1/2 flex-grow">
+				<h1>Try out the banner component!</h1>
+				<button
+					data-testid="spawn-success-banner"
+					onClick={() =>
+						spawnBanner({
+							title: demoBannerTitle,
+							children: demoBannerContent,
+						})
+					}
+				>
+					Spawn a success banner
+				</button>
 				<br />
+				<button
+					data-testid="spawn-autHide-banner"
+					onClick={() =>
+						spawnBanner({
+							autoHide: true,
+							title: demoBannerTitle,
+							children: demoBannerContent,
+						})
+					}
+				>
+					Spawn an automatically hiding success banner
+				</button>
 				<br />
+				<button
+					data-testid="spawn-info-banner"
+					onClick={() =>
+						spawnBanner({
+							title: demoBannerTitle,
+							type: NotificationType.INFO,
+							children: demoBannerContent,
+						})
+					}
+				>
+					Spawn an info banner
+				</button>
 				<br />
-				<h1>Webpack Development Server is running!</h1>
+				<button
+					data-testid="spawn-error-banner"
+					onClick={() =>
+						spawnBanner({
+							title: demoBannerTitle,
+							type: NotificationType.ERROR,
+							children: demoBannerContent,
+						})
+					}
+				>
+					Spawn an error banner
+				</button>
+				<br />
+				<button
+					data-testid="spawn-warning-banner"
+					onClick={() =>
+						spawnBanner({
+							title: demoBannerTitle,
+							type: NotificationType.WARNING,
+							children: demoBannerContent,
+						})
+					}
+				>
+					Spawn a warning banner
+				</button>
+				<br />
+			</article>
+			<article className="w-1/2 flex-grow">
+				<h1>Try out the toast component!</h1>
 				<button
 					data-testid="spawn-success-toast"
 					onClick={() =>
@@ -105,11 +180,8 @@ export function DemoApp() {
 				</button>
 				<br />
 			</article>
-			<article className="w-1/2">
-				<br />
-				<br />
-				<br />
-				<h1>Webpack Development Server is running!</h1>
+			<article className="w-1/2 flex-grow">
+				<h1>Try out the modal component!</h1>
 				<button
 					data-testid="spawn-success-modal"
 					onClick={() =>

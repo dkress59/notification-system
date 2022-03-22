@@ -14,14 +14,14 @@ export function getIcon(type: NotificationType) {
 	return <>&#10003;</>
 }
 
-export function getToastClassName(type: NotificationType) {
+export function getBannerClassName(type: NotificationType) {
 	if (type === NotificationType.INFO)
-		return 'custom-toast custom-toast-type-info'
+		return 'custom-banner custom-banner-type-info'
 	if (type === NotificationType.ERROR)
-		return 'custom-toast custom-toast-type-error'
+		return 'custom-banner custom-banner-type-error'
 	if (type === NotificationType.WARNING)
-		return 'custom-toast custom-toast-type-warning'
-	return 'custom-toast custom-toast-type-success'
+		return 'custom-banner custom-banner-type-warning'
+	return 'custom-banner custom-banner-type-success'
 }
 
 export function getModalClassName(type: NotificationType) {
@@ -32,4 +32,14 @@ export function getModalClassName(type: NotificationType) {
 	if (type === NotificationType.WARNING)
 		return 'custom-modal custom-modal-type-warning'
 	return 'custom-modal custom-modal-type-success'
+}
+
+export function getToastClassName(type: NotificationType) {
+	if (type === NotificationType.INFO)
+		return 'custom-toast custom-toast-type-info'
+	if (type === NotificationType.ERROR)
+		return 'custom-toast custom-toast-type-error'
+	if (type === NotificationType.WARNING)
+		return 'custom-toast custom-toast-type-warning'
+	return 'custom-toast custom-toast-type-success'
 }

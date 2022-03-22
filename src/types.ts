@@ -29,6 +29,9 @@ export type ModalProps = PropsWithChildren<{
 
 export type FinalModalProps = FinalProps<ModalProps>
 
+export type BannerProps = ToastProps
+export type FinalBannerProps = FinalToastProps
+
 export enum NotificationReducerAction {
 	PUSH = 'push',
 	POP = 'pop',
@@ -44,4 +47,6 @@ export interface NotificationContextType {
 	spawnToast: (props: ToastProps) => void
 	modals: NotificationInCollection[]
 	spawnModal: (props: ModalProps) => void
+	banners: NotificationInCollection[]
+	spawnBanner: (props: BannerProps) => void
 }
