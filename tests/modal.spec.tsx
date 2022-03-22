@@ -6,9 +6,9 @@ import { FinalModalProps, NotificationType } from '../src/types'
 const mockProps: FinalModalProps = {
 	children: <>Mock Content</>,
 	removeThisFromDom: jest.fn(),
-	labelAccept: 'Mock Accept Label',
+	labelConfirm: 'Mock Accept Label',
 	labelDecline: 'Mock Decline Label',
-	onAccept: jest.fn(),
+	onConfirm: jest.fn(),
 	onDecline: jest.fn(),
 	title: 'Mock Title',
 	type: NotificationType.SUCCESS,
@@ -23,7 +23,7 @@ describe('<Modal />', () => {
 		const { container } = render(
 			<Modal
 				removeThisFromDom={jest.fn()}
-				onAccept={jest.fn()}
+				onConfirm={jest.fn()}
 				onDecline={jest.fn()}
 			/>,
 		)
@@ -68,6 +68,25 @@ describe('<Modal />', () => {
 		fireEvent.click(dismissButton)
 		await act(() => Promise.resolve())
 		expect(mockRemoveFromDom).not.toHaveBeenCalled()
+		await act(
+			() => new Promise(resolve => setTimeout(() => resolve(), 600)),
+		)
+		expect(mockRemoveFromDom).toHaveBeenCalled()
+	})
+	it('dismisses itself onConfirm', async () => {
+		const mockRemoveFromDom = jest.fn()
+		const mockOnConfirm = jest.fn()
+		render(
+			<Modal
+				{...mockProps}
+				removeThisFromDom={mockRemoveFromDom}
+				onConfirm={mockOnConfirm}
+			/>,
+		)
+		const confirmButton = screen.getByTestId('confirm-button')!
+		fireEvent.click(confirmButton)
+		await act(() => Promise.resolve())
+		expect(mockOnConfirm).toHaveBeenCalled()
 		await act(
 			() => new Promise(resolve => setTimeout(() => resolve(), 600)),
 		)

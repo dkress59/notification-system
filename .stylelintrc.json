@@ -21,6 +21,7 @@
 				"ignoreAtRules": [
 					"apply",
 					"layer",
+					"screen",
 					"tailwind"
 				]
 			}

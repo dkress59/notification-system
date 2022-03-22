@@ -20,9 +20,9 @@ export type FinalToastProps = FinalProps<ToastProps>
 export type ModalProps = PropsWithChildren<{
 	type?: NotificationType
 	title?: string | JSX.Element
-	labelAccept?: string | JSX.Element
+	labelConfirm?: string | JSX.Element
 	labelDecline?: string | JSX.Element
-	onAccept?: () => void
+	onConfirm?: () => void
 	onDecline?: () => void
 }>
 

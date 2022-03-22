@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { FinalModalProps, NotificationType } from './types'
 import { getIcon, getModalClassName } from './util'
@@ -6,9 +6,9 @@ import { getIcon, getModalClassName } from './util'
 export function Modal({
 	children,
 	removeThisFromDom,
-	labelAccept,
-	labelDecline,
-	onAccept,
+	labelConfirm = 'Accept',
+	labelDecline = 'Decline',
+	onConfirm,
 	onDecline,
 	title,
 	type = NotificationType.SUCCESS,
@@ -17,10 +17,15 @@ export function Modal({
 	const visibleClassName = 'opacity-100 mt-0 scale-100'
 
 	const [transition, setTransition] = useState(hiddenClassName)
+	const ref = useRef<null | HTMLElement>(null)
 
 	const className = getModalClassName(type) + ' ' + transition
 	const onDismiss = () => {
 		if (onDecline) onDecline()
+		setTransition(hiddenClassName)
+	}
+	const onConfirmFinal = () => {
+		if (onConfirm) onConfirm()
 		setTransition(hiddenClassName)
 	}
 
@@ -31,7 +36,9 @@ export function Modal({
 	useEffect(() => {
 		const timeOut =
 			transition === hiddenClassName
-				? setTimeout(() => removeThisFromDom(), 500)
+				? setTimeout(() => {
+						if (ref.current) removeThisFromDom()
+				  }, 500)
 				: null
 		return () => {
 			if (timeOut) clearTimeout(timeOut)
@@ -39,7 +46,7 @@ export function Modal({
 	}, [transition])
 
 	return (
-		<aside {...{ className }} data-testid="modal-component">
+		<aside {...{ className }} data-testid="modal-component" ref={ref}>
 			{title && <h4>{title}</h4>}
 			<span className="icon" data-testid="modal-icon">
 				{getIcon(type)}
@@ -52,15 +59,27 @@ export function Modal({
 			>
 				&#x2715;
 			</span>
-			{onAccept && (
-				<button onClick={onAccept} data-testid="accept-button">
-					{labelAccept ?? 'Accept'}
-				</button>
-			)}
-			{onDecline && (
-				<button onClick={onDismiss} data-testid="decline-button">
-					{labelDecline ?? 'Decline'}
-				</button>
+			{(onConfirm || onDecline) && (
+				<footer>
+					{onConfirm && (
+						<button
+							onClick={onConfirmFinal}
+							className="confirm"
+							data-testid="confirm-button"
+						>
+							{labelConfirm}
+						</button>
+					)}
+					{onDecline && (
+						<button
+							onClick={onDismiss}
+							className="decline"
+							data-testid="decline-button"
+						>
+							{labelDecline}
+						</button>
+					)}
+				</footer>
 			)}
 		</aside>
 	)

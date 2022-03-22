@@ -19,16 +19,20 @@ exports[`<Modal /> initialises to correct default labels 1`] = `
     >
       ✕
     </span>
-    <button
-      data-testid="accept-button"
-    >
-      Accept
-    </button>
-    <button
-      data-testid="decline-button"
-    >
-      Decline
-    </button>
+    <footer>
+      <button
+        class="confirm"
+        data-testid="confirm-button"
+      >
+        Accept
+      </button>
+      <button
+        class="decline"
+        data-testid="decline-button"
+      >
+        Decline
+      </button>
+    </footer>
   </aside>
 </div>
 `;
