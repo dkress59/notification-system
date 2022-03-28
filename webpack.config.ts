@@ -27,7 +27,7 @@ const devPlugins = [
 	}),
 	new ESLintPlugin({
 		emitWarning: false,
-		exclude: ['.yarn', 'node_modules'],
+		exclude: ['.yarn', 'build', 'node_modules'],
 		extensions: ['js', 'jsx', 'ts', 'tsx'],
 	}),
 ] as webpack.WebpackPluginInstance[]
@@ -60,27 +60,27 @@ const buildPlugins = [
 		async: false,
 	}),
 	new ESLintPlugin({
-		exclude: ['.yarn', 'node_modules'],
+		exclude: ['.yarn', 'build', 'node_modules'],
 		extensions: ['js', 'jsx', 'ts', 'tsx'],
 	}),
 	new CleanWebpackPlugin(),
 ] as webpack.WebpackPluginInstance[]
 
 export default (_env: unknown, argv: WebpackArgv): webpack.Configuration => {
-	const production = argv.mode === 'production'
+	const isProduction = argv.mode === 'production'
 
 	return {
-		devtool: production ? false : 'source-map',
+		devtool: isProduction ? false : 'source-map',
 		entry: path.resolve(__dirname, `src/index.tsx`),
-		externalsPresets: production ? { node: true } : undefined,
-		mode: production ? 'production' : 'development',
+		externalsPresets: isProduction ? { node: true } : undefined,
+		mode: isProduction ? 'production' : 'development',
 		module: {
 			rules: [
 				{
 					test: /\.(ts|js)x?$/i,
 					exclude: [
 						/node_modules/,
-						/src\/stories\/[A-Za-z0-9-/]*.*\.tsx?$/,
+						/stories\/[A-Za-z0-9-/]*.*\.tsx?$/
 					],
 					use: {
 						loader: 'babel-loader',
@@ -94,16 +94,8 @@ export default (_env: unknown, argv: WebpackArgv): webpack.Configuration => {
 					},
 				},
 				{
-					test: /\.svg$/,
-					use: [
-						{
-							loader: '@svgr/webpack',
-						},
-					],
-				},
-				{
 					test: /\.(?:c|sa|sc)ss$/,
-					use: production ? buildCss : devCss,
+					use: isProduction ? buildCss : devCss,
 				},
 			],
 		},
@@ -119,18 +111,15 @@ export default (_env: unknown, argv: WebpackArgv): webpack.Configuration => {
 				},
 			},
 		},
-		output: production
+		output: isProduction
 			? {
-					path: outDir,
-					filename: 'static/js/[name].[contenthash].js',
-					publicPath: '/',
-			  }
+				path: outDir,
+				filename: 'static/js/[name].[contenthash].js',
+				publicPath: '/',
+			}
 			: undefined,
-		plugins: production ? buildPlugins : devPlugins,
+		plugins: isProduction ? buildPlugins : devPlugins,
 		resolve: {
-			alias: {
-				'@common': path.resolve(__dirname, 'apps/_common/src'),
-			},
 			extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
 		},
 	}
