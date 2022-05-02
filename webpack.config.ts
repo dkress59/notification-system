@@ -71,7 +71,7 @@ export default (_env: unknown, argv: WebpackArgv): webpack.Configuration => {
 
 	return {
 		devtool: isProduction ? false : 'source-map',
-		entry: path.resolve(__dirname, `src/index.tsx`),
+		entry: path.resolve(__dirname, `src/entry-point.tsx`),
 		externalsPresets: isProduction ? { node: true } : undefined,
 		mode: isProduction ? 'production' : 'development',
 		module: {
@@ -80,7 +80,7 @@ export default (_env: unknown, argv: WebpackArgv): webpack.Configuration => {
 					test: /\.(ts|js)x?$/i,
 					exclude: [
 						/node_modules/,
-						/stories\/[A-Za-z0-9-/]*.*\.tsx?$/
+						/stories\/[A-Za-z0-9-/]*.*\.tsx?$/,
 					],
 					use: {
 						loader: 'babel-loader',
@@ -113,10 +113,10 @@ export default (_env: unknown, argv: WebpackArgv): webpack.Configuration => {
 		},
 		output: isProduction
 			? {
-				path: outDir,
-				filename: 'static/js/[name].[contenthash].js',
-				publicPath: '/',
-			}
+					path: outDir,
+					filename: 'static/js/[name].[contenthash].js',
+					publicPath: '/',
+			  }
 			: undefined,
 		plugins: isProduction ? buildPlugins : devPlugins,
 		resolve: {
