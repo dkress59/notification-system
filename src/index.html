@@ -7,9 +7,34 @@
 
     <script type="module" src="/build/notification-system.esm.js"></script>
     <script nomodule src="/build/notification-system.js"></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+      }
+
+      #notification-container {
+        position: fixed;
+        z-index: 50;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        overflow-y: auto;
+      }
+    </style>
   </head>
-  <body class="p-0 font-sans flex items-center justify-center">
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-    <p class="red">lightDOM</p>
+  <body>
+    <div id="notification-container">
+      <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+      <my-component first="more Stencil" middle="please" last="'Don't call me a framework' JS"></my-component>
+    </div>
   </body>
 </html>

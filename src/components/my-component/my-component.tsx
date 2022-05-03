@@ -28,10 +28,6 @@ export class MyComponent {
 	}
 
 	render() {
-		return (
-			<div class="bg-black text-white red">
-				Hello, World! I'm {this.getText()}
-			</div>
-		) as JSX.Element
+		return (<div>Hello, World! I'm {this.getText()}</div>) as JSX.Element
 	}
 }

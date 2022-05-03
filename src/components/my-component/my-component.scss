@@ -1,4 +1,3 @@
 :host {
-  display: block;
-  @extend .bg-yellow, .text-red;
+  @extend %custom-toast, %custom-toast-type-success;
 }

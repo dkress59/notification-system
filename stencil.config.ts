@@ -3,7 +3,6 @@ import { sass } from '@stencil/sass'
 
 export const config: Config = {
 	namespace: 'notification-system',
-	//globalStyle: 'src/app.scss',
 	outputTargets: [
 		{
 			type: 'dist',
@@ -17,12 +16,13 @@ export const config: Config = {
 		},
 		{
 			type: 'www',
+			baseUrl: '.',
 			serviceWorker: null, // disable service workers
 		},
 	],
 	plugins: [
 		sass({
-			injectGlobalPaths: ['src/app.scss'],
+			injectGlobalPaths: ['src/custom.scss', 'src/global.scss'],
 		}),
 	],
 }
