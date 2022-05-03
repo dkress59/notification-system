@@ -1,27 +1,24 @@
 module.exports = {
-	content: [
-		'./src/*.{css,html,scss,ts,tsx}',
-		'./src/**/*.{css,html,scss,ts,tsx}',
-	],
+	content: ['./src/*.{css,html,ts,tsx}', './src/**/*.{css,html,ts,tsx}'],
 	theme: {
 		colors: {
 			white: '#ffffff',
 			black: '#2b2b2b',
 			grey: '#505050',
 			green: {
-				default: '#14c0a0',
+				DEFAULT: '#14c0a0',
 				light: '#e1f8f2',
 			},
 			blue: {
-				default: '#0087cc',
+				DEFAULT: '#0087cc',
 				light: '#e1f2f9',
 			},
 			red: {
-				default: '#f0264d',
+				DEFAULT: '#f0264d',
 				light: '#fdeaee',
 			},
 			yellow: {
-				default: '#ffa800',
+				DEFAULT: '#ffa800',
 				light: '#fff6e5',
 			},
 		},

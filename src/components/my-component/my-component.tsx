@@ -29,7 +29,7 @@ export class MyComponent {
 
 	render() {
 		return (
-			<div class="text-2xl custom-toast custom-toast-type-success">
+			<div class="bg-black text-white red">
 				Hello, World! I'm {this.getText()}
 			</div>
 		) as JSX.Element

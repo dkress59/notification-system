@@ -23,10 +23,6 @@ module.exports = {
 		'@typescript-eslint/no-empty-function': 'off',
 		'curly': 'off',
 		'jam3/no-sanitizer-with-danger': 2,
-		'eslint-comments/disable-enable-pair': 'off',
-		//'eslint-comments/no-unlimited-disable': 0,
-		'jsx-a11y/no-noninteractive-element-interactions': 1,
-		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
 		'unused-imports/no-unused-vars': [
 			'error',
 			{
@@ -36,5 +32,8 @@ module.exports = {
 				argsIgnorePattern: '^h$',
 			},
 		],
+		'eslint-comments/disable-enable-pair': 'off',
+		'jsx-a11y/no-noninteractive-element-interactions': 1,
+		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
 	},
 }
