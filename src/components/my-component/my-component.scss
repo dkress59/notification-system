@@ -1,4 +1,7 @@
-:host {
-  display: block;
-  @extend .bg-yellow, .text-red;
+@layer base {
+  :host {
+    display: block;
+
+    @apply text-center bg-black text-white border-solid border-4 border-green;
+  }
 }
