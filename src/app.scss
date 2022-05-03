@@ -1,0 +1,70 @@
+:host {
+	--clr-green: #14c0a0;
+	--clr-green-light: #e1f8f2;
+	--clr-blue: #0087cc;
+	--clr-blue-light: #e1f2f9;
+	--clr-red: #f0264d;
+	--clr-red-light: #fdeaee;
+	--clr-yellow: #ffa800;
+	--clr-yellow-light: #fff6e5;
+}
+
+.text-green {
+	color: var(--clr-green);
+}
+.text-green-light {
+	color: var(--clr-green-light);
+}
+.bg-green {
+	background-color: var(--clr-green);
+}
+.bg-green-light {
+	background-color: var(--clr-green-light);
+}
+
+.text-blue {
+	color: var(--clr-blue);
+}
+.text-blue-light {
+	color: var(--clr-blue-light);
+}
+.bg-blue {
+	background-color: var(--clr-blue);
+}
+.bg-blue-light {
+	background-color: var(--clr-blue-light);
+}
+
+.text-red {
+	color: var(--clr-red);
+}
+.text-red-light {
+	color: var(--clr-red-light);
+}
+.bg-red {
+	background-color: var(--clr-red);
+}
+.bg-red-light {
+	background-color: var(--clr-red-light);
+}
+
+.text-yellow {
+	color: var(--clr-yellow);
+}
+.text-yellow-light {
+	color: var(--clr-yellow-light);
+}
+.bg-yellow {
+	background-color: var(--clr-yellow);
+}
+.bg-yellow-light {
+	background-color: var(--clr-yellow-light);
+}
+
+.max-width-1\/2 {
+	max-width: 50%;
+}
+
+.min-width-60 {
+	min-width: 240px;
+}

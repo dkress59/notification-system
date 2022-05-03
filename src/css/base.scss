@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply w-full max-w-full overflow-x-hidden min-h-screen h-auto text-black;
+  }
+
+  main#demo-app {
+    @apply text-center;
+
+    >header {
+      @apply w-4/5 mx-auto my-8;
+    }
+
+    >article {
+      @apply my-4;
+
+      > button {
+        @apply border-2 border-black leading-none p-4 m-4;
+      }
+    }
+  }
+
+  #notification-container {
+    @apply fixed z-50 inset-0 pointer-events-none;
+    @apply flex flex-col items-end overflow-y-auto;
+  }
+}

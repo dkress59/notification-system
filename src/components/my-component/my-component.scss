@@ -1,0 +1,4 @@
+:host {
+  display: block;
+  @extend .bg-yellow, .text-red;
+}
