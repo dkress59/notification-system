@@ -19,6 +19,7 @@
   },
   "include": [
     "src",
+    "tests",
     ".eslintrc.js",
     "babel.config.js",
     "postcss.config.js",

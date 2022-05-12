@@ -1,6 +1,6 @@
 import { Component, h, JSX, Prop } from '@stencil/core'
 
-import { format } from '../../utils/utils'
+import { format } from '../../utils'
 
 @Component({
 	tag: 'my-component',

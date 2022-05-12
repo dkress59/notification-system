@@ -22,7 +22,7 @@ export const config: Config = {
 	],
 	plugins: [
 		sass({
-			injectGlobalPaths: ['src/custom.scss', 'src/global.scss'],
+			injectGlobalPaths: ['src/css/custom.scss', 'src/css/global.scss'],
 		}),
 	],
 }

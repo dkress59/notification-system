@@ -23,6 +23,7 @@ module.exports = {
 		'@typescript-eslint/no-empty-function': 'off',
 		'curly': 'off',
 		'jam3/no-sanitizer-with-danger': 2,
+		'unused-imports/no-unused-imports': 'error',
 		'unused-imports/no-unused-vars': [
 			'error',
 			{
