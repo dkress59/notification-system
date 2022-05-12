@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/notification-system.esm.js"></script>
-    <script nomodule src="/build/notification-system.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Notification Web Components</title>
 
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        font-family: sans-serif;
-      }
+  <script type="module" src="/build/notification-system.esm.js"></script>
+  <script nomodule src="/build/notification-system.js"></script>
 
-      #notification-container {
-        position: fixed;
-        z-index: 50;
-        top: 0;
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    #notification-container {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      overflow-y: auto;
+    }
+
+    /* #notification-container > * {
         right: 0;
-        bottom: 0;
-        left: 0;
-        pointer-events: none;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        overflow-y: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="notification-container">
-      <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-      <my-component first="more Stencil" middle="please" last="'Don't call me a framework' JS"></my-component>
-    </div>
-  </body>
+      } */
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('notify-toast').forEach(toast => {
+        toast.addEventListener('toastDismissed', (shadowRoot) => console.debug(
+          'toast dismissed!',
+          { shadowRoot }
+        ))
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div id="notification-container">
+    <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+      <my-component first="more Stencil" middle="please" last="'Don't call me a framework' JS"></my-component> -->
+    <notify-toast type="error" headline="Lorem Ipsum">Lorem ipsum dolor sit amet consectetur adipisicing elit, facilis
+      necessitatibus sunt quisquam officia quidem.</notify-toast>
+    <notify-toast>Mock Content</notify-toast>
+    <notify-toast>Mock Content</notify-toast>
+  </div>
+</body>
+
 </html>

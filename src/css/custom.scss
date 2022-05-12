@@ -43,34 +43,50 @@
       }
     }
 
+    >* {
+      box-sizing: border-box;
+    }
+
     >.icon {
       position: absolute;
-      top: 1rem;
+      top: 0.66rem;
       left: 1rem;
-      height: 24px;
-      aspect-ratio: 1 / 1;
+      width: 22px;
+      height: 22px;
       overflow: hidden;
       font-size: 0.75rem;
-      font-weight: bold;
+      font-weight: 700;
       line-height: 1.25rem;
       text-align: center;
-      border-width: 2px;
+      border: 2px solid;
       border-radius: 9999px;
+    }
+
+    &.headline > .icon {
+      // FixMe
+      top: 1rem;
     }
 
     >h4 {
       @extend %text-grey;
 
+      margin: 0.25em auto;
+      margin: 0 auto;
       font-size: 1.125rem;
       font-weight: bold;
-      line-height: 1.375rem;
+      line-height: 1.375;
     }
 
     >div {
       @extend %text-grey;
 
+      min-height: 1rem;
       overflow-x: hidden;
       overflow-y: auto;
+    }
+
+    ::slotted(p) {
+      margin: 0;
     }
 
     >.dismiss {
@@ -123,20 +139,6 @@
 
     @screen sm {
       height: 50%;
-    }
-  }
-
-  &-toast {
-    @extend %min-w-60, %shadow-lg;
-
-    position: relative;
-    right: 0;
-    width: max-content;
-    max-width: 50%;
-    margin: 1rem 2rem;
-
-    &:first-of-type {
-      margin-top: 2rem;
     }
   }
 }

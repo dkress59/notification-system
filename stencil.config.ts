@@ -17,7 +17,7 @@ export const config: Config = {
 		{
 			type: 'www',
 			baseUrl: '.',
-			serviceWorker: null, // disable service workers
+			serviceWorker: null,
 		},
 	],
 	plugins: [

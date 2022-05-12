@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { NotificationType } from "./types";
 export namespace Components {
     interface MyComponent {
         /**
@@ -20,6 +21,28 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface NotifyToast {
+        /**
+          * default: false
+         */
+        "autoHide": boolean;
+        /**
+          * default: 3000
+         */
+        "autoHideAfterMs": number;
+        /**
+          * The last name
+         */
+        "headline": string;
+        /**
+          * default: false
+         */
+        "isHidden": boolean;
+        /**
+          * success (default) | info | warning | error
+         */
+        "type": NotificationType;
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +51,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLNotifyToastElement extends Components.NotifyToast, HTMLStencilElement {
+    }
+    var HTMLNotifyToastElement: {
+        prototype: HTMLNotifyToastElement;
+        new (): HTMLNotifyToastElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "notify-toast": HTMLNotifyToastElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +77,32 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface NotifyToast {
+        /**
+          * default: false
+         */
+        "autoHide"?: boolean;
+        /**
+          * default: 3000
+         */
+        "autoHideAfterMs"?: number;
+        /**
+          * The last name
+         */
+        "headline"?: string;
+        /**
+          * default: false
+         */
+        "isHidden"?: boolean;
+        "onToastDismissed"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * success (default) | info | warning | error
+         */
+        "type"?: NotificationType;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "notify-toast": NotifyToast;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +110,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "notify-toast": LocalJSX.NotifyToast & JSXBase.HTMLAttributes<HTMLNotifyToastElement>;
         }
     }
 }
