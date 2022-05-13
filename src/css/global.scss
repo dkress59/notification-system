@@ -1,28 +1,18 @@
 :host {
-  --clr-black: #020202;
-  --clr-grey: #505050;
-  --clr-white: #fff;
-  --clr-green: #14c0a0;
-  --clr-green-light: #e1f8f2;
-  --clr-blue: #0087cc;
-  --clr-blue-light: #e1f2f9;
-  --clr-red: #f0264d;
-  --clr-red-light: #fdeaee;
-  --clr-yellow: #ffa800;
-  --clr-yellow-light: #fff6e5;
+  --clr-grey: var(--clr-notify-text, #505050);
+  --clr-green: var(--clr-notify-success, #14c0a0);
+  --clr-green-light: var(--clr-notify-success-light, #e1f8f2);
+  --clr-blue: var(--clr-notify-info, #0087cc);
+  --clr-blue-light: var(--clr-notify-info-light, #e1f2f9);
+  --clr-red: var(--clr-notify-error, #f0264d);
+  --clr-red-light: var(--clr-notify-error-light, #fdeaee);
+  --clr-yellow: var(--clr-notify-warning, #ffa800);
+  --clr-yellow-light: var(--clr-notify-warning-light, #fff6e5);
 }
 
 %text {
-  &-black {
-    color: var(--clr-black);
-  }
-
   &-grey {
     color: var(--clr-grey);
-  }
-
-  &-white {
-    color: var(--clr-white);
   }
 
   &-green {
@@ -59,16 +49,8 @@
 }
 
 %bg {
-  &-black {
-    background-color: var(--clr-black);
-  }
-
   &-grey {
     background-color: var(--clr-grey);
-  }
-
-  &-white {
-    background-color: var(--clr-white);
   }
 
   &-green {
@@ -105,16 +87,8 @@
 }
 
 %border {
-  &-black {
-    border-color: var(--clr-black);
-  }
-
   &-grey {
     border-color: var(--clr-grey);
-  }
-
-  &-white {
-    border-color: var(--clr-white);
   }
 
   &-green {
