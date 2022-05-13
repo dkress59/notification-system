@@ -8,6 +8,28 @@
   --clr-red-light: var(--clr-notify-error-light, #fdeaee);
   --clr-yellow: var(--clr-notify-warning, #ffa800);
   --clr-yellow-light: var(--clr-notify-warning-light, #fff6e5);
+
+  line-height: 1.5;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  button {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: inherit;
+    color: inherit;
+    text-indent: 0;
+    text-transform: none;
+    white-space: unset;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: none;
+    border-width: 0;
+    appearance: button;
+  }
 }
 
 %text {

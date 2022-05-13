@@ -14,3 +14,10 @@ Wrap your top-level component in the `<NotificationProvider />` and insert the `
 * run `yarn test --coverage` to run the tests and view the test coverage
 * if you add a commit, `yarn fix:script` and `yarn fix:style` will automatically lint the code
 * the linters can also be manually be dry-run with `yarn check:script` and `yarn check:style`
+
+## ToDo
+
+* [ ] convert all the components
+* [ ] sort out :host <> aside
+* [ ] fade-in transition
+* [ ] unit tests

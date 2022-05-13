@@ -48,7 +48,7 @@ export class MyComponent {
 	/**
 	 * Fires after the elements has transitioned out.
 	 */
-	@Event() toastDismissed: EventEmitter<HTMLElement>
+	@Event() onDismiss: EventEmitter<HTMLElement>
 
 	private shadowRoot: HTMLElement
 	private hiddenClassName = 'opacity-0'
@@ -111,7 +111,7 @@ export class MyComponent {
 	async dismiss(): Promise<void> {
 		this.isHidden = true
 		this.shadowRoot.addEventListener('transitionend', () => {
-			this.toastDismissed.emit()
+			this.onDismiss.emit()
 			this.element.remove()
 		})
 		return Promise.resolve()
