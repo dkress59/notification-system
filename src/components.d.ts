@@ -21,6 +21,44 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface NotifyModal {
+        /**
+          * If set to 'false' the 'Confirm'-button will be disabled.
+         */
+        "condition": boolean | undefined;
+        /**
+          * Dismisses the modal entirely from the DOM
+         */
+        "dismiss": () => Promise<void>;
+        /**
+          * If provided, the modal will be rendered with a headline which is styled slightly more prominent than the body text.
+         */
+        "headline": string;
+        /**
+          * Whether the modal is initially hidden, or not.
+         */
+        "isHidden": boolean;
+        /**
+          * Label for the 'Confirm'-button
+         */
+        "labelConfirm": string;
+        /**
+          * Label for the 'Decline'-button
+         */
+        "labelDecline": string;
+        /**
+          * Whether to show the 'Confirm'-button.
+         */
+        "showConfirm": boolean;
+        /**
+          * Whether to show the 'Decline'-button.
+         */
+        "showDecline": boolean;
+        /**
+          * The notification-type of the modal (success | info | warning | error).
+         */
+        "type": NotificationType;
+    }
     interface NotifyToast {
         /**
           * Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.
@@ -55,6 +93,12 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLNotifyModalElement extends Components.NotifyModal, HTMLStencilElement {
+    }
+    var HTMLNotifyModalElement: {
+        prototype: HTMLNotifyModalElement;
+        new (): HTMLNotifyModalElement;
+    };
     interface HTMLNotifyToastElement extends Components.NotifyToast, HTMLStencilElement {
     }
     var HTMLNotifyToastElement: {
@@ -63,6 +107,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "notify-modal": HTMLNotifyModalElement;
         "notify-toast": HTMLNotifyToastElement;
     }
 }
@@ -80,6 +125,52 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+    }
+    interface NotifyModal {
+        /**
+          * If set to 'false' the 'Confirm'-button will be disabled.
+         */
+        "condition"?: boolean | undefined;
+        /**
+          * If provided, the modal will be rendered with a headline which is styled slightly more prominent than the body text.
+         */
+        "headline"?: string;
+        /**
+          * Whether the modal is initially hidden, or not.
+         */
+        "isHidden"?: boolean;
+        /**
+          * Label for the 'Confirm'-button
+         */
+        "labelConfirm"?: string;
+        /**
+          * Label for the 'Decline'-button
+         */
+        "labelDecline"?: string;
+        /**
+          * Fires when the 'Confirm'-button is pressed.
+         */
+        "onConfirmTriggered"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * Fires when the 'Decline'-button is pressed.
+         */
+        "onDeclineTriggered"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * Fires after the elements has transitioned out.
+         */
+        "onModalDismissed"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * Whether to show the 'Confirm'-button.
+         */
+        "showConfirm"?: boolean;
+        /**
+          * Whether to show the 'Decline'-button.
+         */
+        "showDecline"?: boolean;
+        /**
+          * The notification-type of the modal (success | info | warning | error).
+         */
+        "type"?: NotificationType;
     }
     interface NotifyToast {
         /**
@@ -109,6 +200,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "notify-modal": NotifyModal;
         "notify-toast": NotifyToast;
     }
 }
@@ -117,6 +209,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "notify-modal": LocalJSX.NotifyModal & JSXBase.HTMLAttributes<HTMLNotifyModalElement>;
             "notify-toast": LocalJSX.NotifyToast & JSXBase.HTMLAttributes<HTMLNotifyToastElement>;
         }
     }

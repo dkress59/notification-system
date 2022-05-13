@@ -1,0 +1,68 @@
+:host {
+  max-width: 50%;
+}
+
+/* :host([is-hidden]) {
+	position: absolute;
+	pointer-events: none;
+  } */
+:host(:first-of-type) {
+  margin-top: 2rem; // ToDo: (Maybe) move to notification-container
+  margin-top: 1rem;
+}
+
+aside {
+  @extend %custom-modal;
+  @extend %min-w-60, %shadow-lg;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 42rem;
+  height: 80%;
+  transform: translate(-50%, -50%);
+
+  &.success,
+  &:not(.success, .info, .error, .warning) {
+    @extend %custom-modal-type-success;
+  }
+
+  &.info {
+    @extend %custom-modal-type-info;
+  }
+
+  &.error {
+    @extend %custom-modal-type-error;
+  }
+
+  &.warning {
+    @extend %custom-modal-type-warning;
+  }
+
+  >div {
+    flex-grow: 1;
+  }
+
+  >footer {
+    display: flex;
+    justify-content: center;
+
+    button {
+      padding: 0.25rem 1rem;
+      margin: 0.5rem;
+      margin-bottom: 0;
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  @media (min-width: 640px) {
+    height: 50%;
+  }
+}

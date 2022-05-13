@@ -19,42 +19,62 @@ import {
 } from '../../utils'
 
 @Component({
-	tag: 'notify-toast',
-	styleUrl: 'notify-toast.scss',
+	tag: 'notify-modal',
+	styleUrl: 'notify-modal.scss',
 	shadow: true,
 })
 export class MyComponent {
-	@Element() element: HTMLNotifyToastElement
+	@Element() element: HTMLNotifyModalElement
 
 	/**
-	 * Whether to automatically hide the toast, or not.
-	 * If false (or undefined), a dismiss-button will be rendered.
-	 */
-	@Prop() autoHide = false
-	/**
-	 * The time in milliseconds after which the toast shall be hidden
-	 * (requires the auto-hide attribute to be set to "true").
-	 */
-	@Prop() autoHideAfterMs = 3000
-	/**
-	 * If provided, the toast will be rendered with a headline
+	 * If provided, the modal will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
 	 */
 	@Prop() headline: string
 	/**
-	 * Whether the toast is initially hidden, or not.
+	 * Whether the modal is initially hidden, or not.
 	 */
 	@Prop({ mutable: true, reflect: true }) isHidden = false
 	/**
-	 * The notification-type of the toast
+	 * The notification-type of the modal
 	 * (success | info | warning | error).
 	 */
 	@Prop() type: NotificationType = NotificationType.SUCCESS
+	/**
+	 * Whether to show the 'Confirm'-button.
+	 */
+	@Prop() showConfirm = false
+	/**
+	 * Whether to show the 'Decline'-button.
+	 */
+	@Prop() showDecline = false
+	/**
+	 * Label for the 'Confirm'-button
+	 */
+	@Prop() labelConfirm = 'Confirm'
+	/**
+	 * Label for the 'Decline'-button
+	 */
+	@Prop() labelDecline = 'Decline'
+	/**
+	 * If set to 'false' the 'Confirm'-button will be disabled.
+	 */
+	// eslint-disable-next-line @stencil/strict-mutable
+	@Prop({ mutable: true, reflect: true }) condition: boolean | undefined =
+		undefined
 
 	/**
 	 * Fires after the elements has transitioned out.
 	 */
-	@Event() toastDismissed: EventEmitter<HTMLElement>
+	@Event() modalDismissed: EventEmitter<HTMLElement>
+	/**
+	 * Fires when the 'Confirm'-button is pressed.
+	 */
+	@Event() confirmTriggered: EventEmitter<HTMLElement>
+	/**
+	 * Fires when the 'Decline'-button is pressed.
+	 */
+	@Event() declineTriggered: EventEmitter<HTMLElement>
 
 	private shadowRoot: HTMLElement
 	private hiddenClassName = 'opacity-0'
@@ -79,8 +99,7 @@ export class MyComponent {
 	}
 
 	private getButton(): JSX.Element | undefined {
-		if (!this.autoHide) return getButton(() => void this.dismiss())
-		return undefined
+		return getButton(() => void this.dismiss())
 	}
 
 	private detachRootElement() {
@@ -91,22 +110,29 @@ export class MyComponent {
 		reattachElement(this.element)
 	}
 
-	/** Dismisses the toast entirely from the DOM */
+	private confirmTriggeredFinal() {
+		if (this.condition !== false)
+			this.confirmTriggered.emit(this.shadowRoot)
+		void this.dismiss()
+	}
+
+	private declineTriggeredFinal() {
+		this.declineTriggered.emit(this.shadowRoot)
+		void this.dismiss()
+	}
+
+	/** Dismisses the modal entirely from the DOM */
 	@Method()
 	async dismiss(): Promise<void> {
 		this.isHidden = true
 		this.shadowRoot.addEventListener('transitionend', () => {
-			this.toastDismissed.emit(this.shadowRoot)
+			this.modalDismissed.emit(this.shadowRoot)
 			this.element.remove()
 		})
 		return Promise.resolve()
 	}
 
 	componentDidLoad(): void {
-		if (this.autoHide)
-			this.autoHideTimeout = setTimeout(() => {
-				void this.dismiss()
-			}, this.autoHideAfterMs)
 		if (this.isHidden) {
 			this.detachRootElement()
 		}
@@ -132,6 +158,29 @@ export class MyComponent {
 					<slot />
 				</div>
 				{this.getButton()}
+				{(this.showConfirm || this.showDecline) && (
+					<footer>
+						{!!this.showConfirm && (
+							<button
+								class="confirm"
+								disabled={this.condition === false}
+								data-testid="confirm-button"
+								onClick={() => this.confirmTriggeredFinal()}
+							>
+								{this.labelConfirm}
+							</button>
+						)}
+						{!!this.showDecline && (
+							<button
+								class="decline"
+								data-testid="decline-button"
+								onClick={() => this.declineTriggeredFinal()}
+							>
+								{this.labelDecline}
+							</button>
+						)}
+					</footer>
+				)}
 			</aside>
 		) as JSX.Element
 	}

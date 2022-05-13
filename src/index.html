@@ -35,9 +35,19 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('notify-toast').forEach(toast => {
-        toast.addEventListener('toastDismissed', (shadowRoot) => console.debug(
-          'toast dismissed!',
-          { shadowRoot }
+        toast.addEventListener('toastDismissed', (event) => console.debug(
+          'toast dismissed.',
+          { event }
+        ))
+      })
+      document.querySelectorAll('notify-modal').forEach(modal => {
+        modal.addEventListener('confirmTriggered', (event) => console.debug(
+          'modal confirmed.',
+          { event }
+        ))
+        modal.addEventListener('declineTriggered', (event) => console.debug(
+          'modal declined.',
+          { event }
         ))
       })
     })
@@ -54,6 +64,13 @@
     <notify-toast auto-hide-after-ms="1000" auto-hide>Mock Content</notify-toast>
     <notify-toast type="info" is-hidden>Hidden Content</notify-toast>
     <notify-toast>Mock Content</notify-toast>
+    <notify-modal type="info" show-confirm show-decline headline="Lorem Ipsum" label-confirm="Accept">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa facilis praesentium iusto officia tempora
+      exercitationem explicabo, id autem delectus natus consequuntur sed numquam. Eligendi voluptatem repellendus sed
+      perferendis illo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, delectus nemo. Voluptatibus
+      dolore, aliquam totam harum deserunt a possimus iste, tempora id tempore exercitationem, laudantium laboriosam!
+      Voluptatem deleniti quisquam eius.
+    </notify-modal>
   </div>
 </body>
 

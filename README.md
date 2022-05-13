@@ -20,4 +20,5 @@ Wrap your top-level component in the `<NotificationProvider />` and insert the `
 * [ ] convert all the components
 * [ ] sort out :host <> aside
 * [ ] fade-in transition
+* [ ] more customization
 * [ ] unit tests

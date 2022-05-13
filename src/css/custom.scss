@@ -45,7 +45,7 @@
 
     >.icon {
       position: absolute;
-      top: 0.85rem;
+      top: 1rem;
       left: 1rem;
       width: 22px;
       height: 22px;
@@ -56,11 +56,13 @@
       text-align: center;
       border: 2px solid;
       border-radius: 9999px;
-    }
 
-    &.headline > .icon {
-      // FixMe
-      top: 1rem;
+      .error {
+        display: inline-block;
+        margin-top: -0.25rem;
+        font-size: 1.5em;
+        transform: rotate(-12deg);
+      }
     }
 
     >h4 {
@@ -81,8 +83,12 @@
       overflow-y: auto;
     }
 
-    ::slotted(p) {
-      margin: 0;
+    ::slotted(p:first-child) {
+      margin-top: 0;
+    }
+
+    ::slotted(p:last-child) {
+      margin-bottom: 0;
     }
 
     >.dismiss {
