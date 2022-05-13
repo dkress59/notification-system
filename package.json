@@ -19,8 +19,8 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "build": "stencil build --docs --config stencil.config.build.ts",
+    "start": "stencil build --dev --watch --serve --no-open",
     "check:script": "eslint  --fix-dry-run src",
     "check:style": "npx stylelint '**/*.scss'",
     "fix:script": "eslint --fix src tests",

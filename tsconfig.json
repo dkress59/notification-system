@@ -24,6 +24,7 @@
     "babel.config.js",
     "postcss.config.js",
     "stencil.config.ts",
+    "stencil.config.build.ts",
     "tailwind.config.js"
   ],
   "exclude": [
