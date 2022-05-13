@@ -5,6 +5,7 @@ import {
 	EventEmitter,
 	h,
 	JSX,
+	Method,
 	Prop,
 } from '@stencil/core'
 
@@ -14,15 +15,10 @@ import { getIcon } from '../../utils'
 @Component({
 	tag: 'notify-toast',
 	styleUrl: 'notify-toast.scss',
-	/* styleUrls: [
-		'../../css/global.scss',
-		'../../css/custom.scss',
-		'notify-toast.scss',
-	], */
 	shadow: true,
 })
 export class MyComponent {
-	@Element() element: HTMLElement
+	@Element() element: HTMLNotifyToastElement
 
 	/**
 	 * Whether to automatically hide the toast, or not.
@@ -49,8 +45,10 @@ export class MyComponent {
 	 */
 	@Prop() type: NotificationType = NotificationType.SUCCESS
 
-	@Event()
-	toastDismissed: EventEmitter<HTMLElement>
+	/**
+	 * Fires after the elements has transitioned out.
+	 */
+	@Event() toastDismissed: EventEmitter<HTMLElement>
 
 	private shadowRoot: HTMLElement
 	private hiddenClassName = 'opacity-0'
@@ -88,9 +86,7 @@ export class MyComponent {
 				<span
 					class="dismiss"
 					data-testid="toast-dismiss-button"
-					onClick={() => {
-						this.dismiss()
-					}}
+					onClick={() => void this.dismiss()}
 				>
 					&#x2715;
 				</span>
@@ -110,33 +106,36 @@ export class MyComponent {
 		this.element.style.height = ''
 	}
 
-	public dismiss() {
+	/** Dismisses the toast entirely from the DOM */
+	@Method()
+	async dismiss(): Promise<void> {
 		this.isHidden = true
 		this.shadowRoot.addEventListener('transitionend', () => {
 			this.toastDismissed.emit()
 			this.element.remove()
 		})
+		return Promise.resolve()
 	}
 
-	componentDidLoad() {
+	componentDidLoad(): void {
 		if (this.autoHide)
 			this.autoHideTimeout = setTimeout(() => {
-				this.dismiss()
+				void this.dismiss()
 			}, this.autoHideAfterMs)
 		if (this.isHidden) {
 			this.detachRootElement()
 		}
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(): void {
 		this.reattachRootElement()
 	}
 
-	disconnectedCallback() {
+	disconnectedCallback(): void {
 		if (this.autoHideTimeout) clearTimeout(this.autoHideTimeout)
 	}
 
-	render() {
+	render(): JSX.Element {
 		return (
 			<aside
 				class={this.getClassName()}

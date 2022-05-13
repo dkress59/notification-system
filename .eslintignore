@@ -1,1 +1,4 @@
 src/components.d.ts
+dist
+loader
+www

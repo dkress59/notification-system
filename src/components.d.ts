@@ -31,6 +31,10 @@ export namespace Components {
          */
         "autoHideAfterMs": number;
         /**
+          * Dismisses the toast entirely from the DOM
+         */
+        "dismiss": () => Promise<void>;
+        /**
           * If provided, the toast will be rendered with a headline which is styled slightly more prominent than the body text.
          */
         "headline": string;
@@ -94,6 +98,9 @@ declare namespace LocalJSX {
           * Whether the toast is initially hidden, or not.
          */
         "isHidden"?: boolean;
+        /**
+          * Fires after the elements has transitioned out.
+         */
         "onToastDismissed"?: (event: CustomEvent<HTMLElement>) => void;
         /**
           * The notification-type of the toast (success | info | warning | error).

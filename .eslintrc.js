@@ -4,7 +4,7 @@ module.exports = {
 		browser: true,
 		jest: true,
 	},
-	extends: ['@tool-belt/eslint-config'],
+	extends: ['@tool-belt/eslint-config', 'plugin:@stencil/recommended'],
 	parserOptions: {
 		project: ['./tsconfig.json'],
 	},
@@ -20,9 +20,14 @@ module.exports = {
 		},
 	},
 	rules: {
-		'@typescript-eslint/no-empty-function': 'off',
 		'curly': 'off',
+		'eslint-comments/disable-enable-pair': 'off',
 		'jam3/no-sanitizer-with-danger': 2,
+		'jsx-a11y/no-noninteractive-element-interactions': 1,
+		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
+		'react/jsx-no-bind': 'off',
+		'@stencil/strict-boolean-conditions': 'off',
+		'@typescript-eslint/no-empty-function': 'off',
 		'unused-imports/no-unused-imports': 'error',
 		'unused-imports/no-unused-vars': [
 			'error',
@@ -33,8 +38,5 @@ module.exports = {
 				argsIgnorePattern: '^h$',
 			},
 		],
-		'eslint-comments/disable-enable-pair': 'off',
-		'jsx-a11y/no-noninteractive-element-interactions': 1,
-		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
 	},
 }
