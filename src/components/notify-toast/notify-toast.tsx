@@ -51,6 +51,7 @@ export class MyComponent {
 	private rootElement: HTMLElement
 	private hiddenClassName = 'opacity-0'
 	private visibleClassName = 'opacity-100'
+	private autoHideTimeout: NodeJS.Timeout | null = null
 
 	private getClassName(): string {
 		const classNames: string[] = []
@@ -101,6 +102,17 @@ export class MyComponent {
 				</span>
 			) as JSX.Element
 		return undefined
+	}
+
+	componentDidLoad() {
+		if (this.autoHide)
+			this.autoHideTimeout = setTimeout(() => {
+				this.isHidden = true
+			}, this.autoHideAfterMs)
+	}
+
+	disconnectedCallback() {
+		if (this.autoHideTimeout) clearTimeout(this.autoHideTimeout)
 	}
 
 	render() {
