@@ -4,6 +4,7 @@ This repo started out as a coding challenge. Now it is a reusable library for a 
 
 ## Usage
 
+// FixMe
 Wrap your top-level component in the `<NotificationProvider />` and insert the `<BannerArea />` component as one of its children, in order to use the `spawnBanner`, `spawnModal` and `spawnToast` methods from the `NotificationContext`. See the [`<DemoApp />`](src/demo-app.tsx) for reference.
 
 ## Development

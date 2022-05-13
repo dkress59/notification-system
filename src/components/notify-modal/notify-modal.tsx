@@ -79,7 +79,6 @@ export class MyComponent {
 	private shadowRoot: HTMLElement
 	private hiddenClassName = 'opacity-0'
 	private visibleClassName = 'opacity-100'
-	private autoHideTimeout: NodeJS.Timeout | null = null
 
 	private getClassName(): string {
 		const classNames: string[] = []
@@ -133,17 +132,11 @@ export class MyComponent {
 	}
 
 	componentDidLoad(): void {
-		if (this.isHidden) {
-			this.detachRootElement()
-		}
+		if (this.isHidden) this.detachRootElement()
 	}
 
 	componentDidUpdate(): void {
 		this.reattachRootElement()
-	}
-
-	disconnectedCallback(): void {
-		if (this.autoHideTimeout) clearTimeout(this.autoHideTimeout)
 	}
 
 	render(): JSX.Element {

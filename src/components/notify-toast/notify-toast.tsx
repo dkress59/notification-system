@@ -107,9 +107,7 @@ export class MyComponent {
 			this.autoHideTimeout = setTimeout(() => {
 				void this.dismiss()
 			}, this.autoHideAfterMs)
-		if (this.isHidden) {
-			this.detachRootElement()
-		}
+		if (this.isHidden) this.detachRootElement()
 	}
 
 	componentDidUpdate(): void {

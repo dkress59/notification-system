@@ -1,16 +1,3 @@
-:host {
-  max-width: 50%;
-}
-
-/* :host([is-hidden]) {
-	position: absolute;
-	pointer-events: none;
-  } */
-:host(:first-of-type) {
-  margin-top: 2rem; // ToDo: (Maybe) move to notification-container
-  margin-top: 1rem;
-}
-
 aside {
   @extend %custom-modal;
   @extend %min-w-60, %shadow-lg;
