@@ -25,25 +25,29 @@ export class MyComponent {
 	@Element() element: HTMLElement
 
 	/**
-	 * default: false
+	 * Whether to automatically hide the toast, or not.
+	 * If false (or undefined), a dismiss-button will be rendered.
 	 */
-	@Prop() autoHide: boolean
+	@Prop() autoHide = false
 	/**
-	 * default: 3000
+	 * The time in milliseconds after which the toast shall be hidden
+	 * (requires the auto-hide attribute to be set to "true").
 	 */
 	@Prop() autoHideAfterMs = 3000
 	/**
-	 * The last name
+	 * If provided, the toast will be rendered with a headline
+	 * which is styled slightly more prominent than the body text.
 	 */
 	@Prop() headline: string
 	/**
-	 * default: false
+	 * Whether the toast is initially hidden, or not.
 	 */
-	@Prop({ mutable: true, reflect: true }) isHidden: boolean
+	@Prop({ mutable: true, reflect: true }) isHidden = false
 	/**
-	 * success (default) | info | warning | error
+	 * The notification-type of the toast
+	 * (success | info | warning | error).
 	 */
-	@Prop() type: NotificationType
+	@Prop() type: NotificationType = NotificationType.SUCCESS
 
 	@Event()
 	toastDismissed: EventEmitter<HTMLElement>

@@ -23,23 +23,23 @@ export namespace Components {
     }
     interface NotifyToast {
         /**
-          * default: false
+          * Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.
          */
         "autoHide": boolean;
         /**
-          * default: 3000
+          * The time in milliseconds after which the toast shall be hidden (requires the auto-hide attribute to be set to "true").
          */
         "autoHideAfterMs": number;
         /**
-          * The last name
+          * If provided, the toast will be rendered with a headline which is styled slightly more prominent than the body text.
          */
         "headline": string;
         /**
-          * default: false
+          * Whether the toast is initially hidden, or not.
          */
         "isHidden": boolean;
         /**
-          * success (default) | info | warning | error
+          * The notification-type of the toast (success | info | warning | error).
          */
         "type": NotificationType;
     }
@@ -79,24 +79,24 @@ declare namespace LocalJSX {
     }
     interface NotifyToast {
         /**
-          * default: false
+          * Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.
          */
         "autoHide"?: boolean;
         /**
-          * default: 3000
+          * The time in milliseconds after which the toast shall be hidden (requires the auto-hide attribute to be set to "true").
          */
         "autoHideAfterMs"?: number;
         /**
-          * The last name
+          * If provided, the toast will be rendered with a headline which is styled slightly more prominent than the body text.
          */
         "headline"?: string;
         /**
-          * default: false
+          * Whether the toast is initially hidden, or not.
          */
         "isHidden"?: boolean;
         "onToastDismissed"?: (event: CustomEvent<HTMLElement>) => void;
         /**
-          * success (default) | info | warning | error
+          * The notification-type of the toast (success | info | warning | error).
          */
         "type"?: NotificationType;
     }
