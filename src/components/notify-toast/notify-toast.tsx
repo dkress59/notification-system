@@ -52,7 +52,7 @@ export class MyComponent {
 	@Event()
 	toastDismissed: EventEmitter<HTMLElement>
 
-	private rootElement: HTMLElement
+	private shadowRoot: HTMLElement
 	private hiddenClassName = 'opacity-0'
 	private visibleClassName = 'opacity-100'
 	private autoHideTimeout: NodeJS.Timeout | null = null
@@ -98,12 +98,21 @@ export class MyComponent {
 		return undefined
 	}
 
+	private detachRootElement() {
+		this.element.style.pointerEvents = 'none'
+		this.element.style.position = 'absolute'
+		this.element.style.height = '0px'
+	}
+
+	private reattachRootElement() {
+		this.element.style.pointerEvents = ''
+		this.element.style.position = ''
+		this.element.style.height = ''
+	}
+
 	public dismiss() {
 		this.isHidden = true
-		this.rootElement.addEventListener('transitionend', () => {
-			/* this.element.style.pointerEvents = 'none'
-			this.element.style.position = 'absolute'
-			this.element.style.height = '0px' */
+		this.shadowRoot.addEventListener('transitionend', () => {
 			this.toastDismissed.emit()
 			this.element.remove()
 		})
@@ -114,6 +123,13 @@ export class MyComponent {
 			this.autoHideTimeout = setTimeout(() => {
 				this.dismiss()
 			}, this.autoHideAfterMs)
+		if (this.isHidden) {
+			this.detachRootElement()
+		}
+	}
+
+	componentDidUpdate() {
+		this.reattachRootElement()
 	}
 
 	disconnectedCallback() {
@@ -124,7 +140,7 @@ export class MyComponent {
 		return (
 			<aside
 				class={this.getClassName()}
-				ref={element => (this.rootElement = element as HTMLElement)}
+				ref={element => (this.shadowRoot = element as HTMLElement)}
 			>
 				{this.getTitle()}
 				{this.getIcon()}
