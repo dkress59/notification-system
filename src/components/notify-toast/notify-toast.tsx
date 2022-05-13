@@ -85,17 +85,7 @@ export class MyComponent {
 					class="dismiss"
 					data-testid="toast-dismiss-button"
 					onClick={() => {
-						this.isHidden = true
-						this.rootElement.addEventListener(
-							'transitionend',
-							() => {
-								/* this.element.style.pointerEvents = 'none'
-								this.element.style.position = 'absolute'
-								this.element.style.height = '0px' */
-								this.toastDismissed.emit()
-								this.element.remove()
-							},
-						)
+						this.dismiss()
 					}}
 				>
 					&#x2715;
@@ -104,10 +94,21 @@ export class MyComponent {
 		return undefined
 	}
 
+	public dismiss() {
+		this.isHidden = true
+		this.rootElement.addEventListener('transitionend', () => {
+			/* this.element.style.pointerEvents = 'none'
+			this.element.style.position = 'absolute'
+			this.element.style.height = '0px' */
+			this.toastDismissed.emit()
+			this.element.remove()
+		})
+	}
+
 	componentDidLoad() {
 		if (this.autoHide)
 			this.autoHideTimeout = setTimeout(() => {
-				this.isHidden = true
+				this.dismiss()
 			}, this.autoHideAfterMs)
 	}
 
