@@ -1,21 +1,69 @@
-import { format } from '../src/utils'
+import { newSpecPage } from '@stencil/core/testing'
 
-describe('format', () => {
-	it('returns empty string for no names defined', () => {
-		expect(format(undefined, undefined, undefined)).toBe('')
+import { NotificationType } from '../src/types'
+import { getButton, getHeadline, getIcon } from '../src/utils'
+
+describe('utils', () => {
+	describe('getButton', () => {
+		it('matches snapshot', async () => {
+			const page = await newSpecPage({
+				components: [],
+				template: () => getButton(jest.fn()),
+			})
+			expect(page.root).toMatchSnapshot()
+		})
+		it('fires custom onClick event', async () => {
+			const mockEventHandler = jest.fn()
+			const page = await newSpecPage({
+				components: [],
+				template: () => getButton(mockEventHandler),
+			})
+			const button = page.root!
+			expect(button).toBeTruthy()
+			button.dispatchEvent(new Event('click'))
+			expect(mockEventHandler).toHaveBeenCalled()
+		})
 	})
-
-	it('formats just first names', () => {
-		expect(format('Joseph', undefined, undefined)).toBe('Joseph')
+	describe('getHeadline', () => {
+		it('returns undefined if no headline is provided', () => {
+			expect(getHeadline()).toBeUndefined()
+		})
+		it('matches snapshot if a headline is provided', async () => {
+			const page = await newSpecPage({
+				components: [],
+				template: () => getHeadline('Mock Headline'),
+			})
+			expect(page.root).toMatchSnapshot()
+		})
 	})
-
-	it('formats first and last names', () => {
-		expect(format('Joseph', undefined, 'Publique')).toBe('Joseph Publique')
-	})
-
-	it('formats first, middle and last names', () => {
-		expect(format('Joseph', 'Quincy', 'Publique')).toBe(
-			'Joseph Quincy Publique',
-		)
+	describe('getIcon', () => {
+		it('type success matches snapshot', async () => {
+			const page = await newSpecPage({
+				components: [],
+				template: () => getIcon(NotificationType.SUCCESS),
+			})
+			expect(page.root).toMatchSnapshot()
+		})
+		it('type error matches snapshot', async () => {
+			const page = await newSpecPage({
+				components: [],
+				template: () => getIcon(NotificationType.ERROR),
+			})
+			expect(page.root).toMatchSnapshot()
+		})
+		it('type info matches snapshot', async () => {
+			const page = await newSpecPage({
+				components: [],
+				template: () => getIcon(NotificationType.INFO),
+			})
+			expect(page.root).toMatchSnapshot()
+		})
+		it('type warning matches snapshot', async () => {
+			const page = await newSpecPage({
+				components: [],
+				template: () => getIcon(NotificationType.WARNING),
+			})
+			expect(page.root).toMatchSnapshot()
+		})
 	})
 })

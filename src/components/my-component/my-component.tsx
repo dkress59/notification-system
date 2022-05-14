@@ -1,6 +1,11 @@
 import { Component, h, JSX, Prop } from '@stencil/core'
 
-import { format } from '../../utils'
+function format(first?: string, middle?: string, last?: string): string {
+	return (
+		// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+		(first || '') + (middle ? ` ${middle}` : '') + (last ? ` ${last}` : '')
+	)
+}
 
 @Component({
 	tag: 'my-component',

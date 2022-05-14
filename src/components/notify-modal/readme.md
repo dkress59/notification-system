@@ -11,7 +11,6 @@
 | -------------- | --------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- |
 | `condition`    | `condition`     | If set to 'false' the 'Confirm'-button will be disabled.                                                            | `boolean \| undefined`                                                                                    | `undefined`                |
 | `headline`     | `headline`      | If provided, the modal will be rendered with a headline which is styled slightly more prominent than the body text. | `string`                                                                                                  | `undefined`                |
-| `isHidden`     | `is-hidden`     | Whether the modal is initially hidden, or not.                                                                      | `boolean`                                                                                                 | `false`                    |
 | `labelConfirm` | `label-confirm` | Label for the 'Confirm'-button                                                                                      | `string`                                                                                                  | `'Confirm'`                |
 | `labelDecline` | `label-decline` | Label for the 'Decline'-button                                                                                      | `string`                                                                                                  | `'Decline'`                |
 | `showConfirm`  | `show-confirm`  | Whether to show the 'Confirm'-button.                                                                               | `boolean`                                                                                                 | `false`                    |
@@ -32,7 +31,7 @@
 
 ### `dismiss() => Promise<void>`
 
-Dismisses the modal entirely from the DOM
+Entirely dismisses the modal from the DOM
 
 #### Returns
 

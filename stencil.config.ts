@@ -8,4 +8,9 @@ export const config: Config = {
 			injectGlobalPaths: ['src/css/custom.scss', 'src/css/global.scss'],
 		}),
 	],
+	testing: {
+		cacheDirectory: '.jest/cache',
+		collectCoverage: true,
+		collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+	},
 }

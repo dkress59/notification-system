@@ -12,7 +12,6 @@
 | `autoHide`        | `auto-hide`          | Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.           | `boolean`                                                                                                 | `false`                    |
 | `autoHideAfterMs` | `auto-hide-after-ms` | The time in milliseconds after which the toast shall be hidden (requires the auto-hide attribute to be set to "true"). | `number`                                                                                                  | `3000`                     |
 | `headline`        | `headline`           | If provided, the toast will be rendered with a headline which is styled slightly more prominent than the body text.    | `string`                                                                                                  | `undefined`                |
-| `isHidden`        | `is-hidden`          | Whether the toast is initially hidden, or not.                                                                         | `boolean`                                                                                                 | `false`                    |
 | `type`            | `type`               | The notification-type of the toast (success \| info \| warning \| error).                                              | `NotificationType.ERROR \| NotificationType.INFO \| NotificationType.SUCCESS \| NotificationType.WARNING` | `NotificationType.SUCCESS` |
 
 
@@ -27,7 +26,7 @@
 
 ### `dismiss() => Promise<void>`
 
-Dismisses the toast entirely from the DOM
+Entirely dismisses the toast entirely from the DOM
 
 #### Returns
 
