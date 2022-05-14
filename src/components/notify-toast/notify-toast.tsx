@@ -7,16 +7,11 @@ import {
 	JSX,
 	Method,
 	Prop,
+	State,
 } from '@stencil/core'
 
 import { NotificationType } from '../../types'
-import {
-	detachElement,
-	getButton,
-	getHeadline,
-	getIcon,
-	reattachElement,
-} from '../../utils'
+import { getButton, getHeadline, getIcon } from '../../utils'
 
 @Component({
 	tag: 'notify-toast',
@@ -42,14 +37,15 @@ export class NotifyToast {
 	 */
 	@Prop() headline: string
 	/**
-	 * Whether the toast is initially hidden, or not.
-	 */
-	@Prop({ mutable: true, reflect: true }) isHidden = false
-	/**
 	 * The notification-type of the toast
 	 * (success | info | warning | error).
 	 */
 	@Prop() type: NotificationType = NotificationType.SUCCESS
+
+	/**
+	 * Used for transitioning in and out.
+	 */
+	@State() isHiding = true
 
 	/**
 	 * Fires after the elements has transitioned out.
@@ -65,7 +61,7 @@ export class NotifyToast {
 		const classNames: string[] = []
 		classNames.push(this.type)
 		if (this.headline) classNames.push('headline')
-		if (this.isHidden) classNames.push(this.hiddenClassName)
+		if (this.isHiding) classNames.push(this.hiddenClassName)
 		else classNames.push(this.visibleClassName)
 		return classNames.join(' ')
 	}
@@ -83,18 +79,10 @@ export class NotifyToast {
 		return undefined
 	}
 
-	private detachRootElement() {
-		detachElement(this.element)
-	}
-
-	private reattachRootElement() {
-		reattachElement(this.element)
-	}
-
-	/** Dismisses the toast entirely from the DOM */
+	/** Entirely dismisses the toast entirely from the DOM */
 	@Method()
 	async dismiss(): Promise<void> {
-		this.isHidden = true
+		this.isHiding = true
 		this.shadowRoot.addEventListener('transitionend', () => {
 			this.toastDismissed.emit(this.shadowRoot)
 			this.element.remove()
@@ -107,11 +95,9 @@ export class NotifyToast {
 			this.autoHideTimeout = setTimeout(() => {
 				void this.dismiss()
 			}, this.autoHideAfterMs)
-		if (this.isHidden) this.detachRootElement()
-	}
-
-	componentDidUpdate(): void {
-		this.reattachRootElement()
+		setTimeout(() => {
+			this.isHiding = false
+		}, 1)
 	}
 
 	disconnectedCallback(): void {

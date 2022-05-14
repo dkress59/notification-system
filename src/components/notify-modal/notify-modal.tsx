@@ -7,16 +7,11 @@ import {
 	JSX,
 	Method,
 	Prop,
+	State,
 } from '@stencil/core'
 
 import { NotificationType } from '../../types'
-import {
-	detachElement,
-	getButton,
-	getHeadline,
-	getIcon,
-	reattachElement,
-} from '../../utils'
+import { getButton, getHeadline, getIcon } from '../../utils'
 
 @Component({
 	tag: 'notify-modal',
@@ -31,10 +26,6 @@ export class NotifyModal {
 	 * which is styled slightly more prominent than the body text.
 	 */
 	@Prop() headline: string
-	/**
-	 * Whether the modal is initially hidden, or not.
-	 */
-	@Prop({ mutable: true, reflect: true }) isHidden = false
 	/**
 	 * The notification-type of the modal
 	 * (success | info | warning | error).
@@ -64,6 +55,11 @@ export class NotifyModal {
 		undefined
 
 	/**
+	 * Used for transitioning in and out.
+	 */
+	@State() isHiding = true
+
+	/**
 	 * Fires after the elements has transitioned out.
 	 */
 	@Event() modalDismissed: EventEmitter<HTMLElement>
@@ -84,7 +80,7 @@ export class NotifyModal {
 		const classNames: string[] = []
 		classNames.push(this.type)
 		if (this.headline) classNames.push('headline')
-		if (this.isHidden) classNames.push(this.hiddenClassName)
+		if (this.isHiding) classNames.push(this.hiddenClassName)
 		else classNames.push(this.visibleClassName)
 		return classNames.join(' ')
 	}
@@ -101,14 +97,6 @@ export class NotifyModal {
 		return getButton(() => void this.dismiss())
 	}
 
-	private detachRootElement() {
-		detachElement(this.element)
-	}
-
-	private reattachRootElement() {
-		reattachElement(this.element)
-	}
-
 	private confirmTriggeredFinal() {
 		if (this.condition !== false)
 			this.confirmTriggered.emit(this.shadowRoot)
@@ -120,10 +108,10 @@ export class NotifyModal {
 		void this.dismiss()
 	}
 
-	/** Dismisses the modal entirely from the DOM */
+	/** Entirely dismisses the modal from the DOM */
 	@Method()
 	async dismiss(): Promise<void> {
-		this.isHidden = true
+		this.isHiding = true
 		this.shadowRoot.addEventListener('transitionend', () => {
 			this.modalDismissed.emit(this.shadowRoot)
 			this.element.remove()
@@ -132,11 +120,9 @@ export class NotifyModal {
 	}
 
 	componentDidLoad(): void {
-		if (this.isHidden) this.detachRootElement()
-	}
-
-	componentDidUpdate(): void {
-		this.reattachRootElement()
+		setTimeout(() => {
+			this.isHiding = false
+		}, 1)
 	}
 
 	render(): JSX.Element {
