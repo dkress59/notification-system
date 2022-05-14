@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build": "stencil build --docs --config stencil.config.build.ts",
-    "start": "stencil build --dev --watch --serve --no-open",
+    "start": "stencil build --dev --watch --serve --no-open --verbose",
     "check:script": "eslint  --fix-dry-run src",
     "check:style": "npx stylelint '**/*.scss'",
     "fix:script": "eslint --fix src tests",

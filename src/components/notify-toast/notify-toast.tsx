@@ -23,7 +23,7 @@ import {
 	styleUrl: 'notify-toast.scss',
 	shadow: true,
 })
-export class MyComponent {
+export class NotifyToast {
 	@Element() element: HTMLNotifyToastElement
 
 	/**

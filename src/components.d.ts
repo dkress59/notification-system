@@ -7,20 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { NotificationType } from "./types";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
     interface NotifyModal {
         /**
           * If set to 'false' the 'Confirm'-button will be disabled.
@@ -87,12 +73,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLNotifyModalElement extends Components.NotifyModal, HTMLStencilElement {
     }
     var HTMLNotifyModalElement: {
@@ -106,26 +86,11 @@ declare global {
         new (): HTMLNotifyToastElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
         "notify-modal": HTMLNotifyModalElement;
         "notify-toast": HTMLNotifyToastElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface NotifyModal {
         /**
           * If set to 'false' the 'Confirm'-button will be disabled.
@@ -199,7 +164,6 @@ declare namespace LocalJSX {
         "type"?: NotificationType;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
         "notify-modal": NotifyModal;
         "notify-toast": NotifyToast;
     }
@@ -208,7 +172,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "notify-modal": LocalJSX.NotifyModal & JSXBase.HTMLAttributes<HTMLNotifyModalElement>;
             "notify-toast": LocalJSX.NotifyToast & JSXBase.HTMLAttributes<HTMLNotifyToastElement>;
         }

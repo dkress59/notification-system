@@ -7,20 +7,33 @@
 
 ## Properties
 
-| Property          | Attribute            | Description                                   | Type                                                                                                      | Default                    |
-| ----------------- | -------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- |
-| `autoHide`        | `auto-hide`          | default: false                                | `boolean`                                                                                                 | `false`                    |
-| `autoHideAfterMs` | `auto-hide-after-ms` | default: 3000                                 | `number`                                                                                                  | `3000`                     |
-| `headline`        | `headline`           | The last name                                 | `string`                                                                                                  | `undefined`                |
-| `isHidden`        | `is-hidden`          | default: false                                | `boolean`                                                                                                 | `false`                    |
-| `type`            | `type`               | success (default) \| info \| warning \| error | `NotificationType.ERROR \| NotificationType.INFO \| NotificationType.SUCCESS \| NotificationType.WARNING` | `NotificationType.SUCCESS` |
+| Property          | Attribute            | Description                                                                                                            | Type                                                                                                      | Default                    |
+| ----------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `autoHide`        | `auto-hide`          | Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.           | `boolean`                                                                                                 | `false`                    |
+| `autoHideAfterMs` | `auto-hide-after-ms` | The time in milliseconds after which the toast shall be hidden (requires the auto-hide attribute to be set to "true"). | `number`                                                                                                  | `3000`                     |
+| `headline`        | `headline`           | If provided, the toast will be rendered with a headline which is styled slightly more prominent than the body text.    | `string`                                                                                                  | `undefined`                |
+| `isHidden`        | `is-hidden`          | Whether the toast is initially hidden, or not.                                                                         | `boolean`                                                                                                 | `false`                    |
+| `type`            | `type`               | The notification-type of the toast (success \| info \| warning \| error).                                              | `NotificationType.ERROR \| NotificationType.INFO \| NotificationType.SUCCESS \| NotificationType.WARNING` | `NotificationType.SUCCESS` |
 
 
 ## Events
 
-| Event            | Description | Type                       |
-| ---------------- | ----------- | -------------------------- |
-| `toastDismissed` |             | `CustomEvent<HTMLElement>` |
+| Event            | Description                                    | Type                       |
+| ---------------- | ---------------------------------------------- | -------------------------- |
+| `toastDismissed` | Fires after the elements has transitioned out. | `CustomEvent<HTMLElement>` |
+
+
+## Methods
+
+### `dismiss() => Promise<void>`
+
+Dismisses the toast entirely from the DOM
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------

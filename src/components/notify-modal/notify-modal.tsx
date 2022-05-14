@@ -23,7 +23,7 @@ import {
 	styleUrl: 'notify-modal.scss',
 	shadow: true,
 })
-export class MyComponent {
+export class NotifyModal {
 	@Element() element: HTMLNotifyModalElement
 
 	/**
