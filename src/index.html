@@ -19,20 +19,6 @@
       padding: 0;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
-
-    #notification-container {
-      position: fixed;
-      z-index: 50;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      overflow-y: auto;
-    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -60,6 +46,18 @@
       setTimeout(() => {
         bannerArea.spawnBanner({ content: 'Demo Content 2 🦾' })
       }, 1000)
+
+      const notificationArea = document.querySelector('notification-area')
+      const modalContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa facilis praesentium iusto officia tempora exercitationem explicabo, id autem delectus natus consequuntur sed numquam. Eligendi voluptatem repellendus sed perferendis illo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, delectus nemo. Voluptatibus dolore, aliquam totam harum deserunt a possimus iste, tempora id tempore exercitationem, laudantium laboriosam! Voluptatem deleniti quisquam eius.'
+      setTimeout(() => {
+        notificationArea.spawnToast({ type: 'warning', content: '<strong>Demo Content</strong>' })
+      }, 1250)
+      setTimeout(() => {
+        notificationArea.spawnModal({ type: 'info', content: modalContent, headline: 'Lorem Ipsum', showConfirm: true, labelConfirm: 'Close' })
+      }, 3000)
+      setTimeout(() => {
+        notificationArea.spawnModal({ content: modalContent, showConfirm: true, labelConfirm: 'Close' })
+      }, 10000)
     })
   </script>
 </head>
@@ -68,22 +66,7 @@
   <banner-area>
     <notify-banner class="test" type="info">Manual Banner</notify-banner>
   </banner-area>
-  <div id="notification-container">
-    <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-      <my-component first="more Stencil" middle="please" last="'Don't call me a framework' JS"></my-component> -->
-    <notify-toast type="error" headline="Lorem Ipsum">Lorem ipsum dolor sit amet consectetur adipisicing elit, facilis
-      necessitatibus sunt quisquam officia quidem.</notify-toast>
-    <notify-toast type="info">Mock Content</notify-toast>
-    <notify-toast auto-hide-after-ms="1000" auto-hide>Mock Content</notify-toast>
-    <notify-toast headline="Test headline 🤙">Mock Content</notify-toast>
-    <notify-modal type="warning" show-confirm show-decline headline="Lorem Ipsum" label-confirm="Accept">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa facilis praesentium iusto officia tempora
-      exercitationem explicabo, id autem delectus natus consequuntur sed numquam. Eligendi voluptatem repellendus sed
-      perferendis illo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, delectus nemo. Voluptatibus
-      dolore, aliquam totam harum deserunt a possimus iste, tempora id tempore exercitationem, laudantium laboriosam!
-      Voluptatem deleniti quisquam eius.
-    </notify-modal>
-  </div>
+  <notification-area></notification-area>
 </body>
 
 </html>

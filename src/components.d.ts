@@ -8,6 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { NotificationType } from "./types";
 export namespace Components {
     interface BannerArea {
+        /**
+          * Takes the `<notify-banner />`-component's props in camelCase as an argument
+         */
         "spawnBanner": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
     }
     interface MyComponent {
@@ -26,11 +29,11 @@ export namespace Components {
     }
     interface NotificationArea {
         /**
-          * Takes the <notify-modal />-component's props in camelCase
+          * Takes the `<notify-modal />`-component's props in camelCase as an argument
          */
         "spawnModal": ({ condition, content, headline, showConfirm, showDecline, labelConfirm, labelDecline, type, }: { condition?: boolean; content: string; headline?: string; showConfirm?: boolean; showDecline?: boolean; labelConfirm?: string; labelDecline?: string; type?: NotificationType; }) => Promise<void>;
         /**
-          * Takes the <notify-toast />-component's props in camelCase
+          * Takes the `<notify-toast />`-component's props in camelCase as an argument
          */
         "spawnToast": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
     }

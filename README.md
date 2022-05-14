@@ -18,7 +18,7 @@ Wrap your top-level component in the `<NotificationProvider />` and insert the `
 
 ## ToDo
 
-* [ ] convert all the components
+* [X] convert all the components
 * [X] sort out :host <> aside
 * [X] fade-in transition
 * [ ] more customization

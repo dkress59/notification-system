@@ -10,7 +10,9 @@ import { NotificationType } from '../../types'
 export class BannerArea {
 	@State() banners: string[] = []
 
-	// eslint-disable-next-line @stencil/required-jsdoc
+	/**
+	 * Takes the `<notify-banner />`-component's props in camelCase as an argument
+	 */
 	@Method()
 	async spawnBanner({
 		autoHide,
