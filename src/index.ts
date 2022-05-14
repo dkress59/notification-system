@@ -1,3 +1,5 @@
 export { Components, JSX } from './components'
+export { BannerArea } from './components/banner-area/banner-area'
+export { NotifyBanner } from './components/notify-banner/notify-banner'
 export { NotifyModal } from './components/notify-modal/notify-modal'
 export { NotifyToast } from './components/notify-toast/notify-toast'

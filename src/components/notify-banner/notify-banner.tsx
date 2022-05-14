@@ -94,7 +94,9 @@ export class NotifyBanner {
 			this.autoHideTimeout = setTimeout(() => {
 				void this.dismiss()
 			}, this.autoHideAfterMs)
+		this.root.style.transition = 'none'
 		setTimeout(() => {
+			this.root.style.transition = ''
 			this.isHiding = false
 		}, 1)
 	}

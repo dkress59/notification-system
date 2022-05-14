@@ -7,6 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { NotificationType } from "./types";
 export namespace Components {
+    interface BannerArea {
+        "spawnBanner": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -20,6 +23,16 @@ export namespace Components {
           * The middle name
          */
         "middle": string;
+    }
+    interface NotificationArea {
+        /**
+          * Takes the <notify-modal />-component's props in camelCase
+         */
+        "spawnModal": ({ condition, content, headline, showConfirm, showDecline, labelConfirm, labelDecline, type, }: { condition?: boolean; content: string; headline?: string; showConfirm?: boolean; showDecline?: boolean; labelConfirm?: string; labelDecline?: string; type?: NotificationType; }) => Promise<void>;
+        /**
+          * Takes the <notify-toast />-component's props in camelCase
+         */
+        "spawnToast": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
     }
     interface NotifyBanner {
         /**
@@ -101,11 +114,23 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLBannerAreaElement extends Components.BannerArea, HTMLStencilElement {
+    }
+    var HTMLBannerAreaElement: {
+        prototype: HTMLBannerAreaElement;
+        new (): HTMLBannerAreaElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
+    };
+    interface HTMLNotificationAreaElement extends Components.NotificationArea, HTMLStencilElement {
+    }
+    var HTMLNotificationAreaElement: {
+        prototype: HTMLNotificationAreaElement;
+        new (): HTMLNotificationAreaElement;
     };
     interface HTMLNotifyBannerElement extends Components.NotifyBanner, HTMLStencilElement {
     }
@@ -126,13 +151,17 @@ declare global {
         new (): HTMLNotifyToastElement;
     };
     interface HTMLElementTagNameMap {
+        "banner-area": HTMLBannerAreaElement;
         "my-component": HTMLMyComponentElement;
+        "notification-area": HTMLNotificationAreaElement;
         "notify-banner": HTMLNotifyBannerElement;
         "notify-modal": HTMLNotifyModalElement;
         "notify-toast": HTMLNotifyToastElement;
     }
 }
 declare namespace LocalJSX {
+    interface BannerArea {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -146,6 +175,8 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+    }
+    interface NotificationArea {
     }
     interface NotifyBanner {
         /**
@@ -234,7 +265,9 @@ declare namespace LocalJSX {
         "type"?: NotificationType;
     }
     interface IntrinsicElements {
+        "banner-area": BannerArea;
         "my-component": MyComponent;
+        "notification-area": NotificationArea;
         "notify-banner": NotifyBanner;
         "notify-modal": NotifyModal;
         "notify-toast": NotifyToast;
@@ -244,7 +277,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "banner-area": LocalJSX.BannerArea & JSXBase.HTMLAttributes<HTMLBannerAreaElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "notification-area": LocalJSX.NotificationArea & JSXBase.HTMLAttributes<HTMLNotificationAreaElement>;
             "notify-banner": LocalJSX.NotifyBanner & JSXBase.HTMLAttributes<HTMLNotifyBannerElement>;
             "notify-modal": LocalJSX.NotifyModal & JSXBase.HTMLAttributes<HTMLNotifyModalElement>;
             "notify-toast": LocalJSX.NotifyToast & JSXBase.HTMLAttributes<HTMLNotifyToastElement>;

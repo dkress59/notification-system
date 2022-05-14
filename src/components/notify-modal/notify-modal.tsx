@@ -118,7 +118,9 @@ export class NotifyModal {
 	}
 
 	componentDidLoad(): void {
+		this.root.style.transition = 'none'
 		setTimeout(() => {
+			this.root.style.transition = ''
 			this.isHiding = false
 		}, 1)
 	}
