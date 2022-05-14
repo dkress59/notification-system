@@ -4,6 +4,7 @@ import {
 	Event,
 	EventEmitter,
 	h,
+	Host,
 	JSX,
 	Method,
 	Prop,
@@ -19,7 +20,7 @@ import { getButton, getHeadline, getIcon } from '../../utils'
 	shadow: true,
 })
 export class NotifyBanner {
-	@Element() element: HTMLNotifyBannerElement
+	@Element() lightRoot: HTMLNotifyBannerElement
 
 	/**
 	 * Whether to automatically hide the banner, or not.
@@ -52,17 +53,15 @@ export class NotifyBanner {
 	 */
 	@Event() bannerDismissed: EventEmitter<HTMLElement>
 
-	private shadowRoot: HTMLElement
-	private hiddenClassName = 'opacity-0'
-	private visibleClassName = 'opacity-100'
+	private root: HTMLElement
+	private hiddenClassName = 'hidden'
 	private autoHideTimeout: NodeJS.Timeout | null = null
 
 	private getClassName(): string {
-		const classNames: string[] = []
-		classNames.push(this.type)
-		if (this.headline) classNames.push('headline')
+		const classNames = Array.from(this.lightRoot.classList).filter(
+			className => className !== this.hiddenClassName,
+		)
 		if (this.isHiding) classNames.push(this.hiddenClassName)
-		else classNames.push(this.visibleClassName)
 		return classNames.join(' ')
 	}
 
@@ -79,29 +78,13 @@ export class NotifyBanner {
 		return undefined
 	}
 
-	private getBanner(): JSX.Element {
-		return (
-			<aside
-				class={this.getClassName()}
-				ref={element => (this.shadowRoot = element as HTMLElement)}
-			>
-				{this.getHeadline()}
-				{this.getIcon()}
-				<div>
-					<slot />
-				</div>
-				{this.getButton()}
-			</aside>
-		) as JSX.Element
-	}
-
 	/** Entirely dismisses the banner entirely from the DOM */
 	@Method()
 	async dismiss(): Promise<void> {
 		this.isHiding = true
-		this.shadowRoot.addEventListener('transitionend', () => {
-			this.bannerDismissed.emit(this.shadowRoot)
-			this.element.remove()
+		this.root.addEventListener('transitionend', () => {
+			this.bannerDismissed.emit()
+			this.root.remove()
 		})
 		return Promise.resolve()
 	}
@@ -121,6 +104,18 @@ export class NotifyBanner {
 	}
 
 	render(): JSX.Element {
-		return this.getBanner()
+		return (
+			<Host
+				class={this.getClassName()}
+				ref={ref => (this.root = ref as HTMLElement)}
+			>
+				{this.getHeadline()}
+				{this.getIcon()}
+				<section>
+					<slot />
+				</section>
+				{this.getButton()}
+			</Host>
+		) as JSX.Element
 	}
 }

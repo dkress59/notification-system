@@ -5,7 +5,7 @@ export const config: Config = {
 	namespace: 'notification-system',
 	plugins: [
 		sass({
-			injectGlobalPaths: ['src/css/custom.scss', 'src/css/global.scss'],
+			injectGlobalPaths: ['src/css/global.scss', 'src/css/utils.scss'],
 		}),
 	],
 	testing: {

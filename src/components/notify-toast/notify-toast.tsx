@@ -4,6 +4,7 @@ import {
 	Event,
 	EventEmitter,
 	h,
+	Host,
 	JSX,
 	Method,
 	Prop,
@@ -19,7 +20,7 @@ import { getButton, getHeadline, getIcon } from '../../utils'
 	shadow: true,
 })
 export class NotifyToast {
-	@Element() element: HTMLNotifyToastElement
+	@Element() lightRoot: HTMLNotifyToastElement
 
 	/**
 	 * Whether to automatically hide the toast, or not.
@@ -52,17 +53,15 @@ export class NotifyToast {
 	 */
 	@Event() toastDismissed: EventEmitter<HTMLElement>
 
-	private shadowRoot: HTMLElement
-	private hiddenClassName = 'opacity-0'
-	private visibleClassName = 'opacity-100'
+	private root: HTMLElement
+	private hiddenClassName = 'hidden'
 	private autoHideTimeout: NodeJS.Timeout | null = null
 
 	private getClassName(): string {
-		const classNames: string[] = []
-		classNames.push(this.type)
-		if (this.headline) classNames.push('headline')
+		const classNames = Array.from(this.lightRoot.classList).filter(
+			className => className !== this.hiddenClassName,
+		)
 		if (this.isHiding) classNames.push(this.hiddenClassName)
-		else classNames.push(this.visibleClassName)
 		return classNames.join(' ')
 	}
 
@@ -83,9 +82,9 @@ export class NotifyToast {
 	@Method()
 	async dismiss(): Promise<void> {
 		this.isHiding = true
-		this.shadowRoot.addEventListener('transitionend', () => {
-			this.toastDismissed.emit(this.shadowRoot)
-			this.element.remove()
+		this.root.addEventListener('transitionend', () => {
+			this.toastDismissed.emit()
+			this.root.remove()
 		})
 		return Promise.resolve()
 	}
@@ -106,17 +105,17 @@ export class NotifyToast {
 
 	render(): JSX.Element {
 		return (
-			<aside
+			<Host
 				class={this.getClassName()}
-				ref={element => (this.shadowRoot = element as HTMLElement)}
+				ref={ref => (this.root = ref as HTMLElement)}
 			>
 				{this.getHeadline()}
 				{this.getIcon()}
-				<div>
+				<section>
 					<slot />
-				</div>
+				</section>
 				{this.getButton()}
-			</aside>
+			</Host>
 		) as JSX.Element
 	}
 }

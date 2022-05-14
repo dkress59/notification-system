@@ -1,4 +1,4 @@
-aside {
+:host {
   @extend %custom-modal;
   @extend %min-w-60, %shadow-lg;
 
@@ -12,24 +12,7 @@ aside {
   height: 80%;
   transform: translate(-50%, -50%);
 
-  &.success,
-  &:not(.success, .info, .error, .warning) {
-    @extend %custom-modal-type-success;
-  }
-
-  &.info {
-    @extend %custom-modal-type-info;
-  }
-
-  &.error {
-    @extend %custom-modal-type-error;
-  }
-
-  &.warning {
-    @extend %custom-modal-type-warning;
-  }
-
-  >div {
+  >section {
     flex-grow: 1;
   }
 
@@ -52,4 +35,21 @@ aside {
   @media (min-width: 640px) {
     height: 50%;
   }
+}
+
+:host([type="success"]),
+:host(:not([type])) {
+  @extend %custom-modal-type-success;
+}
+
+:host([type="info"]) {
+  @extend %custom-modal-type-info;
+}
+
+:host([type="error"]) {
+  @extend %custom-modal-type-error;
+}
+
+:host([type="warning"]) {
+  @extend %custom-modal-type-warning;
 }

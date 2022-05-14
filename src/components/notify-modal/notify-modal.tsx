@@ -4,6 +4,7 @@ import {
 	Event,
 	EventEmitter,
 	h,
+	Host,
 	JSX,
 	Method,
 	Prop,
@@ -19,7 +20,7 @@ import { getButton, getHeadline, getIcon } from '../../utils'
 	shadow: true,
 })
 export class NotifyModal {
-	@Element() element: HTMLNotifyModalElement
+	@Element() lightRoot: HTMLNotifyModalElement
 
 	/**
 	 * If provided, the modal will be rendered with a headline
@@ -72,16 +73,14 @@ export class NotifyModal {
 	 */
 	@Event() declineTriggered: EventEmitter<HTMLElement>
 
-	private shadowRoot: HTMLElement
-	private hiddenClassName = 'opacity-0'
-	private visibleClassName = 'opacity-100'
+	private root: HTMLElement
+	private hiddenClassName = 'hidden'
 
 	private getClassName(): string {
-		const classNames: string[] = []
-		classNames.push(this.type)
-		if (this.headline) classNames.push('headline')
+		const classNames = Array.from(this.lightRoot.classList).filter(
+			className => className !== this.hiddenClassName,
+		)
 		if (this.isHiding) classNames.push(this.hiddenClassName)
-		else classNames.push(this.visibleClassName)
 		return classNames.join(' ')
 	}
 
@@ -98,13 +97,12 @@ export class NotifyModal {
 	}
 
 	private confirmTriggeredFinal() {
-		if (this.condition !== false)
-			this.confirmTriggered.emit(this.shadowRoot)
+		if (this.condition !== false) this.confirmTriggered.emit()
 		void this.dismiss()
 	}
 
 	private declineTriggeredFinal() {
-		this.declineTriggered.emit(this.shadowRoot)
+		this.declineTriggered.emit()
 		void this.dismiss()
 	}
 
@@ -112,9 +110,9 @@ export class NotifyModal {
 	@Method()
 	async dismiss(): Promise<void> {
 		this.isHiding = true
-		this.shadowRoot.addEventListener('transitionend', () => {
-			this.modalDismissed.emit(this.shadowRoot)
-			this.element.remove()
+		this.root.addEventListener('transitionend', () => {
+			this.modalDismissed.emit()
+			this.root.remove()
 		})
 		return Promise.resolve()
 	}
@@ -127,15 +125,15 @@ export class NotifyModal {
 
 	render(): JSX.Element {
 		return (
-			<aside
+			<Host
 				class={this.getClassName()}
-				ref={element => (this.shadowRoot = element as HTMLElement)}
+				ref={ref => (this.root = ref as HTMLElement)}
 			>
 				{this.getHeadline()}
 				{this.getIcon()}
-				<div>
+				<section>
 					<slot />
-				</div>
+				</section>
 				{this.getButton()}
 				{(this.showConfirm || this.showDecline) && (
 					<footer>
@@ -160,7 +158,7 @@ export class NotifyModal {
 						)}
 					</footer>
 				)}
-			</aside>
+			</Host>
 		) as JSX.Element
 	}
 }
