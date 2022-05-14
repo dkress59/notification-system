@@ -9,6 +9,7 @@ import {
 	Method,
 	Prop,
 	State,
+	Watch,
 } from '@stencil/core'
 
 import { NotificationType } from '../../types'
@@ -36,7 +37,7 @@ export class ToastNotification {
 	 * If provided, the toast will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
 	 */
-	@Prop() headline: string
+	@Prop({ reflect: true }) headline: string
 	/**
 	 * The notification-type of the toast
 	 * (success | info | warning | error).
@@ -65,6 +66,7 @@ export class ToastNotification {
 		return classNames.join(' ')
 	}
 
+	@Watch('headline')
 	private getHeadline(): JSX.Element | undefined {
 		return getHeadline(this.headline)
 	}

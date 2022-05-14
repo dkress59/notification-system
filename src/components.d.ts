@@ -69,20 +69,6 @@ export namespace Components {
          */
         "type": NotificationType;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
     interface NotificationArea {
         /**
           * Takes the `<modal-notification />`-component's props in camelCase as an argument
@@ -135,12 +121,6 @@ declare global {
         prototype: HTMLModalNotificationElement;
         new (): HTMLModalNotificationElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLNotificationAreaElement extends Components.NotificationArea, HTMLStencilElement {
     }
     var HTMLNotificationAreaElement: {
@@ -157,7 +137,6 @@ declare global {
         "banner-area": HTMLBannerAreaElement;
         "banner-notification": HTMLBannerNotificationElement;
         "modal-notification": HTMLModalNotificationElement;
-        "my-component": HTMLMyComponentElement;
         "notification-area": HTMLNotificationAreaElement;
         "toast-notification": HTMLToastNotificationElement;
     }
@@ -229,20 +208,6 @@ declare namespace LocalJSX {
          */
         "type"?: NotificationType;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface NotificationArea {
     }
     interface ToastNotification {
@@ -271,7 +236,6 @@ declare namespace LocalJSX {
         "banner-area": BannerArea;
         "banner-notification": BannerNotification;
         "modal-notification": ModalNotification;
-        "my-component": MyComponent;
         "notification-area": NotificationArea;
         "toast-notification": ToastNotification;
     }
@@ -283,7 +247,6 @@ declare module "@stencil/core" {
             "banner-area": LocalJSX.BannerArea & JSXBase.HTMLAttributes<HTMLBannerAreaElement>;
             "banner-notification": LocalJSX.BannerNotification & JSXBase.HTMLAttributes<HTMLBannerNotificationElement>;
             "modal-notification": LocalJSX.ModalNotification & JSXBase.HTMLAttributes<HTMLModalNotificationElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "notification-area": LocalJSX.NotificationArea & JSXBase.HTMLAttributes<HTMLNotificationAreaElement>;
             "toast-notification": LocalJSX.ToastNotification & JSXBase.HTMLAttributes<HTMLToastNotificationElement>;
         }

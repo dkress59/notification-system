@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<toast-notification /> matches snapshot with props 1`] = `
+<toast-notification class="hidden mock-class-name" headline="Mock Headline" style="transition: none;">
+  <mock:shadow-root>
+    <h4 data-testid="headline">
+      Mock Headline
+    </h4>
+    <span class="icon" data-testid="notify-icon">
+      <span>
+        ✓
+      </span>
+    </span>
+    <section>
+      <slot></slot>
+    </section>
+    <span class="dismiss" data-testid="dismiss-button">
+      ✕
+    </span>
+  </mock:shadow-root>
+  Mock Content
+</toast-notification>
+`;
+
+exports[`<toast-notification /> matches snapshot without props 1`] = `
+<toast-notification class="hidden" style="transition: none;">
+  <mock:shadow-root>
+    <span class="icon" data-testid="notify-icon">
+      <span>
+        ✓
+      </span>
+    </span>
+    <section>
+      <slot></slot>
+    </section>
+    <span class="dismiss" data-testid="dismiss-button">
+      ✕
+    </span>
+  </mock:shadow-root>
+</toast-notification>
+`;

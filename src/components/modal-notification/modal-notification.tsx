@@ -9,6 +9,7 @@ import {
 	Method,
 	Prop,
 	State,
+	Watch,
 } from '@stencil/core'
 
 import { NotificationType } from '../../types'
@@ -26,7 +27,7 @@ export class ModalNotification {
 	 * If provided, the modal will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
 	 */
-	@Prop() headline: string
+	@Prop({ reflect: true }) headline: string
 	/**
 	 * The notification-type of the modal
 	 * (success | info | warning | error).
@@ -84,6 +85,7 @@ export class ModalNotification {
 		return classNames.join(' ')
 	}
 
+	@Watch('headline')
 	private getHeadline(): JSX.Element | undefined {
 		return getHeadline(this.headline)
 	}
