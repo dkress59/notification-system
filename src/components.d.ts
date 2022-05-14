@@ -23,7 +23,7 @@ export namespace Components {
          */
         "autoHideAfterMs": number;
         /**
-          * Entirely dismisses the banner entirely from the DOM
+          * Entirely dismisses the banner from the DOM
          */
         "dismiss": () => Promise<void>;
         /**
@@ -89,7 +89,7 @@ export namespace Components {
          */
         "autoHideAfterMs": number;
         /**
-          * Entirely dismisses the toast entirely from the DOM
+          * Entirely dismisses the toast from the DOM
          */
         "dismiss": () => Promise<void>;
         /**

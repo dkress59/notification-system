@@ -26,7 +26,7 @@
 
 ### `dismiss() => Promise<void>`
 
-Entirely dismisses the toast entirely from the DOM
+Entirely dismisses the toast from the DOM
 
 #### Returns
 

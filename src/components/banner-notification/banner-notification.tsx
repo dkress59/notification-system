@@ -80,7 +80,7 @@ export class BannerNotification {
 		return undefined
 	}
 
-	/** Entirely dismisses the banner entirely from the DOM */
+	/** Entirely dismisses the banner from the DOM */
 	@Method()
 	async dismiss(): Promise<void> {
 		this.isHiding = true

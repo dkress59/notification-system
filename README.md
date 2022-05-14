@@ -18,6 +18,7 @@ Wrap your top-level component in the `<NotificationProvider />` and insert the `
 
 ## ToDo
 
+* [ ] improve fade-in transition
 * [X] convert all the components
 * [X] sort out :host <> aside
 * [X] fade-in transition

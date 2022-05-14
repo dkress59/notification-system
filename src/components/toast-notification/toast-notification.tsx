@@ -80,7 +80,7 @@ export class ToastNotification {
 		return undefined
 	}
 
-	/** Entirely dismisses the toast entirely from the DOM */
+	/** Entirely dismisses the toast from the DOM */
 	@Method()
 	async dismiss(): Promise<void> {
 		this.isHiding = true

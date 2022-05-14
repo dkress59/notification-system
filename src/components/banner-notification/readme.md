@@ -26,7 +26,7 @@
 
 ### `dismiss() => Promise<void>`
 
-Entirely dismisses the banner entirely from the DOM
+Entirely dismisses the banner from the DOM
 
 #### Returns
 
