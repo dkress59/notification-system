@@ -15,12 +15,12 @@ import { NotificationType } from '../../types'
 import { getButton, getHeadline, getIcon } from '../../utils'
 
 @Component({
-	tag: 'notify-toast',
-	styleUrl: 'notify-toast.scss',
+	tag: 'toast-notification',
+	styleUrl: 'toast-notification.scss',
 	shadow: true,
 })
-export class NotifyToast {
-	@Element() lightRoot: HTMLNotifyToastElement
+export class ToastNotification {
+	@Element() lightRoot: HTMLToastNotificationElement
 
 	/**
 	 * Whether to automatically hide the toast, or not.

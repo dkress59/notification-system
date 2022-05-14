@@ -9,35 +9,11 @@ import { NotificationType } from "./types";
 export namespace Components {
     interface BannerArea {
         /**
-          * Takes the `<notify-banner />`-component's props in camelCase as an argument
+          * Takes the `<banner-notification />`-component's props in camelCase as an argument
          */
         "spawnBanner": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
-    interface NotificationArea {
-        /**
-          * Takes the `<notify-modal />`-component's props in camelCase as an argument
-         */
-        "spawnModal": ({ condition, content, headline, showConfirm, showDecline, labelConfirm, labelDecline, type, }: { condition?: boolean; content: string; headline?: string; showConfirm?: boolean; showDecline?: boolean; labelConfirm?: string; labelDecline?: string; type?: NotificationType; }) => Promise<void>;
-        /**
-          * Takes the `<notify-toast />`-component's props in camelCase as an argument
-         */
-        "spawnToast": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
-    }
-    interface NotifyBanner {
+    interface BannerNotification {
         /**
           * Whether to automatically hide the banner, or not. If false (or undefined), a dismiss-button will be rendered.
          */
@@ -59,7 +35,7 @@ export namespace Components {
          */
         "type": NotificationType;
     }
-    interface NotifyModal {
+    interface ModalNotification {
         /**
           * If set to 'false' the 'Confirm'-button will be disabled.
          */
@@ -93,7 +69,31 @@ export namespace Components {
          */
         "type": NotificationType;
     }
-    interface NotifyToast {
+    interface MyComponent {
+        /**
+          * The first name
+         */
+        "first": string;
+        /**
+          * The last name
+         */
+        "last": string;
+        /**
+          * The middle name
+         */
+        "middle": string;
+    }
+    interface NotificationArea {
+        /**
+          * Takes the `<modal-notification />`-component's props in camelCase as an argument
+         */
+        "spawnModal": ({ condition, content, headline, showConfirm, showDecline, labelConfirm, labelDecline, type, }: { condition?: boolean; content: string; headline?: string; showConfirm?: boolean; showDecline?: boolean; labelConfirm?: string; labelDecline?: string; type?: NotificationType; }) => Promise<void>;
+        /**
+          * Takes the `<toast-notification />`-component's props in camelCase as an argument
+         */
+        "spawnToast": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
+    }
+    interface ToastNotification {
         /**
           * Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.
          */
@@ -123,6 +123,18 @@ declare global {
         prototype: HTMLBannerAreaElement;
         new (): HTMLBannerAreaElement;
     };
+    interface HTMLBannerNotificationElement extends Components.BannerNotification, HTMLStencilElement {
+    }
+    var HTMLBannerNotificationElement: {
+        prototype: HTMLBannerNotificationElement;
+        new (): HTMLBannerNotificationElement;
+    };
+    interface HTMLModalNotificationElement extends Components.ModalNotification, HTMLStencilElement {
+    }
+    var HTMLModalNotificationElement: {
+        prototype: HTMLModalNotificationElement;
+        new (): HTMLModalNotificationElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -135,53 +147,25 @@ declare global {
         prototype: HTMLNotificationAreaElement;
         new (): HTMLNotificationAreaElement;
     };
-    interface HTMLNotifyBannerElement extends Components.NotifyBanner, HTMLStencilElement {
+    interface HTMLToastNotificationElement extends Components.ToastNotification, HTMLStencilElement {
     }
-    var HTMLNotifyBannerElement: {
-        prototype: HTMLNotifyBannerElement;
-        new (): HTMLNotifyBannerElement;
-    };
-    interface HTMLNotifyModalElement extends Components.NotifyModal, HTMLStencilElement {
-    }
-    var HTMLNotifyModalElement: {
-        prototype: HTMLNotifyModalElement;
-        new (): HTMLNotifyModalElement;
-    };
-    interface HTMLNotifyToastElement extends Components.NotifyToast, HTMLStencilElement {
-    }
-    var HTMLNotifyToastElement: {
-        prototype: HTMLNotifyToastElement;
-        new (): HTMLNotifyToastElement;
+    var HTMLToastNotificationElement: {
+        prototype: HTMLToastNotificationElement;
+        new (): HTMLToastNotificationElement;
     };
     interface HTMLElementTagNameMap {
         "banner-area": HTMLBannerAreaElement;
+        "banner-notification": HTMLBannerNotificationElement;
+        "modal-notification": HTMLModalNotificationElement;
         "my-component": HTMLMyComponentElement;
         "notification-area": HTMLNotificationAreaElement;
-        "notify-banner": HTMLNotifyBannerElement;
-        "notify-modal": HTMLNotifyModalElement;
-        "notify-toast": HTMLNotifyToastElement;
+        "toast-notification": HTMLToastNotificationElement;
     }
 }
 declare namespace LocalJSX {
     interface BannerArea {
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
-    interface NotificationArea {
-    }
-    interface NotifyBanner {
+    interface BannerNotification {
         /**
           * Whether to automatically hide the banner, or not. If false (or undefined), a dismiss-button will be rendered.
          */
@@ -203,7 +187,7 @@ declare namespace LocalJSX {
          */
         "type"?: NotificationType;
     }
-    interface NotifyModal {
+    interface ModalNotification {
         /**
           * If set to 'false' the 'Confirm'-button will be disabled.
          */
@@ -245,7 +229,23 @@ declare namespace LocalJSX {
          */
         "type"?: NotificationType;
     }
-    interface NotifyToast {
+    interface MyComponent {
+        /**
+          * The first name
+         */
+        "first"?: string;
+        /**
+          * The last name
+         */
+        "last"?: string;
+        /**
+          * The middle name
+         */
+        "middle"?: string;
+    }
+    interface NotificationArea {
+    }
+    interface ToastNotification {
         /**
           * Whether to automatically hide the toast, or not. If false (or undefined), a dismiss-button will be rendered.
          */
@@ -269,11 +269,11 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "banner-area": BannerArea;
+        "banner-notification": BannerNotification;
+        "modal-notification": ModalNotification;
         "my-component": MyComponent;
         "notification-area": NotificationArea;
-        "notify-banner": NotifyBanner;
-        "notify-modal": NotifyModal;
-        "notify-toast": NotifyToast;
+        "toast-notification": ToastNotification;
     }
 }
 export { LocalJSX as JSX };
@@ -281,11 +281,11 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "banner-area": LocalJSX.BannerArea & JSXBase.HTMLAttributes<HTMLBannerAreaElement>;
+            "banner-notification": LocalJSX.BannerNotification & JSXBase.HTMLAttributes<HTMLBannerNotificationElement>;
+            "modal-notification": LocalJSX.ModalNotification & JSXBase.HTMLAttributes<HTMLModalNotificationElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "notification-area": LocalJSX.NotificationArea & JSXBase.HTMLAttributes<HTMLNotificationAreaElement>;
-            "notify-banner": LocalJSX.NotifyBanner & JSXBase.HTMLAttributes<HTMLNotifyBannerElement>;
-            "notify-modal": LocalJSX.NotifyModal & JSXBase.HTMLAttributes<HTMLNotifyModalElement>;
-            "notify-toast": LocalJSX.NotifyToast & JSXBase.HTMLAttributes<HTMLNotifyToastElement>;
+            "toast-notification": LocalJSX.ToastNotification & JSXBase.HTMLAttributes<HTMLToastNotificationElement>;
         }
     }
 }

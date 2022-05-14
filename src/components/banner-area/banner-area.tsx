@@ -11,7 +11,7 @@ export class BannerArea {
 	@State() banners: string[] = []
 
 	/**
-	 * Takes the `<notify-banner />`-component's props in camelCase as an argument
+	 * Takes the `<banner-notification />`-component's props in camelCase as an argument
 	 */
 	@Method()
 	async spawnBanner({
@@ -33,9 +33,9 @@ export class BannerArea {
 			attributes.push(`auto-hide-after-ms="${autoHideAfterMs}"`)
 		if (headline) attributes.push(`headline="${headline}"`)
 		if (type) attributes.push(`type="${type}"`)
-		const newBanner = `<notify-banner ${attributes.join(
+		const newBanner = `<banner-notification ${attributes.join(
 			' ',
-		)}>${content}</notify-banner>`
+		)}>${content}</banner-notification>`
 		this.banners = [newBanner, ...this.banners]
 		return Promise.resolve()
 	}

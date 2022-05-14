@@ -22,13 +22,13 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('notify-toast').forEach(toast => {
+      document.querySelectorAll('toast-notification').forEach(toast => {
         toast.addEventListener('toastDismissed', (event) => console.debug(
           'toast dismissed.',
           { event }
         ))
       })
-      document.querySelectorAll('notify-modal').forEach(modal => {
+      document.querySelectorAll('modal-notification').forEach(modal => {
         modal.addEventListener('confirmTriggered', (event) => console.debug(
           'modal confirmed.',
           { event }
@@ -64,7 +64,7 @@
 
 <body>
   <banner-area>
-    <notify-banner class="test" type="info">Manual Banner</notify-banner>
+    <banner-notification class="test" type="info">Manual Banner</banner-notification>
   </banner-area>
   <notification-area></notification-area>
 </body>

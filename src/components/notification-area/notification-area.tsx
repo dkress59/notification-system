@@ -12,7 +12,7 @@ export class NotificationArea {
 	@State() modal: string
 
 	/**
-	 * Takes the `<notify-toast />`-component's props in camelCase as an argument
+	 * Takes the `<toast-notification />`-component's props in camelCase as an argument
 	 */
 	@Method()
 	async spawnToast({
@@ -34,15 +34,15 @@ export class NotificationArea {
 			attributes.push(`auto-hide-after-ms="${autoHideAfterMs}"`)
 		if (headline) attributes.push(`headline="${headline}"`)
 		if (type) attributes.push(`type="${type}"`)
-		const newToast = `<notify-toast ${attributes.join(
+		const newToast = `<toast-notification ${attributes.join(
 			' ',
-		)}>${content}</notify-toast>`
+		)}>${content}</toast-notification>`
 		this.toasts = [newToast, ...this.toasts]
 		return Promise.resolve()
 	}
 
 	/**
-	 * Takes the `<notify-modal />`-component's props in camelCase as an argument
+	 * Takes the `<modal-notification />`-component's props in camelCase as an argument
 	 */
 	@Method()
 	async spawnModal({
@@ -72,9 +72,9 @@ export class NotificationArea {
 		if (labelConfirm) attributes.push(`label-confirm="${labelConfirm}"`)
 		if (labelDecline) attributes.push(`label-decline="${labelDecline}"`)
 		if (type) attributes.push(`type="${type}"`)
-		const newModal = `<notify-modal ${attributes.join(
+		const newModal = `<modal-notification ${attributes.join(
 			' ',
-		)}>${content}</notify-modal>`
+		)}>${content}</modal-notification>`
 		this.modal = newModal
 		return Promise.resolve()
 	}

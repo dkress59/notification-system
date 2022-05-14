@@ -15,12 +15,12 @@ import { NotificationType } from '../../types'
 import { getButton, getHeadline, getIcon } from '../../utils'
 
 @Component({
-	tag: 'notify-modal',
-	styleUrl: 'notify-modal.scss',
+	tag: 'modal-notification',
+	styleUrl: 'modal-notification.scss',
 	shadow: true,
 })
-export class NotifyModal {
-	@Element() lightRoot: HTMLNotifyModalElement
+export class ModalNotification {
+	@Element() lightRoot: HTMLModalNotificationElement
 
 	/**
 	 * If provided, the modal will be rendered with a headline

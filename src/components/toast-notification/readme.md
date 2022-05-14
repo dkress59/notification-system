@@ -1,4 +1,4 @@
-# notify-toast
+# toast-notification
 
 
 

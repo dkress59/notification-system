@@ -1,4 +1,4 @@
-# notify-modal
+# modal-notification
 
 
 

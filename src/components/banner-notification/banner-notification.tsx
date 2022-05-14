@@ -15,12 +15,12 @@ import { NotificationType } from '../../types'
 import { getButton, getHeadline, getIcon } from '../../utils'
 
 @Component({
-	tag: 'notify-banner',
-	styleUrl: 'notify-banner.scss',
+	tag: 'banner-notification',
+	styleUrl: 'banner-notification.scss',
 	shadow: true,
 })
-export class NotifyBanner {
-	@Element() lightRoot: HTMLNotifyBannerElement
+export class BannerNotification {
+	@Element() lightRoot: HTMLBannerNotificationElement
 
 	/**
 	 * Whether to automatically hide the banner, or not.
