@@ -1,0 +1,29 @@
+:host {
+  position: relative;
+  width: 100%;
+}
+
+aside {
+  @extend %custom-banner;
+
+  position: relative;
+  width: 100%;
+  transform-origin: top;
+
+  &.success,
+  &:not(.success, .info, .error, .warning) {
+    @extend %custom-banner-type-success;
+  }
+
+  &.info {
+    @extend %custom-banner-type-info;
+  }
+
+  &.error {
+    @extend %custom-banner-type-error;
+  }
+
+  &.warning {
+    @extend %custom-banner-type-warning;
+  }
+}

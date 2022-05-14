@@ -31,6 +31,10 @@
       align-items: flex-end;
       overflow-y: auto;
     }
+
+    notify-banner {
+      position: absolute;
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -58,6 +62,7 @@
   <div id="notification-container">
     <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
       <my-component first="more Stencil" middle="please" last="'Don't call me a framework' JS"></my-component> -->
+    <notify-banner>Mock Banner</notify-banner>
     <notify-toast type="error" headline="Lorem Ipsum">Lorem ipsum dolor sit amet consectetur adipisicing elit, facilis
       necessitatibus sunt quisquam officia quidem.</notify-toast>
     <notify-toast type="info">Mock Content</notify-toast>

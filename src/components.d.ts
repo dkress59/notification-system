@@ -21,6 +21,28 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface NotifyBanner {
+        /**
+          * Whether to automatically hide the banner, or not. If false (or undefined), a dismiss-button will be rendered.
+         */
+        "autoHide": boolean;
+        /**
+          * The time in milliseconds after which the banner shall be hidden (requires the auto-hide attribute to be set to "true").
+         */
+        "autoHideAfterMs": number;
+        /**
+          * Entirely dismisses the banner entirely from the DOM
+         */
+        "dismiss": () => Promise<void>;
+        /**
+          * If provided, the banner will be rendered with a headline which is styled slightly more prominent than the body text.
+         */
+        "headline": string;
+        /**
+          * The notification-type of the banner (success | info | warning | error).
+         */
+        "type": NotificationType;
+    }
     interface NotifyModal {
         /**
           * If set to 'false' the 'Confirm'-button will be disabled.
@@ -85,6 +107,12 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLNotifyBannerElement extends Components.NotifyBanner, HTMLStencilElement {
+    }
+    var HTMLNotifyBannerElement: {
+        prototype: HTMLNotifyBannerElement;
+        new (): HTMLNotifyBannerElement;
+    };
     interface HTMLNotifyModalElement extends Components.NotifyModal, HTMLStencilElement {
     }
     var HTMLNotifyModalElement: {
@@ -99,6 +127,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "notify-banner": HTMLNotifyBannerElement;
         "notify-modal": HTMLNotifyModalElement;
         "notify-toast": HTMLNotifyToastElement;
     }
@@ -117,6 +146,28 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+    }
+    interface NotifyBanner {
+        /**
+          * Whether to automatically hide the banner, or not. If false (or undefined), a dismiss-button will be rendered.
+         */
+        "autoHide"?: boolean;
+        /**
+          * The time in milliseconds after which the banner shall be hidden (requires the auto-hide attribute to be set to "true").
+         */
+        "autoHideAfterMs"?: number;
+        /**
+          * If provided, the banner will be rendered with a headline which is styled slightly more prominent than the body text.
+         */
+        "headline"?: string;
+        /**
+          * Fires after the elements has transitioned out.
+         */
+        "onBannerDismissed"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * The notification-type of the banner (success | info | warning | error).
+         */
+        "type"?: NotificationType;
     }
     interface NotifyModal {
         /**
@@ -184,6 +235,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "notify-banner": NotifyBanner;
         "notify-modal": NotifyModal;
         "notify-toast": NotifyToast;
     }
@@ -193,6 +245,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "notify-banner": LocalJSX.NotifyBanner & JSXBase.HTMLAttributes<HTMLNotifyBannerElement>;
             "notify-modal": LocalJSX.NotifyModal & JSXBase.HTMLAttributes<HTMLNotifyModalElement>;
             "notify-toast": LocalJSX.NotifyToast & JSXBase.HTMLAttributes<HTMLNotifyToastElement>;
         }
