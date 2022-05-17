@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react",
-    "jsxFactory": "jsx", 
+    "jsxFactory": "jsx",
     "lib": [
       "dom",
       "es2017"
@@ -17,15 +17,19 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+		"types": [
+			"jest",
+			"node"
+		]
   },
   "include": [
+    "__mocks__",
     "src",
     "tests",
     ".eslintrc.js",
+    "babel.config.js",
+    "jest.config.ts",
     "webpack.config.ts"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

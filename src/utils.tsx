@@ -22,6 +22,7 @@ export function getButtonElement(
 	return (
 		<span
 			class="dismiss"
+			data-testid="btn-dismiss"
 			tabindex="0"
 			aria-role="button"
 			onmousedown={onDismiss}

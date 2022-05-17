@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<toast-notification /> matches snapshot 1`] = `"<toast-notification style=\\"transition: none;\\" class=\\"hidden\\"></toast-notification>"`;
+
+exports[`<toast-notification /> matches snapshot 2`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style>"
+`;
+
+exports[`<toast-notification /> matches snapshot 3`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style>"
+`;
