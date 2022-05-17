@@ -1,5 +1,3 @@
-import jsx from 'texsaur'
-
 import { NotificationType } from '../../types'
 import {
 	getButtonElement,
@@ -26,7 +24,7 @@ export class ToastNotification extends HTMLElement {
 	 * If provided, the toast will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
 	 */
-	public headline: string // REFLECT
+	public headline: string
 	/**
 	 * The notification-type of the toast
 	 * (success | info | warning | error).
@@ -130,11 +128,9 @@ export class ToastNotification extends HTMLElement {
 		if (this._getHeadline())
 			this.shadowRoot.appendChild(this._getHeadline()!)
 		this.shadowRoot.appendChild(this._getIcon())
-		this.shadowRoot.appendChild(
-			<section>
-				<slot />
-			</section>,
-		)
+		const slotSection = document.createElement('section')
+		slotSection.appendChild(document.createElement('slot'))
+		this.shadowRoot.appendChild(slotSection)
 		if (this._getButton()) this.shadowRoot.appendChild(this._getButton()!)
 	}
 }

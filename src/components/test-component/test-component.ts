@@ -1,5 +1,3 @@
-import jsx from 'texsaur'
-
 import {
 	getButtonElement,
 	getHeadlineElement,
@@ -30,7 +28,7 @@ export class TestComponent extends HTMLElement {
 	connectedCallback(): void {
 		this.shadowRoot.appendChild(this.getStyle())
 		this.shadowRoot.appendChild(this.getHeadline('Hello World')!)
-		this.shadowRoot.appendChild(<slot />)
+		this.shadowRoot.appendChild(document.createElement('slot'))
 		this.shadowRoot.appendChild(this.getButton())
 	}
 }

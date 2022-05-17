@@ -1,5 +1,3 @@
-import jsx from 'texsaur'
-
 import { NotificationType } from '../../types'
 import {
 	getButtonElement,
@@ -102,37 +100,46 @@ export class ModalNotification extends HTMLElement {
 	}
 
 	private _getFooter() {
-		return (
-			<footer>
-				{!!this.showConfirm && (
-					<button
-						class="confirm"
-						disabled={this.condition === false}
-						data-testid="confirm-button"
-						onmousedown={() => this._confirmTriggeredFinal()}
-						onkeydown={event => {
-							if (event.key.toLowerCase() === 'enter')
-								this._confirmTriggeredFinal()
-						}}
-					>
-						{this.labelConfirm}
-					</button>
-				)}
-				{!!this.showDecline && (
-					<button
-						class="decline"
-						data-testid="decline-button"
-						onmousedown={() => this._declineTriggeredFinal()}
-						onkeydown={event => {
-							if (event.key.toLowerCase() === 'enter')
-								this._declineTriggeredFinal()
-						}}
-					>
-						{this.labelDecline}
-					</button>
-				)}
-			</footer>
-		)
+		const footerElement = document.createElement('footer')
+		if (this.showConfirm) {
+			const confirmButton = document.createElement('button')
+			confirmButton.classList.add('confirm')
+			confirmButton.setAttribute(
+				'disabled',
+				String(this.condition === false),
+			)
+			confirmButton.setAttribute('data-testid', 'btn-confirm')
+			confirmButton.addEventListener('mousedown', () =>
+				this._confirmTriggeredFinal(),
+			)
+			confirmButton.addEventListener('keydown', event =>
+				event.key.toLowerCase() === 'enter'
+					? this._confirmTriggeredFinal()
+					: null,
+			)
+			confirmButton.innerHTML = this.labelConfirm
+			footerElement.appendChild(confirmButton)
+		}
+		if (this.showDecline) {
+			const declineButton = document.createElement('button')
+			declineButton.classList.add('decline')
+			declineButton.setAttribute(
+				'disabled',
+				String(this.condition === false),
+			)
+			declineButton.setAttribute('data-testid', 'btn-decline')
+			declineButton.addEventListener('mousedown', () =>
+				this._declineTriggeredFinal(),
+			)
+			declineButton.addEventListener('keydown', event =>
+				event.key.toLowerCase() === 'enter'
+					? this._declineTriggeredFinal()
+					: null,
+			)
+			declineButton.innerHTML = this.labelDecline
+			footerElement.appendChild(declineButton)
+		}
+		return footerElement
 	}
 
 	/** Entirely dismisses the modal from the DOM */
@@ -183,11 +190,9 @@ export class ModalNotification extends HTMLElement {
 		if (this._getHeadline())
 			this.shadowRoot.appendChild(this._getHeadline()!)
 		this.shadowRoot.appendChild(this._getIcon())
-		this.shadowRoot.appendChild(
-			<section>
-				<slot />
-			</section>,
-		)
+		const slotSection = document.createElement('section')
+		slotSection.appendChild(document.createElement('slot'))
+		this.shadowRoot.appendChild(slotSection)
 		this.shadowRoot.appendChild(this._getButton())
 		if (this.showConfirm || this.showDecline)
 			this.shadowRoot.appendChild(this._getFooter())

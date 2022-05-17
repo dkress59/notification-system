@@ -1,10 +1,3 @@
-const allowedUnusedImports = {
-	vars: 'all',
-	varsIgnorePattern: '^(jsx)$',
-	args: 'after-used',
-	argsIgnorePattern: '^(jsx)$',
-}
-
 module.exports = {
 	root: true,
 	env: {
@@ -33,7 +26,7 @@ module.exports = {
 		'jsx-a11y/no-noninteractive-element-interactions': 1,
 		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
 		'@typescript-eslint/no-empty-function': 'off',
-		'unused-imports/no-unused-imports': ['error', allowedUnusedImports],
-		'unused-imports/no-unused-vars': ['error', allowedUnusedImports],
+		'unused-imports/no-unused-imports': 'error',
+		'unused-imports/no-unused-vars': 'error',
 	},
 }

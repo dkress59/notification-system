@@ -10,11 +10,4 @@ export default (): Config.InitialOptions => ({
 	preset: 'ts-jest',
 	setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
 	testEnvironment: 'jsdom',
-	transform: {
-		'^.+\\.tsx?$': 'esbuild-jest',
-	},
-	transformIgnorePatterns: [
-		'\\.yarn/cache/(?!texsaur)',
-		'node_modules/(?!texsaur)',
-	],
 })

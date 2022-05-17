@@ -19,7 +19,7 @@ This repo started out as a coding challenge. Now it is a reusable library for a 
 
 * [X] convert to vanilla JS web components
   * [ ] webpack vs ~~vite~~ vs rollup vs parcel
-* [X] implement vanilla [JSX/TSX](https://medium.com/front-end-weekly/vanilla-jsx-28ff15e82de8)
+* [X] ~~implement vanilla JSX/TSX~~ (jest problems)
 * [ ] implement templates
 * [ ] use [Proxy API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 * [ ] add unit tests

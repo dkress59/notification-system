@@ -32,10 +32,6 @@ export default function webpackConfig(
 
 		module: {
 			rules: [
-				/* {
-					test: /\.html?$/i,
-					loader: 'html-loader',
-				}, */
 				{
 					test: /\.s?css?$/i,
 					use: ['css-loader', 'sass-loader'],
@@ -52,11 +48,13 @@ export default function webpackConfig(
 			extensions: ['.tsx', '.ts', '.js'],
 		},
 
-		output: {
-			path: path.resolve(__dirname, 'build'),
-			publicPath: '',
-			filename: 'bundle.js',
-		},
+		output: isProduction
+			? {
+					path: path.resolve(__dirname, 'build'),
+					publicPath: '',
+					filename: 'bundle.js',
+			  }
+			: undefined,
 
 		plugins: [
 			new CleanWebpackPlugin(),

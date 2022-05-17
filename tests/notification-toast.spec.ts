@@ -19,6 +19,8 @@ describe('jest', () => {
 describe('<toast-notification />', () => {
 	it('matches snapshot', () => {
 		const notification = document.createElement('toast-notification')
+		notification.setAttribute('headline', 'mock_headline')
+		notification.innerHTML = '<p>slotted_paragraph</p>'
 		document.body.appendChild(notification)
 		expect(document.body.innerHTML).toMatchSnapshot()
 		const element = document.body.querySelector('toast-notification')!

@@ -41,7 +41,7 @@ coverage
 
 # Misc
 .DS_Store
-.jest/cache
+.jest
 build
 node_modules
 

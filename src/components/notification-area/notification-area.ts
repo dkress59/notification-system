@@ -1,5 +1,3 @@
-import jsx from 'texsaur'
-
 import { NotificationType } from '../../types'
 import { getStyleElement } from '../../utils'
 import css from './notification-area.scss'
@@ -95,7 +93,7 @@ export class NotificationArea extends HTMLElement {
 		this.shadowRoot.innerHTML = ''
 
 		this.shadowRoot.appendChild(this._getStyle())
-		this.shadowRoot.appendChild(<slot />)
+		this.shadowRoot.appendChild(document.createElement('slot'))
 		this.toasts.forEach(toast => this.shadowRoot.appendChild(toast))
 		if (this.modal) this.shadowRoot.appendChild(this.modal)
 	}

@@ -1,5 +1,3 @@
-import jsx from 'texsaur'
-
 import { NotificationType } from '../../types'
 import { getStyleElement } from '../../utils'
 import css from './banner-area.scss'
@@ -60,7 +58,7 @@ export class BannerArea extends HTMLElement {
 		this.shadowRoot.innerHTML = ''
 
 		this.shadowRoot.appendChild(this._getStyle())
-		this.shadowRoot.appendChild(<slot />)
+		this.shadowRoot.appendChild(document.createElement('slot'))
 		this.banners.forEach(banner => this.shadowRoot.appendChild(banner))
 	}
 }
