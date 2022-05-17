@@ -4,8 +4,7 @@ This repo started out as a coding challenge. Now it is a reusable library for a 
 
 ## Usage
 
-// FixMe
-Wrap your top-level component in the `<NotificationProvider />` and insert the `<BannerArea />` component as one of its children, in order to use the `spawnBanner`, `spawnModal` and `spawnToast` methods from the `NotificationContext`. See the [`<DemoApp />`](src/demo-app.tsx) for reference.
+[ToDo]
 
 ## Development
 
@@ -18,8 +17,9 @@ Wrap your top-level component in the `<NotificationProvider />` and insert the `
 
 ## ToDo
 
-* [X] convert all the components
-* [X] sort out :host <> aside
-* [X] fade-in transition
-* [ ] more customization
-* [ ] unit tests
+* [X] convert to vanilla JS web components
+  * [ ] webpack vs ~~vite~~ vs rollup vs parcel
+* [X] implement vanilla [JSX/TSX](https://medium.com/front-end-weekly/vanilla-jsx-28ff15e82de8)
+* [ ] implement templates
+* [ ] use [Proxy API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+* [ ] add unit tests

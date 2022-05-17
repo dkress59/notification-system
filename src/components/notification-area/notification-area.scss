@@ -10,4 +10,8 @@
   align-items: flex-end;
   overflow-y: auto;
   pointer-events: none;
+
+  * {
+    box-sizing: border-box;
+  }
 }

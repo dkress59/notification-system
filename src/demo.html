@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
   <title>Notification Web Components</title>
 
-  <script type="module" src="/build/notification-system.esm.js"></script>
-  <script nomodule src="/build/notification-system.js"></script>
-
   <style>
     * {
       box-sizing: border-box;
@@ -41,32 +38,44 @@
 
       const bannerArea = document.querySelector('banner-area')
       setTimeout(() => {
-        bannerArea.spawnBanner({ type: 'error', content: '<strong>Demo Content</strong>', autoHide: true })
-      }, 250)
+        bannerArea.spawnBanner({
+          content: 'yoyoyo',
+          autoHide: true,
+        })
+      }, 2000)
       setTimeout(() => {
-        bannerArea.spawnBanner({ content: 'Demo Content 2 🦾' })
-      }, 1000)
+        bannerArea.spawnBanner({
+          content: 'yoyoyo',
+          type: 'warning',
+          headline: 'spawned',
+        })
+      }, 4000)
 
       const notificationArea = document.querySelector('notification-area')
-      const modalContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa facilis praesentium iusto officia tempora exercitationem explicabo, id autem delectus natus consequuntur sed numquam. Eligendi voluptatem repellendus sed perferendis illo. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam, delectus nemo. Voluptatibus dolore, aliquam totam harum deserunt a possimus iste, tempora id tempore exercitationem, laudantium laboriosam! Voluptatem deleniti quisquam eius.'
       setTimeout(() => {
-        notificationArea.spawnToast({ type: 'warning', content: '<strong>Demo Content</strong>' })
-      }, 1250)
+        notificationArea.spawnModal({
+          content: 'yoyoyo',
+          type: 'warning',
+          headline: 'spawned',
+        })
+      }, 1500)
       setTimeout(() => {
-        notificationArea.spawnModal({ type: 'info', content: modalContent, headline: 'Lorem Ipsum', showConfirm: true, labelConfirm: 'Close' })
-      }, 3000)
-      setTimeout(() => {
-        notificationArea.spawnModal({ content: modalContent, showConfirm: true, labelConfirm: 'Close' })
-      }, 10000)
+        notificationArea.spawnModal({
+          content: 'yoyoyo',
+          headline: 'spawned new',
+        })
+      }, 4500)
     })
   </script>
 </head>
 
 <body>
   <banner-area>
-    <banner-notification class="test" type="info">Manual Banner</banner-notification>
+    <banner-notification headline="some headline" type="error">demo content</toast-notification>
   </banner-area>
-  <notification-area></notification-area>
+  <notification-area>
+    <toast-notification class="test" headline="some headline" type="info">demo content</toast-notification>
+  </notification-area>
 </body>
 
 </html>

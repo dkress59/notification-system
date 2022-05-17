@@ -1,55 +1,68 @@
-import { Component, h, Host, JSX, Method, State } from '@stencil/core'
+import jsx from 'texsaur'
 
 import { NotificationType } from '../../types'
+import { getStyleElement } from '../../utils'
+import css from './banner-area.scss'
 
-@Component({
-	tag: 'banner-area',
-	styleUrl: 'banner-area.scss',
-	shadow: true,
-})
-export class BannerArea {
-	@State() banners: string[] = []
+export class BannerArea extends HTMLElement {
+	public shadowRoot: ShadowRoot
+
+	private banners: HTMLBannerNotificationElement[] = []
+
+	constructor() {
+		super()
+		this.attachShadow({ mode: 'open' })
+	}
+
+	private _getStyle() {
+		return getStyleElement(css)
+	}
 
 	/**
 	 * Takes the `<banner-notification />`-component's props in camelCase as an argument
 	 */
-	@Method()
-	async spawnBanner({
+	public spawnBanner({
 		autoHide,
 		autoHideAfterMs,
-		content,
+		content = '',
 		headline,
 		type,
 	}: {
-		autoHide?: boolean
-		autoHideAfterMs?: number
+		autoHide?: boolean | string
+		autoHideAfterMs?: number | string
 		content: string
 		headline?: string
 		type?: NotificationType
-	}): Promise<void> {
-		const attributes: string[] = []
-		if (autoHide) attributes.push(`auto-hide="${autoHide}"`)
+	}): void {
+		const newBanner = document.createElement('banner-notification')
+		if (autoHide !== undefined)
+			newBanner.setAttribute(
+				'auto-hide',
+				String(!!autoHide && autoHide !== 'false'),
+			)
 		if (autoHideAfterMs)
-			attributes.push(`auto-hide-after-ms="${autoHideAfterMs}"`)
-		if (headline) attributes.push(`headline="${headline}"`)
-		if (type) attributes.push(`type="${type}"`)
-		const newBanner = `<banner-notification ${attributes.join(
-			' ',
-		)}>${content}</banner-notification>`
+			newBanner.setAttribute(
+				'auto-hide-after-ms',
+				String(autoHideAfterMs),
+			)
+		if (headline) newBanner.setAttribute('headline', headline)
+		if (type) newBanner.setAttribute('type', type)
+		newBanner.innerHTML = content
 		this.banners = [newBanner, ...this.banners]
-		return Promise.resolve()
+		this._render()
 	}
 
-	private getBanners(): JSX.Element {
-		return (<span innerHTML={this.banners.join('\n')} />) as JSX.Element
+	connectedCallback() {
+		this._render()
 	}
 
-	render(): JSX.Element {
-		return (
-			<Host>
-				<slot />
-				{this.getBanners()}
-			</Host>
-		) as JSX.Element
+	_render(): void {
+		this.shadowRoot.innerHTML = ''
+
+		this.shadowRoot.appendChild(this._getStyle())
+		this.shadowRoot.appendChild(<slot />)
+		this.banners.forEach(banner => this.shadowRoot.appendChild(banner))
 	}
 }
+
+customElements.define('banner-area', BannerArea)

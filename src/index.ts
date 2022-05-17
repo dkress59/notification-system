@@ -1,6 +1,2 @@
-export { Components, JSX } from './components'
-export { BannerArea } from './components/banner-area/banner-area'
-export { BannerNotification } from './components/banner-notification/banner-notification'
-export { ModalNotification } from './components/modal-notification/modal-notification'
-export { NotificationArea } from './components/notification-area/notification-area'
-export { ToastNotification } from './components/toast-notification/toast-notification'
+export * from './components'
+export * from './types'

@@ -4,7 +4,7 @@ module.exports = {
 		browser: true,
 		jest: true,
 	},
-	extends: ['@tool-belt/eslint-config', 'plugin:@stencil/recommended'],
+	extends: ['@tool-belt/eslint-config'],
 	parserOptions: {
 		project: ['./tsconfig.json'],
 	},
@@ -26,16 +26,15 @@ module.exports = {
 		'jsx-a11y/no-noninteractive-element-interactions': 1,
 		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
 		'react/jsx-no-bind': 'off',
-		'@stencil/strict-boolean-conditions': 'off',
 		'@typescript-eslint/no-empty-function': 'off',
 		'unused-imports/no-unused-imports': 'error',
 		'unused-imports/no-unused-vars': [
 			'error',
 			{
 				vars: 'all',
-				varsIgnorePattern: '^h$',
+				varsIgnorePattern: '^jsx$',
 				args: 'after-used',
-				argsIgnorePattern: '^h$',
+				argsIgnorePattern: '^jsx$',
 			},
 		],
 	},

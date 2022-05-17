@@ -4,69 +4,54 @@
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/notification-system/notification-system.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
-  },
   "files": [
-    "dist/",
-    "loader/"
+    "dist/"
   ],
   "scripts": {
-    "build": "stencil build --docs --config stencil.config.build.ts",
-    "start": "stencil build --dev --watch --serve --no-open --verbose",
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
     "check:script": "eslint  --fix-dry-run src",
     "check:style": "npx stylelint '**/*.scss'",
-    "fix:script": "eslint --fix src tests",
+    "fix:script": "eslint --fix src",
     "fix:style": "npx stylelint --fix --quiet '**/*.scss'",
-    "generate": "stencil generate",
-    "postinstall": "husky install",
-    "test": "stencil test --spec --e2e",
-    "test:watch": "stencil test --spec --e2e --watchAll"
-  },
-  "dependencies": {
-    "@stencil/core": "2.15.2"
+    "postinstall": "husky install"
   },
   "devDependencies": {
-    "@stencil/eslint-plugin": "0.4.0",
-    "@stencil/sass": "1.5.2",
-    "@tool-belt/eslint-config": "1.1.2",
+    "@tool-belt/eslint-config": "1.2.0",
     "@types/eslint": "8.4.2",
     "@types/jest": "27.5.1",
     "@types/node": "17.0.33",
     "@types/postcss-import": "14.0.0",
     "@types/prettier": "2.6.1",
-    "@typescript-eslint/eslint-plugin": "4.33.0",
-    "@typescript-eslint/parser": "4.33.0",
+    "@types/webpack": "5.28.0",
+    "@types/webpack-dev-server": "4.7.2",
+    "@typescript-eslint/eslint-plugin": "5.23.0",
+    "@typescript-eslint/parser": "5.23.0",
     "autoprefixer": "10.4.7",
-    "eslint": "7.32.0",
+    "clean-webpack-plugin": "4.0.0",
+    "css-loader": "6.7.1",
+    "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "2.7.1",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jam3": "0.2.3",
-    "eslint-plugin-jest": "26.1.5",
+    "eslint-plugin-jest": "26.2.2",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.29.4",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "eslint-plugin-sonarjs": "0.13.0",
-    "eslint-plugin-sort-imports-es6-autofix": "0.6.0",
     "eslint-plugin-unused-imports": "2.0.0",
-    "husky": "7.0.4",
-    "jest": "27.5.1",
-    "jest-cli": "27.5.1",
+    "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.1",
+    "jest": "28.1.0",
+    "jest-cli": "28.1.0",
     "postcss": "8.4.13",
     "postcss-import": "14.1.0",
     "postcss-scss": "4.0.4",
     "prettier": "2.6.2",
-    "puppeteer": "10.4.0",
+    "sass": "1.51.0",
+    "sass-loader": "12.6.0",
     "stylelint": "14.8.2",
     "stylelint-config-prettier-scss": "0.0.1",
     "stylelint-config-recess-order": "3.0.0",
@@ -75,15 +60,21 @@
     "stylelint-csstree-validator": "2.0.0",
     "stylelint-scss": "4.2.0",
     "stylelint-selector-no-empty": "1.0.8",
-    "typescript": "4.6.4"
+    "texsaur": "0.4.0",
+    "ts-loader": "9.3.0",
+    "ts-node": "10.7.0",
+    "typescript": "^4.6.4",
+    "webpack": "5.72.1",
+    "webpack-cli": "4.9.2",
+    "webpack-dev-server": "4.9.0"
   },
   "license": "MIT",
   "lint-staged": {
     "*.{scss, css}": [
-      "npx stylelint --fix --quiet '**/*.scss'"
+      "yarn fix:style"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix src tests"
+      "yarn fix:script"
     ]
   }
 }

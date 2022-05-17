@@ -3,29 +3,27 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "declaration": false,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react",
-    "jsxFactory": "h",
+    "jsxFactory": "jsx", 
     "lib": [
       "dom",
       "es2017"
     ],
     "moduleResolution": "node",
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "outDir": "dist"
   },
   "include": [
     "src",
     "tests",
     ".eslintrc.js",
-    "babel.config.js",
-    "postcss.config.js",
-    "stencil.config.ts",
-    "stencil.config.build.ts",
-    "tailwind.config.js"
+    "webpack.config.ts"
   ],
   "exclude": [
     "node_modules"

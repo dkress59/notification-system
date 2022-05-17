@@ -1,9 +1,6 @@
 # banner-area
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Methods
 
@@ -14,10 +11,3 @@ Takes the `<banner-notification />`-component's props in camelCase as an argumen
 #### Returns
 
 Type: `Promise<void>`
-
-
-
-
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*

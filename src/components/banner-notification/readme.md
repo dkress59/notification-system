@@ -1,9 +1,6 @@
 # toast-notification
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -14,27 +11,18 @@
 | `headline`        | `headline`           | If provided, the banner will be rendered with a headline which is styled slightly more prominent than the body text.    | `string`                                                                                                  | `undefined`                |
 | `type`            | `type`               | The notification-type of the banner (success \| info \| warning \| error).                                              | `NotificationType.ERROR \| NotificationType.INFO \| NotificationType.SUCCESS \| NotificationType.WARNING` | `NotificationType.SUCCESS` |
 
-
 ## Events
 
 | Event             | Description                                    | Type                       |
 | ----------------- | ---------------------------------------------- | -------------------------- |
 | `bannerDismissed` | Fires after the elements has transitioned out. | `CustomEvent<HTMLElement>` |
 
-
 ## Methods
 
 ### `dismiss() => Promise<void>`
 
-Entirely dismisses the banner entirely from the DOM
+Entirely dismisses the banner from the DOM
 
 #### Returns
 
 Type: `Promise<void>`
-
-
-
-
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*

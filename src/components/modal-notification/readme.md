@@ -1,9 +1,6 @@
 # modal-notification
 
-
-
 <!-- Auto Generated Below -->
-
 
 ## Properties
 
@@ -17,7 +14,6 @@
 | `showDecline`  | `show-decline`  | Whether to show the 'Decline'-button.                                                                               | `boolean`                                                                                                 | `false`                    |
 | `type`         | `type`          | The notification-type of the modal (success \| info \| warning \| error).                                           | `NotificationType.ERROR \| NotificationType.INFO \| NotificationType.SUCCESS \| NotificationType.WARNING` | `NotificationType.SUCCESS` |
 
-
 ## Events
 
 | Event              | Description                                    | Type                       |
@@ -25,7 +21,6 @@
 | `confirmTriggered` | Fires when the 'Confirm'-button is pressed.    | `CustomEvent<HTMLElement>` |
 | `declineTriggered` | Fires when the 'Decline'-button is pressed.    | `CustomEvent<HTMLElement>` |
 | `modalDismissed`   | Fires after the elements has transitioned out. | `CustomEvent<HTMLElement>` |
-
 
 ## Methods
 
@@ -36,10 +31,3 @@ Entirely dismisses the modal from the DOM
 #### Returns
 
 Type: `Promise<void>`
-
-
-
-
-----------------------------------------------
-
-*Built with [StencilJS](https://stenciljs.com/)*

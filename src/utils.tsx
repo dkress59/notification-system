@@ -1,30 +1,41 @@
-import { h, JSX } from '@stencil/core'
+import jsx from 'texsaur'
 
 import { NotificationType } from './types'
 
-export function getIcon(type: NotificationType): JSX.Element {
-	let icon = (<span>&#10003;</span>) as JSX.Element
+export function getIconElement(type: NotificationType): JSX.Element {
+	let icon: string | JSX.Element = <span>&#10003;</span>
 	if (type === NotificationType.INFO) icon = 'i'
 	if (type === NotificationType.ERROR)
-		icon = (<span class="error">&#9586;</span>) as JSX.Element
+		icon = <span class="error">&#9586;</span>
 	if (type === NotificationType.WARNING) icon = '!'
-	return (
-		<span class="icon" data-testid="notify-icon">
-			{icon}
-		</span>
-	) as JSX.Element
+	return <span class="icon">{icon}</span>
 }
 
-export function getHeadline(headline?: string): JSX.Element | undefined {
-	if (headline)
-		return (<h4 data-testid="headline">{headline}</h4>) as JSX.Element
+export function getHeadlineElement(headline?: string): JSX.Element | undefined {
+	if (headline) return <h4>{headline}</h4>
 	return undefined
 }
 
-export function getButton(onDismiss: (event: MouseEvent) => any): JSX.Element {
+export function getButtonElement(
+	onDismiss: (event: MouseEvent | KeyboardEvent) => void,
+): JSX.Element {
 	return (
-		<span class="dismiss" data-testid="dismiss-button" onClick={onDismiss}>
+		<span
+			class="dismiss"
+			tabindex="0"
+			aria-role="button"
+			onmousedown={onDismiss}
+			onkeydown={event =>
+				event.key.toLowerCase() === 'enter' ? onDismiss(event) : null
+			}
+		>
 			&#x2715;
 		</span>
-	) as JSX.Element
+	)
+}
+
+export function getStyleElement(css: string): HTMLStyleElement {
+	const styleTag = document.createElement('style')
+	styleTag.innerHTML = css
+	return styleTag
 }

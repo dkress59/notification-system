@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+  display: block;
+  background: rgb(0 0 0 / 15%);
+
+  h1,
+  h4 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  ::slotted(*) {
+    color: rgb(255 0 0 / 75%);
+  }
+}

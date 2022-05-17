@@ -1,99 +1,104 @@
-import { Component, h, Host, JSX, Method, State } from '@stencil/core'
+import jsx from 'texsaur'
 
 import { NotificationType } from '../../types'
+import { getStyleElement } from '../../utils'
+import css from './notification-area.scss'
 
-@Component({
-	tag: 'notification-area',
-	styleUrl: 'notification-area.scss',
-	shadow: true,
-})
-export class NotificationArea {
-	@State() toasts: string[] = []
-	@State() modal: string
+export class NotificationArea extends HTMLElement {
+	public shadowRoot: ShadowRoot
+
+	private modal?: HTMLModalNotificationElement
+	private toasts: HTMLToastNotificationElement[] = []
+
+	constructor() {
+		super()
+		this.attachShadow({ mode: 'open' })
+	}
+
+	private _getStyle() {
+		return getStyleElement(css)
+	}
 
 	/**
 	 * Takes the `<toast-notification />`-component's props in camelCase as an argument
 	 */
-	@Method()
-	async spawnToast({
+	public spawnToast({
 		autoHide,
 		autoHideAfterMs,
-		content,
+		content = '',
 		headline,
 		type,
 	}: {
-		autoHide?: boolean
-		autoHideAfterMs?: number
+		autoHide?: boolean | string
+		autoHideAfterMs?: number | string
 		content: string
 		headline?: string
 		type?: NotificationType
-	}): Promise<void> {
-		const attributes: string[] = []
-		if (autoHide) attributes.push(`auto-hide="${autoHide}"`)
+	}): void {
+		const newToast = document.createElement('toast-notification')
+		if (autoHide !== undefined)
+			newToast.setAttribute(
+				'auto-hide',
+				String(!!autoHide && autoHide !== 'false'),
+			)
 		if (autoHideAfterMs)
-			attributes.push(`auto-hide-after-ms="${autoHideAfterMs}"`)
-		if (headline) attributes.push(`headline="${headline}"`)
-		if (type) attributes.push(`type="${type}"`)
-		const newToast = `<toast-notification ${attributes.join(
-			' ',
-		)}>${content}</toast-notification>`
+			newToast.setAttribute('auto-hide-after-ms', String(autoHideAfterMs))
+		if (headline) newToast.setAttribute('headline', headline)
+		if (type) newToast.setAttribute('type', type)
+		newToast.innerHTML = content
 		this.toasts = [newToast, ...this.toasts]
-		return Promise.resolve()
+		this._render()
 	}
 
 	/**
-	 * Takes the `<modal-notification />`-component's props in camelCase as an argument
+	 * Takes the `<toast-notification />`-component's props in camelCase as an argument
 	 */
-	@Method()
-	async spawnModal({
+	public spawnModal({
 		condition,
-		content,
+		content = '',
 		headline,
 		showConfirm,
 		showDecline,
+		type,
 		labelConfirm,
 		labelDecline,
-		type,
 	}: {
 		condition?: boolean
 		content: string
 		headline?: string
 		showConfirm?: boolean
 		showDecline?: boolean
+		type?: NotificationType
 		labelConfirm?: string
 		labelDecline?: string
-		type?: NotificationType
-	}): Promise<void> {
-		const attributes: string[] = []
-		if (condition) attributes.push(`condition="${condition}"`)
-		if (headline) attributes.push(`headline="${headline}"`)
-		if (showConfirm) attributes.push(`show-confirm="${showConfirm}"`)
-		if (showDecline) attributes.push(`show-decline="${showDecline}"`)
-		if (labelConfirm) attributes.push(`label-confirm="${labelConfirm}"`)
-		if (labelDecline) attributes.push(`label-decline="${labelDecline}"`)
-		if (type) attributes.push(`type="${type}"`)
-		const newModal = `<modal-notification ${attributes.join(
-			' ',
-		)}>${content}</modal-notification>`
+	}): void {
+		const newModal = document.createElement('modal-notification')
+		if (condition) newModal.setAttribute('condition', String(condition))
+		if (headline) newModal.setAttribute('headline', headline)
+		if (type) newModal.setAttribute('type', type)
+		if (labelConfirm) newModal.setAttribute('label-confirm', labelConfirm)
+		if (labelDecline) newModal.setAttribute('label-decline', labelDecline)
+		if (showConfirm)
+			newModal.setAttribute('show-confirm', String(showConfirm))
+		if (showDecline)
+			newModal.setAttribute('show-decline', String(showDecline))
+		newModal.innerHTML = content
 		this.modal = newModal
-		return Promise.resolve()
+		this._render()
 	}
 
-	private getToasts(): JSX.Element {
-		return (<span innerHTML={this.toasts.join('\n')} />) as JSX.Element
+	connectedCallback() {
+		this._render()
 	}
 
-	private getModal(): JSX.Element {
-		return (<span innerHTML={this.modal} />) as JSX.Element
-	}
+	_render(): void {
+		this.shadowRoot.innerHTML = ''
 
-	render(): JSX.Element {
-		return (
-			<Host>
-				<slot />
-				{this.getToasts()}
-				{this.getModal()}
-			</Host>
-		) as JSX.Element
+		this.shadowRoot.appendChild(this._getStyle())
+		this.shadowRoot.appendChild(<slot />)
+		this.toasts.forEach(toast => this.shadowRoot.appendChild(toast))
+		if (this.modal) this.shadowRoot.appendChild(this.modal)
 	}
 }
+
+customElements.define('notification-area', NotificationArea)

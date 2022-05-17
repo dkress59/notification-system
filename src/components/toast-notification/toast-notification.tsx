@@ -1,125 +1,142 @@
-import {
-	Component,
-	Element,
-	Event,
-	EventEmitter,
-	h,
-	Host,
-	JSX,
-	Method,
-	Prop,
-	State,
-	Watch,
-} from '@stencil/core'
+import jsx from 'texsaur'
 
 import { NotificationType } from '../../types'
-import { getButton, getHeadline, getIcon } from '../../utils'
+import {
+	getButtonElement,
+	getHeadlineElement,
+	getIconElement,
+	getStyleElement,
+} from '../../utils'
+import css from './toast-notification.scss'
 
-@Component({
-	tag: 'toast-notification',
-	styleUrl: 'toast-notification.scss',
-	shadow: true,
-})
-export class ToastNotification {
-	@Element() lightRoot: HTMLToastNotificationElement
+export class ToastNotification extends HTMLElement {
+	public shadowRoot: ShadowRoot
 
 	/**
 	 * Whether to automatically hide the toast, or not.
 	 * If false (or undefined), a dismiss-button will be rendered.
 	 */
-	@Prop() autoHide = false
+	public autoHide: boolean
 	/**
 	 * The time in milliseconds after which the toast shall be hidden
 	 * (requires the auto-hide attribute to be set to "true").
 	 */
-	@Prop() autoHideAfterMs = 3000
+	public autoHideAfterMs = 3000
 	/**
 	 * If provided, the toast will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
 	 */
-	@Prop({ reflect: true }) headline: string
+	public headline: string // REFLECT
 	/**
 	 * The notification-type of the toast
 	 * (success | info | warning | error).
 	 */
-	@Prop() type: NotificationType = NotificationType.SUCCESS
+	public type: NotificationType
 
 	/**
 	 * Used for transitioning in and out.
 	 */
-	@State() isHiding = true
+	private isHiding = true
 
-	/**
-	 * Fires after the elements has transitioned out.
-	 */
-	@Event() toastDismissed: EventEmitter<HTMLElement>
-
-	private root: HTMLElement
 	private hiddenClassName = 'hidden'
 	private autoHideTimeout: NodeJS.Timeout | null = null
 
-	private getClassName(): string {
-		const classNames = Array.from(this.lightRoot.classList).filter(
+	constructor() {
+		super()
+		this.attachShadow({ mode: 'open' })
+	}
+
+	static get observedAttributes() {
+		return ['headline', 'type']
+	}
+
+	private _getClassName(): string {
+		const classNames = Array.from(this.classList).filter(
 			className => className !== this.hiddenClassName,
 		)
 		if (this.isHiding) classNames.push(this.hiddenClassName)
 		return classNames.join(' ')
 	}
 
-	@Watch('headline')
-	private getHeadline(): JSX.Element | undefined {
-		return getHeadline(this.headline)
+	private _getStyle() {
+		return getStyleElement(css)
 	}
 
-	private getIcon(): JSX.Element {
-		return getIcon(this.type)
+	private _getHeadline() {
+		return getHeadlineElement(this.headline)
 	}
 
-	private getButton(): JSX.Element | undefined {
-		if (!this.autoHide) return getButton(() => void this.dismiss())
+	private _getIcon() {
+		return getIconElement(this.type)
+	}
+
+	private _getButton() {
+		if (!this.autoHide) return getButtonElement(() => this.dismiss())
 		return undefined
 	}
 
 	/** Entirely dismisses the toast entirely from the DOM */
-	@Method()
-	async dismiss(): Promise<void> {
+	public dismiss(): void {
 		this.isHiding = true
-		this.root.addEventListener('transitionend', () => {
-			this.toastDismissed.emit()
-			this.root.remove()
+		this.addEventListener('transitionend', () => {
+			this.dispatchEvent(
+				new Event('toastDismissed', { bubbles: true, composed: true }),
+			)
+			this.remove()
 		})
-		return Promise.resolve()
+		this._render()
 	}
 
-	componentDidLoad(): void {
-		if (this.autoHide)
-			this.autoHideTimeout = setTimeout(() => {
-				void this.dismiss()
-			}, this.autoHideAfterMs)
-		this.root.style.transition = 'none'
+	connectedCallback(): void {
+		this.style.transition = 'none'
+		this._render()
 		setTimeout(() => {
-			this.root.style.transition = ''
+			this.style.transition = ''
 			this.isHiding = false
-		}, 1)
+			this._render()
+		})
+
+		if (this.autoHide) {
+			this.autoHideTimeout = setTimeout(() => {
+				this.dismiss()
+			}, this.autoHideAfterMs)
+		}
+	}
+
+	attributeChangedCallback(): void {
+		this._render()
 	}
 
 	disconnectedCallback(): void {
 		if (this.autoHideTimeout) clearTimeout(this.autoHideTimeout)
 	}
 
-	render(): JSX.Element {
-		return (
-			<Host
-				class={this.getClassName()}
-				ref={ref => (this.root = ref as HTMLElement)}
-			>
-				{this.getHeadline()}
-				{this.getIcon()}
-				<section>
-					<slot />
-				</section>
-				{this.getButton()}
-			</Host>
-		) as JSX.Element
+	_render(): void {
+		this.className = this._getClassName()
+
+		this.autoHide =
+			this.hasAttribute('auto-hide') &&
+			this.getAttribute('auto-hide') !== 'false'
+		this.autoHideAfterMs =
+			Number(this.getAttribute('auto-hide-after-ms')) || 3000
+		this.type =
+			(this.getAttribute('type') as NotificationType | null) ??
+			NotificationType.SUCCESS
+		const headline = this.getAttribute('headline')
+		if (headline) this.headline = headline
+
+		this.shadowRoot.innerHTML = ''
+		this.shadowRoot.appendChild(this._getStyle())
+		if (this._getHeadline())
+			this.shadowRoot.appendChild(this._getHeadline()!)
+		this.shadowRoot.appendChild(this._getIcon())
+		this.shadowRoot.appendChild(
+			<section>
+				<slot />
+			</section>,
+		)
+		if (this._getButton()) this.shadowRoot.appendChild(this._getButton()!)
 	}
 }
+
+customElements.define('toast-notification', ToastNotification)

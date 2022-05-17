@@ -1,3 +1,6 @@
+@import "../../css/global.scss";
+@import "../../css/utils.scss";
+
 :host {
   position: relative;
   right: 0;
@@ -13,7 +16,8 @@
 }
 
 :host([type="success"]),
-:host(:not([type])) {
+:host(:not([type])),
+:host([type=""]) {
   @extend %custom-toast-type-success;
 }
 
