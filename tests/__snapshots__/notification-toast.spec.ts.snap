@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<toast-notification /> matches snapshot 1`] = `"<toast-notification headline=\\"mock_headline\\" class=\\"hidden\\" style=\\"transition: none;\\"><p>slotted_paragraph</p></toast-notification>"`;
-
-exports[`<toast-notification /> matches snapshot 2`] = `
-"<style>mock-style {
-	mock-prop: value;
-}</style><h4>mock_headline</h4><span class=\\"icon\\">✓</span><section><slot></slot></section><span class=\\"dismiss\\" data-testid=\\"btn-dismiss\\" tabindex=\\"0\\" aria-role=\\"button\\">✕</span>"
-`;

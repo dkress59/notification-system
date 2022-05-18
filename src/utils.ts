@@ -1,7 +1,13 @@
 import { NotificationType } from './types'
 
+function setTestId(element: HTMLElement, value: string) {
+	element.setAttribute('data-testid', value)
+}
+
 export function getIconElement(type: NotificationType): HTMLSpanElement {
 	const iconElement = document.createElement('span')
+	iconElement.setAttribute('data-testid', 'icon-type')
+	setTestId(iconElement, 'icon-type')
 	iconElement.classList.add('icon')
 	let icon = '&#10003;'
 	if (type === NotificationType.INFO) icon = 'i'
@@ -17,6 +23,7 @@ export function getHeadlineElement(
 ): HTMLHeadingElement | undefined {
 	if (headline) {
 		const headlineElement = document.createElement('h4')
+		setTestId(headlineElement, 'headline')
 		headlineElement.innerHTML = headline
 		return headlineElement
 	}
@@ -28,7 +35,7 @@ export function getButtonElement(
 ): HTMLSpanElement {
 	const buttonElement = document.createElement('span')
 	buttonElement.classList.add('dismiss')
-	buttonElement.setAttribute('data-testid', 'btn-dismiss')
+	setTestId(buttonElement, 'btn-dismiss')
 	buttonElement.setAttribute('tabindex', '0')
 	buttonElement.setAttribute('aria-role', 'button')
 	buttonElement.addEventListener('mousedown', onDismiss)

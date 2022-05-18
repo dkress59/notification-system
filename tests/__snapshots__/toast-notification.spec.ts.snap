@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<toast-notification /> matches snapshot 1`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style><h4 data-testid=\\"headline\\">mock_headline</h4><span data-testid=\\"icon-type\\" class=\\"icon\\"><span class=\\"error\\">╲</span></span><section><slot></slot></section><span class=\\"dismiss\\" data-testid=\\"btn-dismiss\\" tabindex=\\"0\\" aria-role=\\"button\\">✕</span>"
+`;
