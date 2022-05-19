@@ -112,11 +112,10 @@ export class ModalNotification extends HTMLElement {
 			confirmButton.addEventListener('mousedown', () =>
 				this._confirmTriggeredFinal(),
 			)
-			confirmButton.addEventListener('keydown', event =>
-				event.key.toLowerCase() === 'enter'
-					? this._confirmTriggeredFinal()
-					: null,
-			)
+			confirmButton.addEventListener('keydown', event => {
+				if (event.key.toLowerCase() === 'enter')
+					this._confirmTriggeredFinal()
+			})
 			confirmButton.innerHTML = this.labelConfirm
 			footerElement.appendChild(confirmButton)
 		}
@@ -131,11 +130,10 @@ export class ModalNotification extends HTMLElement {
 			declineButton.addEventListener('mousedown', () =>
 				this._declineTriggeredFinal(),
 			)
-			declineButton.addEventListener('keydown', event =>
-				event.key.toLowerCase() === 'enter'
-					? this._declineTriggeredFinal()
-					: null,
-			)
+			declineButton.addEventListener('keydown', event => {
+				if (event.key.toLowerCase() === 'enter')
+					this._declineTriggeredFinal()
+			})
 			declineButton.innerHTML = this.labelDecline
 			footerElement.appendChild(declineButton)
 		}
@@ -179,8 +177,12 @@ export class ModalNotification extends HTMLElement {
 			this.labelConfirm = this.getAttribute('label-confirm')!
 		if (this.hasAttribute('label-decline'))
 			this.labelDecline = this.getAttribute('label-decline')!
-		this.showConfirm = this.getAttribute('show-confirm') === 'true'
-		this.showDecline = this.getAttribute('show-decline') === 'true'
+		this.showConfirm =
+			this.hasAttribute('show-confirm') &&
+			this.getAttribute('show-confirm') !== 'false'
+		this.showDecline =
+			this.hasAttribute('show-decline') &&
+			this.getAttribute('show-decline') !== 'false'
 		this.type =
 			(this.getAttribute('type') as NotificationType | null) ??
 			NotificationType.SUCCESS
