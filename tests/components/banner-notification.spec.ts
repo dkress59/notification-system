@@ -1,11 +1,14 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-describe('<toast-notification />', () => {
+import { NotificationType } from '../../src/types'
+import { getIconElement } from '../../src/utils'
+
+describe('<banner-notification />', () => {
 	beforeEach(() => {
 		document.body.innerHTML = ''
 	})
-	it('matches snapshot', () => {
-		const notification = document.createElement('toast-notification')
+	it('shadow root matches snapshot', () => {
+		const notification = document.createElement('banner-notification')
 		notification.setAttribute('data-testid', 'notification')
 		notification.setAttribute('headline', 'mock_headline')
 		notification.setAttribute('type', 'error')
@@ -18,7 +21,7 @@ describe('<toast-notification />', () => {
 	})
 	it('fades in', () => {
 		jest.useFakeTimers()
-		const notification = document.createElement('toast-notification')
+		const notification = document.createElement('banner-notification')
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
@@ -27,8 +30,44 @@ describe('<toast-notification />', () => {
 		expect(element.classList).not.toContain('hidden')
 		jest.useRealTimers()
 	})
+	it('has changeable type', () => {
+		const initialType = NotificationType.INFO
+		const changedType = NotificationType.ERROR
+		const notification = document.createElement('banner-notification')
+		notification.setAttribute('data-testid', 'notification')
+		notification.setAttribute('type', initialType)
+		document.body.appendChild(notification)
+		expect(
+			screen
+				.getByTestId('notification')
+				.shadowRoot!.querySelector('.icon')!,
+		).toEqual(getIconElement(initialType))
+
+		notification.setAttribute('type', changedType)
+		expect(
+			screen
+				.getByTestId('notification')
+				.shadowRoot!.querySelector('.icon')!,
+		).toEqual(getIconElement(changedType))
+	})
+	it('has changeable headline', () => {
+		const initialHeadline = 'mock_headline'
+		const changedHeadline = 'mock_headline_changed'
+		const notification = document.createElement('banner-notification')
+		notification.setAttribute('data-testid', 'notification')
+		notification.setAttribute('headline', initialHeadline)
+		document.body.appendChild(notification)
+		expect(
+			screen.getByTestId('notification').shadowRoot!.querySelector('h4'),
+		).toHaveTextContent(initialHeadline)
+
+		notification.setAttribute('headline', changedHeadline)
+		expect(
+			screen.getByTestId('notification').shadowRoot!.querySelector('h4'),
+		).toHaveTextContent(changedHeadline)
+	})
 	it('hides dismiss button if auto-hide is set', () => {
-		const notification = document.createElement('toast-notification')
+		const notification = document.createElement('banner-notification')
 		notification.setAttribute('data-testid', 'notification')
 		notification.setAttribute('auto-hide', '')
 		document.body.appendChild(notification)
@@ -38,7 +77,7 @@ describe('<toast-notification />', () => {
 	})
 	it('auto-hides', () => {
 		jest.useFakeTimers()
-		const notification = document.createElement('toast-notification')
+		const notification = document.createElement('banner-notification')
 		notification.setAttribute('data-testid', 'notification')
 		notification.setAttribute('auto-hide', '')
 		document.body.appendChild(notification)
@@ -50,7 +89,7 @@ describe('<toast-notification />', () => {
 	})
 	it('can be dismissed programmatically', () => {
 		jest.useFakeTimers()
-		const notification = document.createElement('toast-notification')
+		const notification = document.createElement('banner-notification')
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
@@ -61,11 +100,23 @@ describe('<toast-notification />', () => {
 		expect(element.classList).toContain('hidden')
 		jest.useRealTimers()
 	})
+	it('fires "bannerDismissed" event', () => {
+		const mockCallback = jest.fn()
+		const notification = document.createElement('banner-notification')
+		notification.setAttribute('data-testid', 'notification')
+		document.body.appendChild(notification)
+		const element = screen.getByTestId('notification')
+		element.addEventListener('bannerDismissed', mockCallback)
+		expect(mockCallback).not.toHaveBeenCalled()
+		notification.dismiss()
+		fireEvent.transitionEnd(notification)
+		expect(mockCallback).toHaveBeenCalled()
+	})
 	// eslint-disable-next-line jest/no-disabled-tests
 	it.skip('removes itself from the DOM after dismissal', () => {
 		// FixMe
 		jest.useFakeTimers()
-		const notification = document.createElement('toast-notification')
+		const notification = document.createElement('banner-notification')
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		jest.runAllTimers()

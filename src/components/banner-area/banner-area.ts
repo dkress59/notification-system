@@ -22,7 +22,7 @@ export class BannerArea extends HTMLElement {
 	public spawnBanner({
 		autoHide,
 		autoHideAfterMs,
-		content = '',
+		content,
 		headline,
 		type,
 	}: {

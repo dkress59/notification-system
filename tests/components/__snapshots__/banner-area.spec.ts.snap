@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<banner-area /> can spawn a banner-notification (with defaults) 1`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style><slot></slot><banner-notification style=\\"transition: none;\\" class=\\"hidden\\">mock_content</banner-notification>"
+`;
+
+exports[`<banner-area /> matches snapshot 1`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style><slot></slot>"
+`;
