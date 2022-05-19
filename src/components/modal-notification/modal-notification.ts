@@ -51,6 +51,7 @@ export class ModalNotification extends HTMLElement {
 	constructor() {
 		super()
 		this.attachShadow({ mode: 'open' })
+		// ToDo: aria-role="alert" / aria-role="dialog"
 	}
 
 	static get observedAttributes() {

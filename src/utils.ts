@@ -6,7 +6,6 @@ function setTestId(element: HTMLElement, value: string) {
 
 export function getIconElement(type: NotificationType): HTMLSpanElement {
 	const iconElement = document.createElement('span')
-	iconElement.setAttribute('data-testid', 'icon-type')
 	setTestId(iconElement, 'icon-type')
 	iconElement.classList.add('icon')
 	let icon = '&#10003;'
