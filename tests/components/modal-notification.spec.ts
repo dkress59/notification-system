@@ -91,9 +91,7 @@ describe('<modal-notification />', () => {
 		fireEvent.transitionEnd(notification)
 		expect(mockCallback).toHaveBeenCalled()
 	})
-	// eslint-disable-next-line jest/no-disabled-tests
-	it.skip('removes itself from the DOM after dismissal', () => {
-		// FixMe
+	it('removes itself from the DOM after dismissal', () => {
 		jest.useFakeTimers()
 		const notification = document.createElement('modal-notification')
 		notification.setAttribute('data-testid', 'notification')
@@ -101,7 +99,7 @@ describe('<modal-notification />', () => {
 		jest.runAllTimers()
 		const element = screen.getByTestId('notification')
 		const dismissButton = element.shadowRoot!.querySelector('.dismiss')!
-		fireEvent.click(dismissButton)
+		fireEvent.mouseDown(dismissButton)
 		fireEvent.transitionEnd(notification)
 		expect(screen.queryByTestId('notification')).toBeNull()
 		jest.useRealTimers()
