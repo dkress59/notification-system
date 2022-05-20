@@ -29,7 +29,7 @@ export function getHeadlineElement(
 	return undefined
 }
 
-export function getButtonElement(
+export function getClosingButtonElement(
 	onDismiss: (event: MouseEvent | KeyboardEvent) => void,
 ): HTMLSpanElement {
 	const buttonElement = document.createElement('span')
@@ -38,9 +38,9 @@ export function getButtonElement(
 	buttonElement.setAttribute('tabindex', '0')
 	buttonElement.setAttribute('aria-role', 'button')
 	buttonElement.addEventListener('mousedown', onDismiss)
-	buttonElement.addEventListener('keydown', event =>
-		event.key.toLowerCase() === 'enter' ? onDismiss(event) : null,
-	)
+	buttonElement.addEventListener('keydown', event => {
+		if (event.key.toLowerCase() === 'enter') onDismiss(event)
+	})
 	buttonElement.innerHTML = '&#x2715;'
 	return buttonElement
 }

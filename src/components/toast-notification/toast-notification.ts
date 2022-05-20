@@ -1,6 +1,6 @@
 import { NotificationType } from '../../types'
 import {
-	getButtonElement,
+	getClosingButtonElement,
 	getHeadlineElement,
 	getIconElement,
 	getStyleElement,
@@ -69,7 +69,7 @@ export class ToastNotification extends HTMLElement {
 	}
 
 	private _getButton() {
-		if (!this.autoHide) return getButtonElement(() => this.dismiss())
+		if (!this.autoHide) return getClosingButtonElement(() => this.dismiss())
 		return undefined
 	}
 

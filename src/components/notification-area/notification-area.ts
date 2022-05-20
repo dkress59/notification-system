@@ -23,7 +23,7 @@ export class NotificationArea extends HTMLElement {
 	public spawnToast({
 		autoHide,
 		autoHideAfterMs,
-		content = '',
+		content,
 		headline,
 		type,
 	}: {
@@ -53,7 +53,7 @@ export class NotificationArea extends HTMLElement {
 	 */
 	public spawnModal({
 		condition,
-		content = '',
+		content,
 		headline,
 		showConfirm,
 		showDecline,
@@ -71,7 +71,8 @@ export class NotificationArea extends HTMLElement {
 		labelDecline?: string
 	}): void {
 		const newModal = document.createElement('modal-notification')
-		if (condition) newModal.setAttribute('condition', String(condition))
+		if (condition !== undefined)
+			newModal.setAttribute('condition', String(condition))
 		if (headline) newModal.setAttribute('headline', headline)
 		if (type) newModal.setAttribute('type', type)
 		if (labelConfirm) newModal.setAttribute('label-confirm', labelConfirm)

@@ -1,6 +1,6 @@
 import { NotificationType } from '../../types'
 import {
-	getButtonElement,
+	getClosingButtonElement,
 	getHeadlineElement,
 	getIconElement,
 	getStyleElement,
@@ -79,7 +79,7 @@ export class ModalNotification extends HTMLElement {
 	}
 
 	private _getButton() {
-		return getButtonElement(() => this.dismiss())
+		return getClosingButtonElement(() => this.dismiss())
 	}
 
 	private _confirmTriggeredFinal(): void {
