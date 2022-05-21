@@ -1,23 +1,31 @@
+import 'webpack-dev-server'
+
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import * as webpack from 'webpack'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-imports
-import * as webpackDevServer from 'webpack-dev-server'
+
+interface WebpackArgv {
+	env: {
+		WEBPACK_BUNDLE: boolean
+		WEBPACK_BUILD: boolean
+		WEBPACK_SERVE: boolean
+	}
+	mode?: 'development' | 'production'
+}
 
 interface WebpackEnv {
 	WEBPACK_BUNDLE: boolean
 	WEBPACK_BUILD: boolean
-	mode?: 'development' | 'production'
+	WEBPACK_SERVE: boolean
 }
 
 export default function webpackConfig(
 	_env: WebpackEnv,
-	argv: WebpackEnv,
+	argv: WebpackArgv,
 ): webpack.Configuration {
 	const isProduction = argv.mode === 'production'
+	const isBuild = !argv.env.WEBPACK_SERVE
 	return {
 		devServer: {
 			compress: false,
@@ -48,20 +56,21 @@ export default function webpackConfig(
 			extensions: ['.tsx', '.ts', '.js'],
 		},
 
-		output: isProduction
+		output: isBuild
 			? {
-					path: path.resolve(__dirname, 'build'),
+					path: path.resolve(__dirname, 'dist'),
 					publicPath: '',
 					filename: 'bundle.js',
 			  }
 			: undefined,
-
 		plugins: [
 			new CleanWebpackPlugin(),
-			new HtmlWebpackPlugin({
-				template: 'src/demo.html',
-				filename: 'index.html',
-			}),
+			isProduction
+				? () => {}
+				: new HtmlWebpackPlugin({
+						template: 'src/demo.html',
+						filename: 'index.html',
+				  }),
 		],
 	}
 }

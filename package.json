@@ -1,19 +1,18 @@
 {
   "name": "notification-system",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Notification System Web Components",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
   "files": [
-    "dist/"
+    "dist/bundle.js"
   ],
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack serve --mode development",
+    "build": "webpack",
+    "start": "webpack serve",
     "check:script": "eslint  --fix-dry-run src tests",
-    "check:style": "npx stylelint '**/*.scss'",
+    "check:style": "stylelint '**/*.scss'",
     "fix:script": "eslint --fix src tests",
-    "fix:style": "npx stylelint --fix --quiet '**/*.scss'",
+    "fix:style": "stylelint --fix --quiet '**/*.scss'",
     "test": "jest --verbose --runInBand",
     "test:watch": "jest --watchAll --runInBand",
     "postinstall": "husky install"

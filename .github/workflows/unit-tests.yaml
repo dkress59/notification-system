@@ -35,7 +35,7 @@ jobs:
       - name: Lint Source
         run: yarn check:script && yarn check:style
       - name: Run Tests
-        run: yarn test --coverage --ci
+        run: yarn test --ci
       #- name: SonarCloud Scan
       #  uses: SonarSource/sonarcloud-github-action@master
       #  env:
