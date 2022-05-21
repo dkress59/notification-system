@@ -9,6 +9,7 @@ import css from './toast-notification.scss'
 
 export class ToastNotification extends HTMLElement {
 	public shadowRoot: ShadowRoot
+	public element: this
 
 	/**
 	 * Whether to automatically hide the toast, or not.
@@ -31,107 +32,107 @@ export class ToastNotification extends HTMLElement {
 	 */
 	public type: NotificationType
 
-	/**
-	 * Used for transitioning in and out.
-	 */
-	private isHiding = true
-
-	private hiddenClassName = 'hidden'
-	private autoHideTimeout: NodeJS.Timeout | null = null
+	readonly hiddenClassName = 'hidden'
+	autoHideTimeout: NodeJS.Timeout | null = null
+	isHiding = true
 
 	constructor() {
 		super()
-		this.attachShadow({ mode: 'open' })
+		this.element = this
+		this.element.attachShadow({ mode: 'open' })
 	}
 
 	static get observedAttributes() {
 		return ['headline', 'type']
 	}
 
-	private _getClassName(): string {
-		const classNames = Array.from(this.classList).filter(
-			className => className !== this.hiddenClassName,
+	_getClassName(): string {
+		const classNames = Array.from(this.element.classList).filter(
+			className => className !== this.element.hiddenClassName,
 		)
-		if (this.isHiding) classNames.push(this.hiddenClassName)
+		if (this.element.isHiding) classNames.push(this.element.hiddenClassName)
 		return classNames.join(' ')
 	}
 
-	private _getStyle() {
+	_getStyle() {
 		return getStyleElement(css)
 	}
 
-	private _getHeadline() {
-		return getHeadlineElement(this.headline)
+	_getHeadline() {
+		return getHeadlineElement(this.element.headline)
 	}
 
-	private _getIcon() {
-		return getIconElement(this.type)
+	_getIcon() {
+		return getIconElement(this.element.type)
 	}
 
-	private _getButton() {
-		if (!this.autoHide) return getClosingButtonElement(() => this.dismiss())
+	_getButton() {
+		if (!this.element.autoHide)
+			return getClosingButtonElement(() => this.element.dismiss())
 		return undefined
 	}
 
 	/** Entirely dismisses the toast entirely from the DOM */
 	public dismiss(): void {
-		this.isHiding = true
-		this.addEventListener('transitionend', () => {
-			this.dispatchEvent(
+		this.element.isHiding = true
+		this.element.addEventListener('transitionend', () => {
+			this.element.dispatchEvent(
 				new Event('toastDismissed', { bubbles: true, composed: true }),
 			)
-			this.remove()
+			this.element.remove()
 		})
-		this._render()
+		this.element._render()
 	}
 
 	connectedCallback(): void {
-		this.style.transition = 'none'
-		this._render()
+		this.element.style.transition = 'none'
+		this.element._render()
 		setTimeout(() => {
-			this.style.transition = ''
-			this.isHiding = false
-			this._render()
+			this.element.style.transition = ''
+			this.element.isHiding = false
+			this.element._render()
 		})
 
-		if (this.autoHide) {
-			this.autoHideTimeout = setTimeout(() => {
-				this.dismiss()
-			}, this.autoHideAfterMs)
+		if (this.element.autoHide) {
+			this.element.autoHideTimeout = setTimeout(() => {
+				this.element.dismiss()
+			}, this.element.autoHideAfterMs)
 		}
 	}
 
 	attributeChangedCallback(): void {
-		this._render()
+		this.element._render()
 	}
 
 	disconnectedCallback(): void {
-		if (this.autoHideTimeout) clearTimeout(this.autoHideTimeout)
+		if (this.element.autoHideTimeout)
+			clearTimeout(this.element.autoHideTimeout)
 	}
 
 	_render(): void {
-		this.className = this._getClassName()
+		this.element.className = this.element._getClassName()
 
-		this.autoHide =
-			this.hasAttribute('auto-hide') &&
-			this.getAttribute('auto-hide') !== 'false'
-		this.autoHideAfterMs =
-			Number(this.getAttribute('auto-hide-after-ms')) || 3000
-		this.type =
-			(this.getAttribute('type') as NotificationType | null) ??
+		this.element.autoHide =
+			this.element.hasAttribute('auto-hide') &&
+			this.element.getAttribute('auto-hide') !== 'false'
+		this.element.autoHideAfterMs =
+			Number(this.element.getAttribute('auto-hide-after-ms')) || 3000
+		this.element.type =
+			(this.element.getAttribute('type') as NotificationType | null) ??
 			NotificationType.SUCCESS
-		const headline = this.getAttribute('headline')
-		if (headline) this.headline = headline
+		const headline = this.element.getAttribute('headline')
+		if (headline) this.element.headline = headline
 
-		this.shadowRoot.innerHTML = ''
-		this.shadowRoot.appendChild(this._getStyle())
-		if (this._getHeadline())
-			this.shadowRoot.appendChild(this._getHeadline()!)
-		this.shadowRoot.appendChild(this._getIcon())
+		this.element.shadowRoot.innerHTML = ''
+		this.element.shadowRoot.appendChild(this.element._getStyle())
+		if (this.element._getHeadline())
+			this.element.shadowRoot.appendChild(this.element._getHeadline()!)
+		this.element.shadowRoot.appendChild(this.element._getIcon())
 		const slotSection = document.createElement('section')
 		slotSection.appendChild(document.createElement('slot'))
-		this.shadowRoot.appendChild(slotSection)
-		if (this._getButton()) this.shadowRoot.appendChild(this._getButton()!)
+		this.element.shadowRoot.appendChild(slotSection)
+		if (this.element._getButton())
+			this.element.shadowRoot.appendChild(this.element._getButton()!)
 	}
 }
 

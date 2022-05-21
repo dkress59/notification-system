@@ -4,7 +4,7 @@ export namespace Components {
 		/**
 		  * Takes the `<banner-notification />`-component's props in camelCase as an argument
 		 */
-		"spawnBanner": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
+		"spawnBanner": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => void;
 	}
 	interface BannerNotification {
 		/**
@@ -18,7 +18,7 @@ export namespace Components {
 		/**
 		  * Entirely dismisses the banner from the DOM
 		 */
-		"dismiss": () => Promise<void>;
+		"dismiss": () => void;
 		/**
 		  * If provided, the banner will be rendered with a headline which is styled slightly more prominent than the body text.
 		 */
@@ -36,7 +36,7 @@ export namespace Components {
 		/**
 		  * Entirely dismisses the modal from the DOM
 		 */
-		"dismiss": () => Promise<void>;
+		"dismiss": () => void;
 		/**
 		  * If provided, the modal will be rendered with a headline which is styled slightly more prominent than the body text.
 		 */
@@ -66,11 +66,11 @@ export namespace Components {
 		/**
 		  * Takes the `<modal-notification />`-component's props in camelCase as an argument
 		 */
-		"spawnModal": ({ condition, content, headline, showConfirm, showDecline, labelConfirm, labelDecline, type, }: { condition?: boolean; content: string; headline?: string; showConfirm?: boolean; showDecline?: boolean; labelConfirm?: string; labelDecline?: string; type?: NotificationType; }) => Promise<void>;
+		"spawnModal": ({ condition, content, headline, showConfirm, showDecline, labelConfirm, labelDecline, type, }: { condition?: boolean; content: string; headline?: string; showConfirm?: boolean; showDecline?: boolean; labelConfirm?: string; labelDecline?: string; type?: NotificationType; }) => void;
 		/**
 		  * Takes the `<toast-notification />`-component's props in camelCase as an argument
 		 */
-		"spawnToast": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => Promise<void>;
+		"spawnToast": ({ autoHide, autoHideAfterMs, content, headline, type, }: { autoHide?: boolean; autoHideAfterMs?: number; content: string; headline?: string; type?: NotificationType; }) => void;
 	}
 	interface ToastNotification {
 		/**
@@ -84,7 +84,7 @@ export namespace Components {
 		/**
 		  * Entirely dismisses the toast from the DOM
 		 */
-		"dismiss": () => Promise<void>;
+		"dismiss": () => void;
 		/**
 		  * If provided, the toast will be rendered with a headline which is styled slightly more prominent than the body text.
 		 */
