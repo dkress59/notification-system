@@ -22,4 +22,10 @@ This repo started out as a coding challenge. Now it is a reusable library for a 
 * [X] ~~implement vanilla JSX/TSX~~ (jest problems)
 * [ ] implement templates
 * [ ] use [Proxy API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
-* [ ] add unit tests
+* [X] add unit tests
+  * [ ] add sonar
+* [ ] update README
+* [ ] add wrappers
+  * [ ] angular
+  * [ ] react
+  * [ ] vue
