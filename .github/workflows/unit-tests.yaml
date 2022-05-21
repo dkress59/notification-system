@@ -36,8 +36,8 @@ jobs:
         run: yarn check:script && yarn check:style
       - name: Run Tests
         run: yarn test --ci
-      #- name: SonarCloud Scan
-      #  uses: SonarSource/sonarcloud-github-action@master
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # PR information
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
