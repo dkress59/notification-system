@@ -23,7 +23,7 @@ This repo started out as a coding challenge. Now it is a reusable library for a 
 * [ ] implement templates
 * [ ] use [Proxy API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 * [X] add unit tests
-  * [ ] add sonar
+  * [X] add sonar
 * [ ] update README
 * [ ] add wrappers
   * [ ] angular

@@ -4,6 +4,7 @@ import {
 	getHeadlineElement,
 	getIconElement,
 	getStyleElement,
+	setAriaRole,
 } from '../../utils'
 import css from './toast-notification.scss'
 
@@ -85,6 +86,8 @@ export class ToastNotification extends HTMLElement {
 	}
 
 	connectedCallback(): void {
+		setAriaRole(this.element)
+
 		this.element.style.transition = 'none'
 		this.element._render()
 		setTimeout(() => {

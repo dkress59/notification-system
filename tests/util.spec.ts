@@ -55,4 +55,30 @@ describe('util.ts', () => {
 			).toMatchSnapshot()
 		})
 	})
+	describe('setArialRole', () => {
+		it('assigns correct aria-role (type: error)', () => {
+			const notification = document.createElement('modal-notification')
+			notification.setAttribute('type', NotificationType.ERROR)
+			document.body.appendChild(notification)
+			expect(notification).toHaveAttribute('aria-role', 'alert')
+		})
+		it('assigns correct aria-role (type: info)', () => {
+			const notification = document.createElement('modal-notification')
+			notification.setAttribute('type', NotificationType.INFO)
+			document.body.appendChild(notification)
+			expect(notification).toHaveAttribute('aria-role', 'dialog')
+		})
+		it('assigns correct aria-role (type: success)', () => {
+			const notification = document.createElement('modal-notification')
+			notification.setAttribute('type', NotificationType.SUCCESS)
+			document.body.appendChild(notification)
+			expect(notification).toHaveAttribute('aria-role', 'dialog')
+		})
+		it('assigns correct aria-role (type: warning)', () => {
+			const notification = document.createElement('modal-notification')
+			notification.setAttribute('type', NotificationType.WARNING)
+			document.body.appendChild(notification)
+			expect(notification).toHaveAttribute('aria-role', 'alert')
+		})
+	})
 })

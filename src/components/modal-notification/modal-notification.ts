@@ -4,6 +4,7 @@ import {
 	getHeadlineElement,
 	getIconElement,
 	getStyleElement,
+	setAriaRole,
 } from '../../utils'
 import css from './modal-notification.scss'
 
@@ -41,17 +42,12 @@ export class ModalNotification extends HTMLElement {
 	 */
 	public condition: boolean | undefined = undefined
 
-	/**
-	 * Used for transitioning in and out.
-	 */
+	private readonly hiddenClassName = 'hidden'
 	private isHiding = true
-
-	private hiddenClassName = 'hidden'
 
 	constructor() {
 		super()
 		this.attachShadow({ mode: 'open' })
-		// ToDo: aria-role="alert" / aria-role="dialog"
 	}
 
 	static get observedAttributes() {
@@ -154,6 +150,8 @@ export class ModalNotification extends HTMLElement {
 	}
 
 	connectedCallback(): void {
+		setAriaRole(this)
+
 		this.style.transition = 'none'
 		this._render()
 		setTimeout(() => {

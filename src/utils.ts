@@ -50,3 +50,14 @@ export function getStyleElement(css: string): HTMLStyleElement {
 	styleTag.innerHTML = css
 	return styleTag
 }
+
+export function setAriaRole(element: HTMLElement) {
+	if (!element.hasAttribute('aria-role')) {
+		if (
+			element.getAttribute('type') === NotificationType.ERROR ||
+			element.getAttribute('type') === NotificationType.WARNING
+		)
+			element.setAttribute('aria-role', 'alert')
+		else element.setAttribute('aria-role', 'dialog')
+	}
+}
