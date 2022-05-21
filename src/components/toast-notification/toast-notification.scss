@@ -1,0 +1,34 @@
+@import "../../css/global.scss";
+@import "../../css/utils.scss";
+
+:host {
+  position: relative;
+  right: 0;
+  max-width: 50%;
+  margin: 1rem 2rem;
+
+  @extend %custom-toast;
+  @extend %min-w-60, %shadow-lg;
+}
+
+:host(:first-of-type) {
+  margin-top: 2rem;
+}
+
+:host([type="success"]),
+:host(:not([type])),
+:host([type=""]) {
+  @extend %custom-toast-type-success;
+}
+
+:host([type="info"]) {
+  @extend %custom-toast-type-info;
+}
+
+:host([type="error"]) {
+  @extend %custom-toast-type-error;
+}
+
+:host([type="warning"]) {
+  @extend %custom-toast-type-warning;
+}

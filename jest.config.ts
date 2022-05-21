@@ -1,17 +1,13 @@
-import { InitialOptionsTsJest } from 'ts-jest/dist/types'
+import type { Config } from '@jest/types'
 
-const config: InitialOptionsTsJest = {
+export default (): Config.InitialOptions => ({
 	cacheDirectory: '.jest/cache',
-	collectCoverageFrom: ['src/**/*.(ts|tsx)'],
-	coveragePathIgnorePatterns: ['.config.ts', 'types.ts'],
-	coverageReporters: ['lcov', 'text', 'cobertura'],
+	collectCoverage: true,
+	collectCoverageFrom: ['**/src/**/*.(ts|tsx)'],
 	moduleNameMapper: {
-		'\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+		'\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/sassMock.js',
 	},
 	preset: 'ts-jest',
+	setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
 	testEnvironment: 'jsdom',
-	testMatch: [`<rootDir>/tests/**/*.(spec|test).(ts|tsx)`],
-	transform: { '\\.tsx?$': 'ts-jest' },
-}
-
-export default config
+})

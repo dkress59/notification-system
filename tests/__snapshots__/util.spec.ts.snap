@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`util.ts getClosingButtonElement matches snapshot 1`] = `
+<span
+  aria-role="button"
+  class="dismiss"
+  data-testid="btn-dismiss"
+  tabindex="0"
+>
+  ✕
+</span>
+`;
+
+exports[`util.ts getHeadlineElement headline matches snapshot 1`] = `
+<h4
+  data-testid="headline"
+>
+  mock_headline
+</h4>
+`;
+
+exports[`util.ts getIconElement type=error matches snapshot 1`] = `
+<span
+  class="icon"
+  data-testid="icon-type"
+>
+  <span
+    class="error"
+  >
+    ╲
+  </span>
+</span>
+`;
+
+exports[`util.ts getIconElement type=info matches snapshot 1`] = `
+<span
+  class="icon"
+  data-testid="icon-type"
+>
+  i
+</span>
+`;
+
+exports[`util.ts getIconElement type=success matches snapshot 1`] = `
+<span
+  class="icon"
+  data-testid="icon-type"
+>
+  ✓
+</span>
+`;
+
+exports[`util.ts getIconElement type=warning matches snapshot 1`] = `
+<span
+  class="icon"
+  data-testid="icon-type"
+>
+  !
+</span>
+`;
+
+exports[`util.ts getStyleElement matches snapshot 1`] = `
+<style>
+  mock-selector { mock-property: mock-value; }
+</style>
+`;
