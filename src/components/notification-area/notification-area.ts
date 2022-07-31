@@ -1,4 +1,4 @@
-import { NotificationType } from '../../types'
+import { SpawnModalProps, SpawnToastProps } from '../../types'
 import { getStyleElement } from '../../utils'
 import css from './notification-area.scss'
 
@@ -26,13 +26,7 @@ export class NotificationArea extends HTMLElement {
 		content,
 		headline,
 		type,
-	}: {
-		autoHide?: boolean | string
-		autoHideAfterMs?: number | string
-		content: string
-		headline?: string
-		type?: NotificationType
-	}): void {
+	}: SpawnToastProps): void {
 		const newToast = document.createElement('toast-notification')
 		if (autoHide !== undefined)
 			newToast.setAttribute(
@@ -60,16 +54,7 @@ export class NotificationArea extends HTMLElement {
 		type,
 		labelConfirm,
 		labelDecline,
-	}: {
-		condition?: boolean
-		content: string
-		headline?: string
-		showConfirm?: boolean
-		showDecline?: boolean
-		type?: NotificationType
-		labelConfirm?: string
-		labelDecline?: string
-	}): void {
+	}: SpawnModalProps): void {
 		const newModal = document.createElement('modal-notification')
 		if (condition !== undefined)
 			newModal.setAttribute('condition', String(condition))

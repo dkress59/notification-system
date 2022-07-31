@@ -3,7 +3,7 @@ import type { Config } from '@jest/types'
 export default (): Config.InitialOptions => ({
 	cacheDirectory: '.jest/cache',
 	collectCoverage: true,
-	collectCoverageFrom: ['**/src/**/*.(ts|tsx)'],
+	collectCoverageFrom: ['**/src/**/*[^d].(ts|tsx)'],
 	moduleNameMapper: {
 		'\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/sassMock.js',
 	},

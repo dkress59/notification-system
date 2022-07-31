@@ -1,4 +1,4 @@
-import { NotificationType } from '../../types'
+import { NotificationEvent, NotificationType } from '../../types'
 import {
 	getClosingButtonElement,
 	getHeadlineElement,
@@ -78,7 +78,10 @@ export class ToastNotification extends HTMLElement {
 		this.element.isHiding = true
 		this.element.addEventListener('transitionend', () => {
 			this.element.dispatchEvent(
-				new Event('toastDismissed', { bubbles: true, composed: true }),
+				new Event(NotificationEvent.TOAST_DISMISSED, {
+					bubbles: true,
+					composed: true,
+				}),
 			)
 			this.element.remove()
 		})

@@ -1,4 +1,4 @@
-import { NotificationType } from '../../types'
+import { NotificationEvent, NotificationType } from '../../types'
 import {
 	getClosingButtonElement,
 	getHeadlineElement,
@@ -81,7 +81,7 @@ export class ModalNotification extends HTMLElement {
 	private _confirmTriggeredFinal(): void {
 		if (this.condition !== false)
 			this.dispatchEvent(
-				new Event('confirmTriggered', {
+				new Event(NotificationEvent.MODAL_CONFIRMED, {
 					bubbles: true,
 					composed: true,
 				}),
@@ -91,7 +91,10 @@ export class ModalNotification extends HTMLElement {
 
 	private _declineTriggeredFinal(): void {
 		this.dispatchEvent(
-			new Event('declineTriggered', { bubbles: true, composed: true }),
+			new Event(NotificationEvent.MODAL_DECLINED, {
+				bubbles: true,
+				composed: true,
+			}),
 		)
 		this.dismiss()
 	}
@@ -142,7 +145,10 @@ export class ModalNotification extends HTMLElement {
 		this.isHiding = true
 		this.addEventListener('transitionend', () => {
 			this.dispatchEvent(
-				new Event('modalDismissed', { bubbles: true, composed: true }),
+				new Event(NotificationEvent.MODAL_DISMISSED, {
+					bubbles: true,
+					composed: true,
+				}),
 			)
 			this.remove()
 		})

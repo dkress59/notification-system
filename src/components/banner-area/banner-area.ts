@@ -1,4 +1,4 @@
-import { NotificationType } from '../../types'
+import { SpawnBannerProps } from '../../types'
 import { getStyleElement } from '../../utils'
 import css from './banner-area.scss'
 
@@ -25,13 +25,7 @@ export class BannerArea extends HTMLElement {
 		content,
 		headline,
 		type,
-	}: {
-		autoHide?: boolean | string
-		autoHideAfterMs?: number | string
-		content: string
-		headline?: string
-		type?: NotificationType
-	}): void {
+	}: SpawnBannerProps): void {
 		const newBanner = document.createElement('banner-notification')
 		if (autoHide !== undefined)
 			newBanner.setAttribute(

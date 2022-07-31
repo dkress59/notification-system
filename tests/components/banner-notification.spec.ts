@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-import { NotificationType } from '../../src/types'
+import { NotificationEvent, NotificationType } from '../../src/types'
 import { getIconElement } from '../../src/utils'
 
 describe('<banner-notification />', () => {
@@ -106,7 +106,10 @@ describe('<banner-notification />', () => {
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('bannerDismissed', mockCallback)
+		element.addEventListener(
+			NotificationEvent.BANNER_DISMISSED,
+			mockCallback,
+		)
 		expect(mockCallback).not.toHaveBeenCalled()
 		notification.dismiss()
 		fireEvent.transitionEnd(notification)
