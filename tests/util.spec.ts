@@ -1,12 +1,12 @@
 import { fireEvent } from '@testing-library/dom'
 
-import { NotificationType } from '../src'
+import { NotificationType } from ':core/types'
 import {
 	getClosingButtonElement,
 	getHeadlineElement,
 	getIconElement,
 	getStyleElement,
-} from '../src/utils'
+} from ':core/utils'
 
 describe('util.ts', () => {
 	describe('getIconElement', () => {

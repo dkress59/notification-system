@@ -26,6 +26,7 @@ export default function webpackConfig(
 ): webpack.Configuration {
 	const isProduction = argv.mode === 'production'
 	const isBuild = !argv.env.WEBPACK_SERVE
+
 	return {
 		devServer: {
 			compress: false,
@@ -58,7 +59,7 @@ export default function webpackConfig(
 
 		output: isBuild
 			? {
-					path: path.resolve(__dirname, 'dist'),
+					path: path.resolve(__dirname, '..', 'dist'),
 					publicPath: '',
 					filename: 'bundle.js',
 			  }
@@ -66,7 +67,7 @@ export default function webpackConfig(
 		plugins: [
 			new CleanWebpackPlugin(),
 			isProduction
-				? () => {}
+				? () => null
 				: new HtmlWebpackPlugin({
 						template: 'src/demo.html',
 						filename: 'index.html',

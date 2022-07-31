@@ -1,4 +1,4 @@
-import * as components from '../src/components/index'
+import * as components from ':core/components/index'
 
 describe('index', () => {
 	it('exports components', () => {

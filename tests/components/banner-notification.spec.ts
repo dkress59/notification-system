@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-import { NotificationEvent, NotificationType } from '../../src/types'
-import { getIconElement } from '../../src/utils'
+import { NotificationEvent, NotificationType } from ':core/types'
+import { getIconElement } from ':core/utils'
 
 describe('<banner-notification />', () => {
 	beforeEach(() => {
