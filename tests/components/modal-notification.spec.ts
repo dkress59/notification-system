@@ -163,7 +163,7 @@ describe('<modal-notification />', () => {
 		const confirmButton = screen
 			.getByTestId('notification')
 			.shadowRoot!.querySelector('footer button.confirm')
-		expect(confirmButton).toHaveAttribute('disabled', 'true')
+		expect(confirmButton).toHaveAttribute('disabled', '')
 	})
 	it('has changeable condition', () => {
 		const notification = document.createElement('modal-notification')
@@ -175,13 +175,13 @@ describe('<modal-notification />', () => {
 			screen
 				.getByTestId('notification')
 				.shadowRoot!.querySelector('footer button.confirm'),
-		).toHaveAttribute('disabled', 'true')
+		).toHaveAttribute('disabled', '')
 		notification.setAttribute('condition', 'true')
 		expect(
 			screen
 				.getByTestId('notification')
 				.shadowRoot!.querySelector('footer button.confirm'),
-		).toHaveAttribute('disabled', 'false')
+		).not.toHaveAttribute('disabled')
 	})
 	it('dismisses modal when confirm button clicked', () => {
 		const notification = document.createElement('modal-notification')

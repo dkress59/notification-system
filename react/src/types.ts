@@ -1,4 +1,6 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from 'react'
+
+import { SpawnBannerProps, SpawnModalProps, SpawnToastProps } from ':core/types'
 
 type CustomHTMLAttributes<
 	T,
@@ -30,4 +32,28 @@ declare global {
 			['toast-notification']: ToastNotificationAttributes
 		}
 	}
+}
+
+export type BannerAreaProps = PropsWithChildren
+
+export type NotificationAreaProps = PropsWithChildren
+
+export interface BannerNotificationProps
+	extends PropsWithChildren,
+		Omit<SpawnBannerProps, 'content'> {
+	onDismiss?: () => void
+}
+
+export interface ToastNotificationProps
+	extends PropsWithChildren,
+		Omit<SpawnToastProps, 'content'> {
+	onDismiss?: () => void
+}
+
+export interface ModalNotificationProps
+	extends PropsWithChildren,
+		Omit<SpawnModalProps, 'content'> {
+	onConfirm?: () => void
+	onDecline?: () => void
+	onDismiss?: () => void
 }

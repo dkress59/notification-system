@@ -13,7 +13,8 @@ const mappedModuleNames = pathsToModuleNameMapper(
 export default (): InitialOptionsTsJest => ({
 	cacheDirectory: '.jest/cache',
 	collectCoverage: true,
-	collectCoverageFrom: ['**/src/**/*[^d].(ts|tsx)'],
+	collectCoverageFrom: ['**/src/**/*.(ts|tsx)'],
+	modulePathIgnorePatterns: ['.d.ts', 'demo-app'],
 	moduleNameMapper: {
 		...mappedModuleNames,
 		'\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/sassMock.js',

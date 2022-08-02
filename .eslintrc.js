@@ -10,6 +10,7 @@ module.exports = {
 		'**/coverage/*',
 		'**/build/*',
 		'**/dist/*',
+		'**/*.d.ts'
 	],
 	parserOptions: {
 		project: ['./tsconfig.json'],

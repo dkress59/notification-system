@@ -73,7 +73,7 @@ export class ToastNotification extends HTMLElement {
 		return undefined
 	}
 
-	/** Entirely dismisses the toast entirely from the DOM */
+	/** Entirely dismisses the toast from the DOM */
 	public dismiss(): void {
 		this.element.isHiding = true
 		this.element.addEventListener('transitionend', () => {

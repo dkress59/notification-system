@@ -104,10 +104,7 @@ export class ModalNotification extends HTMLElement {
 		if (this.showConfirm) {
 			const confirmButton = document.createElement('button')
 			confirmButton.classList.add('confirm')
-			confirmButton.setAttribute(
-				'disabled',
-				String(this.condition === false),
-			)
+			if (!this.condition) confirmButton.setAttribute('disabled', '')
 			confirmButton.setAttribute('data-testid', 'btn-confirm')
 			confirmButton.addEventListener('mousedown', () =>
 				this._confirmTriggeredFinal(),
@@ -122,10 +119,7 @@ export class ModalNotification extends HTMLElement {
 		if (this.showDecline) {
 			const declineButton = document.createElement('button')
 			declineButton.classList.add('decline')
-			declineButton.setAttribute(
-				'disabled',
-				String(this.condition === false),
-			)
+			if (!this.condition) declineButton.setAttribute('disabled', '')
 			declineButton.setAttribute('data-testid', 'btn-decline')
 			declineButton.addEventListener('mousedown', () =>
 				this._declineTriggeredFinal(),
@@ -174,8 +168,7 @@ export class ModalNotification extends HTMLElement {
 	_render(): void {
 		this.className = this._getClassName()
 
-		if (this.hasAttribute('condition'))
-			this.condition = this.getAttribute('condition') === 'true'
+		this.condition = this.getAttribute('condition') !== 'false'
 		if (this.hasAttribute('headline'))
 			this.headline = this.getAttribute('headline')!
 		if (this.hasAttribute('label-confirm'))
