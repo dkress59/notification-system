@@ -26,6 +26,7 @@ export default function webpackConfig(
 ): webpack.Configuration {
 	const isProduction = argv.mode === 'production'
 	const isBuild = !argv.env.WEBPACK_SERVE
+
 	return {
 		devServer: {
 			compress: false,
@@ -34,7 +35,7 @@ export default function webpackConfig(
 
 		devtool: isProduction ? false : 'inline-source-map',
 
-		entry: './src/index.ts',
+		entry: path.resolve(__dirname, 'core', 'index.ts'),
 
 		mode: isProduction ? 'production' : 'development',
 
@@ -46,30 +47,36 @@ export default function webpackConfig(
 					exclude: /node_modules/,
 				},
 				{
-					test: /\.(t|j)sx?$/i,
+					test: /\.(t|j)s?$/i,
 					use: 'ts-loader',
 					exclude: /node_modules/,
 				},
 			],
 		},
+
 		resolve: {
-			extensions: ['.tsx', '.ts', '.js'],
+			extensions: ['.ts', '.js'],
 		},
 
 		output: isBuild
 			? {
-					path: path.resolve(__dirname, 'dist'),
+					path: path.resolve(__dirname, '..', 'dist'),
 					publicPath: '',
-					filename: 'bundle.js',
+					filename: 'core-bundle.js',
 			  }
 			: undefined,
+
 		plugins: [
 			new CleanWebpackPlugin(),
 			isProduction
-				? () => {}
+				? () => null
 				: new HtmlWebpackPlugin({
-						template: 'src/demo.html',
-						filename: 'index.html',
+						favicon: false,
+						filename: isBuild ? 'demo.html' : 'index.html',
+						inject: true,
+						minify: false,
+						template: path.resolve(__dirname, 'core', 'demo.html'),
+						xhtml: true,
 				  }),
 		],
 	}

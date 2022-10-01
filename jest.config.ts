@@ -1,10 +1,22 @@
-import type { Config } from '@jest/types'
+import { InitialOptionsTsJest, pathsToModuleNameMapper } from 'ts-jest'
 
-export default (): Config.InitialOptions => ({
+const mappedModuleNames = pathsToModuleNameMapper(
+	{
+		':core/*': ['core/src/*'],
+		':react/*': ['react/src/*'],
+	},
+	{
+		prefix: '<rootDir>/',
+	},
+)
+
+export default (): InitialOptionsTsJest => ({
 	cacheDirectory: '.jest/cache',
 	collectCoverage: true,
 	collectCoverageFrom: ['**/src/**/*.(ts|tsx)'],
+	modulePathIgnorePatterns: ['.d.ts', 'demo-app'],
 	moduleNameMapper: {
+		...mappedModuleNames,
 		'\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/sassMock.js',
 	},
 	preset: 'ts-jest',

@@ -1,8 +1,10 @@
-import { NotificationType } from '../../types'
+import { SpawnModalArgs, SpawnToastArgs } from '../../types'
 import { getStyleElement } from '../../utils'
+import { HTMLModalNotificationElement } from '../modal-notification/modal-notification'
+import { HTMLToastNotificationElement } from '../toast-notification/toast-notification'
 import css from './notification-area.scss'
 
-export class NotificationArea extends HTMLElement {
+export class HTMLNotificationAreaElement extends HTMLElement {
 	public shadowRoot: ShadowRoot
 
 	private modal?: HTMLModalNotificationElement
@@ -26,13 +28,7 @@ export class NotificationArea extends HTMLElement {
 		content,
 		headline,
 		type,
-	}: {
-		autoHide?: boolean | string
-		autoHideAfterMs?: number | string
-		content: string
-		headline?: string
-		type?: NotificationType
-	}): void {
+	}: SpawnToastArgs): void {
 		const newToast = document.createElement('toast-notification')
 		if (autoHide !== undefined)
 			newToast.setAttribute(
@@ -60,16 +56,7 @@ export class NotificationArea extends HTMLElement {
 		type,
 		labelConfirm,
 		labelDecline,
-	}: {
-		condition?: boolean
-		content: string
-		headline?: string
-		showConfirm?: boolean
-		showDecline?: boolean
-		type?: NotificationType
-		labelConfirm?: string
-		labelDecline?: string
-	}): void {
+	}: SpawnModalArgs): void {
 		const newModal = document.createElement('modal-notification')
 		if (condition !== undefined)
 			newModal.setAttribute('condition', String(condition))
@@ -100,4 +87,4 @@ export class NotificationArea extends HTMLElement {
 	}
 }
 
-customElements.define('notification-area', NotificationArea)
+customElements.define('notification-area', HTMLNotificationAreaElement)

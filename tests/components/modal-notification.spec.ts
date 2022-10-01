@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-import { NotificationType } from '../../src/types'
-import { getIconElement } from '../../src/utils'
+import { NotificationEvent, NotificationType } from '../../src/core/types'
+import { getIconElement } from '../../src/core/utils'
 
 describe('<modal-notification />', () => {
 	beforeEach(() => {
@@ -85,7 +85,10 @@ describe('<modal-notification />', () => {
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('modalDismissed', mockCallback)
+		element.addEventListener(
+			NotificationEvent.MODAL_DISMISSED,
+			mockCallback,
+		)
 		expect(mockCallback).not.toHaveBeenCalled()
 		notification.dismiss()
 		fireEvent.transitionEnd(notification)
@@ -160,7 +163,7 @@ describe('<modal-notification />', () => {
 		const confirmButton = screen
 			.getByTestId('notification')
 			.shadowRoot!.querySelector('footer button.confirm')
-		expect(confirmButton).toHaveAttribute('disabled', 'true')
+		expect(confirmButton).toHaveAttribute('disabled', '')
 	})
 	it('has changeable condition', () => {
 		const notification = document.createElement('modal-notification')
@@ -172,13 +175,13 @@ describe('<modal-notification />', () => {
 			screen
 				.getByTestId('notification')
 				.shadowRoot!.querySelector('footer button.confirm'),
-		).toHaveAttribute('disabled', 'true')
+		).toHaveAttribute('disabled', '')
 		notification.setAttribute('condition', 'true')
 		expect(
 			screen
 				.getByTestId('notification')
 				.shadowRoot!.querySelector('footer button.confirm'),
-		).toHaveAttribute('disabled', 'false')
+		).not.toHaveAttribute('disabled')
 	})
 	it('dismisses modal when confirm button clicked', () => {
 		const notification = document.createElement('modal-notification')
@@ -198,7 +201,10 @@ describe('<modal-notification />', () => {
 		notification.setAttribute('show-confirm', '')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('confirmTriggered', mockCallback)
+		element.addEventListener(
+			NotificationEvent.MODAL_CONFIRMED,
+			mockCallback,
+		)
 		const confirmButton = element.shadowRoot!.querySelector(
 			'footer button.confirm',
 		)!
@@ -212,7 +218,7 @@ describe('<modal-notification />', () => {
 		notification.setAttribute('show-decline', '')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('declineTriggered', mockCallback)
+		element.addEventListener(NotificationEvent.MODAL_DECLINED, mockCallback)
 		const declineButton = element.shadowRoot!.querySelector(
 			'footer button.decline',
 		)!
@@ -226,7 +232,10 @@ describe('<modal-notification />', () => {
 		notification.setAttribute('show-confirm', '')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('confirmTriggered', mockCallback)
+		element.addEventListener(
+			NotificationEvent.MODAL_CONFIRMED,
+			mockCallback,
+		)
 		const confirmButton = element.shadowRoot!.querySelector(
 			'footer button.confirm',
 		)!
@@ -240,7 +249,7 @@ describe('<modal-notification />', () => {
 		notification.setAttribute('show-decline', '')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('declineTriggered', mockCallback)
+		element.addEventListener(NotificationEvent.MODAL_DECLINED, mockCallback)
 		const declineButton = element.shadowRoot!.querySelector(
 			'footer button.decline',
 		)!

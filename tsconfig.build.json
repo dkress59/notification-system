@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"esModuleInterop": false,
+		"rootDir": "src"
+	},
+	"extends": "./tsconfig.json",
+	"include": ["src/core", "src/react"]
+}

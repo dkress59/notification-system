@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 
-import { NotificationType } from '../../src'
+import { NotificationType } from '../../src/core/types'
 
 describe('<notification-area />', () => {
 	beforeEach(() => {
@@ -101,9 +101,9 @@ describe('<notification-area />', () => {
 		const modal = screen
 			.getByTestId('notification-area')
 			.shadowRoot!.querySelector('modal-notification')!
-		const confirmButton = modal.shadowRoot!.querySelector(
+		const confirmButton = modal.shadowRoot.querySelector(
 			'footer button.confirm',
 		)!
-		expect(confirmButton).toHaveAttribute('disabled', 'true')
+		expect(confirmButton).toHaveAttribute('disabled', '')
 	})
 })

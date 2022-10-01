@@ -5,4 +5,4 @@
 import '@testing-library/dom'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import '../src/components'
+import '../src/core/components'

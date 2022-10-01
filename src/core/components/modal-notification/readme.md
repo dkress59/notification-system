@@ -18,8 +18,8 @@
 
 | Event              | Description                                    | Type                       |
 | ------------------ | ---------------------------------------------- | -------------------------- |
-| `confirmTriggered` | Fires when the 'Confirm'-button is pressed.    | `CustomEvent<HTMLElement>` |
-| `declineTriggered` | Fires when the 'Decline'-button is pressed.    | `CustomEvent<HTMLElement>` |
+| `modalConfirmed` | Fires when the 'Confirm'-button is pressed.    | `CustomEvent<HTMLElement>` |
+| `modalDeclined` | Fires when the 'Decline'-button is pressed.    | `CustomEvent<HTMLElement>` |
 | `modalDismissed`   | Fires after the elements has transitioned out. | `CustomEvent<HTMLElement>` |
 
 ## Methods

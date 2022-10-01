@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-import { NotificationType } from '../../src/types'
-import { getIconElement } from '../../src/utils'
+import { NotificationEvent, NotificationType } from '../../src/core/types'
+import { getIconElement } from '../../src/core/utils'
 
 describe('<toast-notification />', () => {
 	beforeEach(() => {
@@ -106,7 +106,10 @@ describe('<toast-notification />', () => {
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
-		element.addEventListener('toastDismissed', mockCallback)
+		element.addEventListener(
+			NotificationEvent.TOAST_DISMISSED,
+			mockCallback,
+		)
 		expect(mockCallback).not.toHaveBeenCalled()
 		notification.dismiss()
 		fireEvent.transitionEnd(notification)
