@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { Elements } from ':core/components'
+import {
+	BannerNotification as HTMLBannerNotification,
+	ModalNotification as HTMLModalNotification,
+	NotificationArea as HTMLNotificationArea,
+} from ':core/components'
+import { NotificationType } from ':core/types'
 
-import { NotificationType } from '../../core/src/types'
 import { BannerArea } from './components/banner-area'
 import { BannerNotification } from './components/banner-notification'
 import { ModalNotification } from './components/modal-notification'
@@ -13,25 +17,15 @@ import { ToastNotification } from './components/toast-notification'
 function DemoApp() {
 	const [forceReRender, setForceReRender] = useState(false)
 	const [bannerChild2, setBannerChild2] = useState(false)
-	const notificationAreaRef =
-		useRef<null | Elements.HTMLNotificationAreaElement>(null)
-	const bannerRef = useRef<null | Elements.HTMLBannerNotificationElement>(
-		null,
-	)
-	const modalRef = useRef<null | Elements.HTMLModalNotificationElement>(null)
+	const notificationAreaRef = useRef<null | HTMLNotificationArea>(null)
+	const bannerRef = useRef<null | HTMLBannerNotification>(null)
+	const modalRef = useRef<null | HTMLModalNotification>(null)
 
 	useEffect(() => {
-		notificationAreaRef.current?.spawnModal({
-			content: 'yoyoyo',
-			headline: 'Modal spawned',
-			type: NotificationType.WARNING,
-		})
 		const to1 = setTimeout(() => setBannerChild2(true), 2000)
-		const to2 = setTimeout(() => bannerRef.current?.dismiss(), 5000)
 		const to3 = setTimeout(() => setForceReRender(true), 8000)
 		return () => {
 			clearTimeout(to1)
-			clearTimeout(to2)
 			clearTimeout(to3)
 		}
 	}, [])

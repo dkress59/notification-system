@@ -16,7 +16,7 @@ export class ToastNotification extends HTMLElement {
 	 * Whether to automatically hide the toast, or not.
 	 * If false (or undefined), a dismiss-button will be rendered.
 	 */
-	public autoHide: boolean
+	public autoHide = false
 	/**
 	 * The time in milliseconds after which the toast shall be hidden
 	 * (requires the auto-hide attribute to be set to "true").
@@ -26,12 +26,12 @@ export class ToastNotification extends HTMLElement {
 	 * If provided, the toast will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
 	 */
-	public headline: string
+	public headline?: string
 	/**
 	 * The notification-type of the toast
 	 * (success | info | warning | error).
 	 */
-	public type: NotificationType
+	public type?: NotificationType = NotificationType.SUCCESS
 
 	readonly hiddenClassName = 'hidden'
 	autoHideTimeout: NodeJS.Timeout | null = null
@@ -64,7 +64,7 @@ export class ToastNotification extends HTMLElement {
 	}
 
 	_getIcon() {
-		return getIconElement(this.element.type)
+		return getIconElement(this.element.type!)
 	}
 
 	_getButton() {

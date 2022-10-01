@@ -1,12 +1,12 @@
-import { ForwardedRef, MutableRefObject } from 'react'
+import { MutableRefObject } from 'react'
 
 export function getCurrentRef<T extends HTMLElement>({
 	internalRef,
 	ref,
 }: {
 	internalRef: MutableRefObject<null | T>
-	ref: ForwardedRef<T>
+	ref?: MutableRefObject<null | T>
 }): T | null {
-	if (ref) return (ref as MutableRefObject<null | T>).current
+	if (ref) return ref.current
 	return internalRef.current
 }

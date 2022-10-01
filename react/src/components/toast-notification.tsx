@@ -1,20 +1,27 @@
-import React, { forwardRef, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-import { Elements } from '../../../core/src/components'
-import { NotificationEvent } from '../../../core/src/types'
+import { ToastNotification as HTMLToastNotification } from ':core/components'
+import { NotificationEvent } from ':core/types'
+
 import { ToastNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
-export const ToastNotification = forwardRef<
-	Elements.HTMLToastNotificationElement,
-	ToastNotificationProps
->(({ autoHide, autoHideAfterMs, children, headline, onDismiss, type }, ref) => {
-	const internalRef = useRef<null | Elements.HTMLToastNotificationElement>(
-		null,
-	)
+export function ToastNotification({
+	autoHide,
+	autoHideAfterMs,
+	children,
+	headline,
+	onDismiss,
+	type,
+	ref,
+}: ToastNotificationProps) {
+	const internalRef = useRef<null | HTMLToastNotification>(null)
 
 	useEffect(() => {
-		const currentRef = getCurrentRef({ internalRef, ref })!
+		const currentRef = getCurrentRef<HTMLToastNotification>({
+			internalRef,
+			ref,
+		})!
 
 		const dismissAction = onDismiss ?? (() => null)
 
@@ -42,5 +49,4 @@ export const ToastNotification = forwardRef<
 			{children}
 		</toast-notification>
 	)
-})
-ToastNotification.displayName = 'ToastNotification'
+}

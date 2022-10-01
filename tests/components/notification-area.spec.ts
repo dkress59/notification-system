@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/dom'
 
-import { Elements } from ':core/components'
 import { NotificationType } from ':core/types'
 
 describe('<notification-area />', () => {
@@ -16,9 +15,7 @@ describe('<notification-area />', () => {
 		expect(element.shadowRoot?.innerHTML).toMatchSnapshot()
 	})
 	it('can spawn a toast-notification (with defaults)', () => {
-		const area = <Elements.HTMLNotificationAreaElement>(
-			document.createElement('notification-area')
-		)
+		const area = document.createElement('notification-area')
 		area.setAttribute('data-testid', 'notification-area')
 		document.body.appendChild(area)
 		area.spawnToast({ content: 'mock_content' })
@@ -33,9 +30,7 @@ describe('<notification-area />', () => {
 			headline: 'mock_headline',
 			type: NotificationType.INFO,
 		}
-		const area = <Elements.HTMLNotificationAreaElement>(
-			document.createElement('notification-area')
-		)
+		const area = document.createElement('notification-area')
 		area.setAttribute('data-testid', 'notification-area')
 		document.body.appendChild(area)
 		area.spawnToast(mockProps)
@@ -55,9 +50,7 @@ describe('<notification-area />', () => {
 		expect(notification).toHaveAttribute('type', mockProps.type)
 	})
 	it('can spawn a modal-notification (with defaults)', () => {
-		const area = <Elements.HTMLNotificationAreaElement>(
-			document.createElement('notification-area')
-		)
+		const area = document.createElement('notification-area')
 		area.setAttribute('data-testid', 'notification-area')
 		document.body.appendChild(area)
 		area.spawnModal({ content: 'mock_content' })
@@ -75,9 +68,7 @@ describe('<notification-area />', () => {
 			showDecline: true,
 			type: NotificationType.INFO,
 		}
-		const area = <Elements.HTMLNotificationAreaElement>(
-			document.createElement('notification-area')
-		)
+		const area = document.createElement('notification-area')
 		area.setAttribute('data-testid', 'notification-area')
 		document.body.appendChild(area)
 		area.spawnModal(mockProps)
@@ -110,7 +101,7 @@ describe('<notification-area />', () => {
 		const modal = screen
 			.getByTestId('notification-area')
 			.shadowRoot!.querySelector('modal-notification')!
-		const confirmButton = modal.shadowRoot!.querySelector(
+		const confirmButton = modal.shadowRoot.querySelector(
 			'footer button.confirm',
 		)!
 		expect(confirmButton).toHaveAttribute('disabled', '')

@@ -1,20 +1,27 @@
-import React, { forwardRef, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-import { Elements } from '../../../core/src/components'
-import { NotificationEvent } from '../../../core/src/types'
+import { BannerNotification as HTMLBannerNotification } from ':core/components'
+import { NotificationEvent } from ':core/types'
+
 import { BannerNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
-export const BannerNotification = forwardRef<
-	Elements.HTMLBannerNotificationElement,
-	BannerNotificationProps
->(({ autoHide, autoHideAfterMs, children, headline, onDismiss, type }, ref) => {
-	const internalRef = useRef<null | Elements.HTMLBannerNotificationElement>(
-		null,
-	)
+export function BannerNotification({
+	autoHide,
+	autoHideAfterMs,
+	children,
+	headline,
+	onDismiss,
+	type,
+	ref,
+}: BannerNotificationProps) {
+	const internalRef = useRef<null | HTMLBannerNotification>(null)
 
 	useEffect(() => {
-		const currentRef = getCurrentRef({ internalRef, ref })!
+		const currentRef = getCurrentRef<HTMLBannerNotification>({
+			internalRef,
+			ref,
+		})!
 
 		const dismissAction = onDismiss ?? (() => null)
 
@@ -42,5 +49,4 @@ export const BannerNotification = forwardRef<
 			{children}
 		</banner-notification>
 	)
-})
-BannerNotification.displayName = 'BannerNotification'
+}

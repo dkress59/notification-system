@@ -1,12 +1,7 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 
-import { Elements } from '../../../core/src/components'
 import { NotificationAreaProps } from '../types'
 
-export const NotificationArea = forwardRef<
-	Elements.HTMLNotificationAreaElement,
-	NotificationAreaProps
->(({ children }, ref) => {
+export function NotificationArea({ children, ref }: NotificationAreaProps) {
 	return <notification-area ref={ref}>{children}</notification-area>
-})
-NotificationArea.displayName = 'NotificationArea'
+}

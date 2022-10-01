@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/dom'
 
-import { Elements } from ':core/components'
 import { NotificationType } from ':core/types'
 
 describe('<banner-area />', () => {
@@ -16,9 +15,7 @@ describe('<banner-area />', () => {
 		expect(element.shadowRoot?.innerHTML).toMatchSnapshot()
 	})
 	it('can spawn a banner-notification (with defaults)', () => {
-		const area = <Elements.HTMLBannerAreaElement>(
-			document.createElement('banner-area')
-		)
+		const area = document.createElement('banner-area')
 		area.setAttribute('data-testid', 'notification-area')
 		document.body.appendChild(area)
 		area.spawnBanner({ content: 'mock_content' })
@@ -33,9 +30,7 @@ describe('<banner-area />', () => {
 			headline: 'mock_headline',
 			type: NotificationType.INFO,
 		}
-		const area = <Elements.HTMLBannerAreaElement>(
-			document.createElement('banner-area')
-		)
+		const area = document.createElement('banner-area')
 		area.setAttribute('data-testid', 'notification-area')
 		document.body.appendChild(area)
 		area.spawnBanner(mockProps)

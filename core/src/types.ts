@@ -1,3 +1,20 @@
+import {
+	BannerArea,
+	BannerNotification,
+	ModalNotification,
+	NotificationArea,
+	ToastNotification,
+} from './components'
+
+type SnakeToCamelCaseProp<S extends string> = S extends
+	| `${infer T} ${infer U}`
+	| `${infer T}-${infer U}`
+	? `${Uncapitalize<T>}${Capitalize<SnakeToCamelCaseProp<U>>}`
+	: Uncapitalize<S>
+type SnakeToCamelCase<T> = {
+	[K in keyof T as SnakeToCamelCaseProp<K & string>]: T[K]
+}
+
 export enum NotificationType {
 	SUCCESS = 'success',
 	INFO = 'info',
@@ -13,29 +30,43 @@ export enum NotificationEvent {
 	TOAST_DISMISSED = 'toastDismissed',
 }
 
-export interface SpawnBannerProps {
-	autoHide?: boolean | string
-	autoHideAfterMs?: number | string
+type SpawnArgs<T> = T & {
 	content: string
-	headline?: string
-	type?: NotificationType
 }
 
-export interface SpawnModalProps {
-	condition?: boolean
-	content: string
-	headline?: string
-	showConfirm?: boolean
-	showDecline?: boolean
-	type?: NotificationType
-	labelConfirm?: string
-	labelDecline?: string
+export interface BannerAttributes {
+	'auto-hide'?: boolean | string
+	'auto-hide-after-ms'?: number | string
+	'headline'?: string
+	'type'?: NotificationType
 }
+export type SpawnBannerArgs = SpawnArgs<SnakeToCamelCase<BannerAttributes>>
 
-export interface SpawnToastProps {
-	autoHide?: boolean | string
-	autoHideAfterMs?: number | string
-	content: string
-	headline?: string
-	type?: NotificationType
+export interface ModalAttributes {
+	'condition'?: boolean
+	'headline'?: string
+	'show-confirm'?: boolean
+	'show-decline'?: boolean
+	'type'?: NotificationType
+	'label-confirm'?: string
+	'label-decline'?: string
+}
+export type SpawnModalArgs = SpawnArgs<SnakeToCamelCase<ModalAttributes>>
+
+export interface ToastAttributes {
+	'auto-hide'?: boolean | string
+	'auto-hide-after-ms'?: number | string
+	'headline'?: string
+	'type'?: NotificationType
+}
+export type SpawnToastArgs = SpawnArgs<SnakeToCamelCase<ToastAttributes>>
+
+declare global {
+	interface HTMLElementTagNameMap {
+		'banner-area': BannerArea
+		'banner-notification': BannerNotification
+		'modal-notification': ModalNotification
+		'notification-area': NotificationArea
+		'toast-notification': ToastNotification
+	}
 }

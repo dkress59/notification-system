@@ -1,65 +1,67 @@
-import { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from 'react'
+import { HTMLAttributes, MutableRefObject, PropsWithChildren } from 'react'
 
-import { Elements } from '../../core/src/components'
 import {
-	SpawnBannerProps,
-	SpawnModalProps,
-	SpawnToastProps,
-} from '../../core/src/types'
+	BannerArea,
+	BannerNotification,
+	ModalNotification,
+	NotificationArea,
+	ToastNotification,
+} from ':core/components'
+import {
+	BannerAttributes,
+	ModalAttributes,
+	SpawnBannerArgs,
+	SpawnModalArgs,
+	SpawnToastArgs,
+	ToastAttributes,
+} from ':core/types'
 
-type CustomHTMLAttributes<
-	T,
-	K = void | Record<string, unknown>,
-> = DetailedHTMLProps<HTMLAttributes<T> & K, T>
+type HtmlElementToReactNode<T = unknown> = HTMLAttributes<T> &
+	PropsWithChildren<T> & {
+		ref?: MutableRefObject<null | T>
+	}
 
-export type BannerAreaAttributes =
-	CustomHTMLAttributes<Elements.HTMLBannerAreaElement>
+export type BannerAreaProps = PropsWithChildren & {
+	ref?: MutableRefObject<null | BannerArea>
+}
 
-export type NotificationAreaAttributes =
-	CustomHTMLAttributes<Elements.HTMLNotificationAreaElement>
+export type NotificationAreaProps = PropsWithChildren & {
+	ref?: MutableRefObject<null | NotificationArea>
+}
 
-export type BannerNotificationAttributes =
-	CustomHTMLAttributes<Elements.HTMLBannerNotificationElement>
+export interface BannerNotificationProps
+	extends PropsWithChildren,
+		Omit<SpawnBannerArgs, 'content'> {
+	onDismiss?: () => void
+	ref?: MutableRefObject<null | BannerNotification>
+}
 
-export type ModalNotificationAttributes =
-	CustomHTMLAttributes<Elements.HTMLModalNotificationElement>
+export type ToastNotificationProps = PropsWithChildren<
+	Omit<SpawnToastArgs, 'content'> & {
+		onDismiss?: () => void
+		ref?: MutableRefObject<null | ToastNotification>
+	}
+>
 
-export type ToastNotificationAttributes =
-	CustomHTMLAttributes<Elements.HTMLToastNotificationElement>
+export interface ModalNotificationProps
+	extends PropsWithChildren,
+		Omit<SpawnModalArgs, 'content'> {
+	onConfirm?: () => void
+	onDecline?: () => void
+	onDismiss?: () => void
+	ref?: MutableRefObject<null | ModalNotification>
+}
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace JSX {
 		interface IntrinsicElements {
-			['banner-area']: BannerAreaAttributes
-			['notification-area']: NotificationAreaAttributes
-			['banner-notification']: BannerNotificationAttributes
-			['modal-notification']: ModalNotificationAttributes
-			['toast-notification']: ToastNotificationAttributes
+			['banner-area']: HtmlElementToReactNode
+			['notification-area']: HtmlElementToReactNode
+			['banner-notification']: HtmlElementToReactNode<BannerAttributes>
+			['modal-notification']: HtmlElementToReactNode<ModalAttributes>
+
+			['toast-notification']: HtmlElementToReactNode<ToastAttributes>
 		}
 	}
-}
-
-export type BannerAreaProps = PropsWithChildren
-
-export type NotificationAreaProps = PropsWithChildren
-
-export interface BannerNotificationProps
-	extends PropsWithChildren,
-		Omit<SpawnBannerProps, 'content'> {
-	onDismiss?: () => void
-}
-
-export interface ToastNotificationProps
-	extends PropsWithChildren,
-		Omit<SpawnToastProps, 'content'> {
-	onDismiss?: () => void
-}
-
-export interface ModalNotificationProps
-	extends PropsWithChildren,
-		Omit<SpawnModalProps, 'content'> {
-	onConfirm?: () => void
-	onDecline?: () => void
-	onDismiss?: () => void
 }

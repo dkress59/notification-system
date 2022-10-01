@@ -1,6 +1,5 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-import { Elements } from ':core/components'
 import { NotificationEvent, NotificationType } from ':core/types'
 import { getIconElement } from ':core/utils'
 
@@ -69,9 +68,7 @@ describe('<modal-notification />', () => {
 	})
 	it('can be dismissed programmatically', () => {
 		jest.useFakeTimers()
-		const notification = <Elements.HTMLModalNotificationElement>(
-			document.createElement('modal-notification')
-		)
+		const notification = document.createElement('modal-notification')
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
@@ -84,9 +81,7 @@ describe('<modal-notification />', () => {
 	})
 	it('fires "modalDismissed" event', () => {
 		const mockCallback = jest.fn()
-		const notification = <Elements.HTMLModalNotificationElement>(
-			document.createElement('modal-notification')
-		)
+		const notification = document.createElement('modal-notification')
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
