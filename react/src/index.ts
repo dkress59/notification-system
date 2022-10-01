@@ -1,6 +1,9 @@
-export * from './components/banner-area'
-export * from './components/banner-notification'
-export * from './components/modal-notification'
-export * from './components/notification-area'
-export * from './components/toast-notification'
-export * from './types'
+export {
+	BannerArea as HTMLBannerAreaElement,
+	BannerNotification as HTMLBannerNotificationElement,
+	ModalNotification as HTMLModalNotificationElement,
+	NotificationArea as HTMLNotificationAreaElement,
+	ToastNotification as HTMLToastNotificationElement,
+} from ':core/components'
+export * from ':react/components'
+export * from ':react/types'

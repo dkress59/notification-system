@@ -1,6 +1,5 @@
 import 'webpack-dev-server'
 
-import fs from 'fs'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import * as webpack from 'webpack'
@@ -26,13 +25,6 @@ export default function webpackConfig(
 ): webpack.Configuration {
 	const isProduction = argv.mode === 'production'
 	const isBuild = !argv.env.WEBPACK_SERVE
-	const coreBundleExists = fs.existsSync(
-		path.resolve(__dirname, '..', 'dist', 'bundle.js'),
-	)
-	if (!coreBundleExists)
-		throw new Error(
-			'The core bundle was not found. Run `yarn workspace core build` to fix this problem.',
-		)
 
 	return {
 		devServer: {
@@ -44,17 +36,24 @@ export default function webpackConfig(
 			},
 			hot: true,
 			port: process.env.PORT ?? 3000,
-			static: path.resolve(__dirname, '..', 'dist'),
 		},
 
 		devtool: isProduction ? false : 'inline-source-map',
 
-		entry: path.resolve(__dirname, 'src', 'demo-app.tsx'),
+		entry: [
+			path.resolve(__dirname, 'src', 'index.ts'),
+			path.resolve(__dirname, 'src', 'demo-app.tsx'),
+		],
 
 		mode: isProduction ? 'production' : 'development',
 
 		module: {
 			rules: [
+				{
+					test: /\.s?css?$/i,
+					use: ['css-loader', 'sass-loader'],
+					exclude: /node_modules/,
+				},
 				{
 					test: /\.(t|j)sx?$/i,
 					use: 'ts-loader',
