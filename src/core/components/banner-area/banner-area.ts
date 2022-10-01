@@ -1,12 +1,12 @@
 import { SpawnBannerArgs } from '../../types'
 import { getStyleElement } from '../../utils'
-import { BannerNotification } from '../banner-notification/banner-notification'
+import { HTMLBannerNotificationElement } from '../banner-notification/banner-notification'
 import css from './banner-area.scss'
 
-export class BannerArea extends HTMLElement {
+export class HTMLBannerAreaElement extends HTMLElement {
 	public shadowRoot: ShadowRoot
 
-	private banners: BannerNotification[] = []
+	private banners: HTMLBannerNotificationElement[] = []
 
 	constructor() {
 		super()
@@ -58,4 +58,4 @@ export class BannerArea extends HTMLElement {
 	}
 }
 
-customElements.define('banner-area', BannerArea)
+customElements.define('banner-area', HTMLBannerAreaElement)

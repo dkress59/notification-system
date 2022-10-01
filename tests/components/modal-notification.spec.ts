@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
-import { NotificationEvent, NotificationType } from ':core/types'
-import { getIconElement } from ':core/utils'
+import { NotificationEvent, NotificationType } from '../../src/core/types'
+import { getIconElement } from '../../src/core/utils'
 
 describe('<modal-notification />', () => {
 	beforeEach(() => {

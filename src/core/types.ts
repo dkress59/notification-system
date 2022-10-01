@@ -1,9 +1,9 @@
 import {
-	BannerArea,
-	BannerNotification,
-	ModalNotification,
-	NotificationArea,
-	ToastNotification,
+	HTMLBannerAreaElement,
+	HTMLBannerNotificationElement,
+	HTMLModalNotificationElement,
+	HTMLNotificationAreaElement,
+	HTMLToastNotificationElement,
 } from './components'
 
 type SnakeToCamelCaseProp<S extends string> = S extends
@@ -63,10 +63,10 @@ export type SpawnToastArgs = SpawnArgs<SnakeToCamelCase<ToastAttributes>>
 
 declare global {
 	interface HTMLElementTagNameMap {
-		'banner-area': BannerArea
-		'banner-notification': BannerNotification
-		'modal-notification': ModalNotification
-		'notification-area': NotificationArea
-		'toast-notification': ToastNotification
+		'banner-area': HTMLBannerAreaElement
+		'banner-notification': HTMLBannerNotificationElement
+		'modal-notification': HTMLModalNotificationElement
+		'notification-area': HTMLNotificationAreaElement
+		'toast-notification': HTMLToastNotificationElement
 	}
 }

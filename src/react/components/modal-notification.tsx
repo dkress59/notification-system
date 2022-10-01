@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
-import { ModalNotification as HTMLModalNotification } from ':core/components'
-import { NotificationEvent } from ':core/types'
-
+import { HTMLModalNotificationElement } from '../../core/components'
+import { NotificationEvent } from '../../core/types'
 import { ModalNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
@@ -20,7 +19,7 @@ export function ModalNotification({
 	type,
 	ref,
 }: ModalNotificationProps) {
-	const internalRef = useRef<null | HTMLModalNotification>(null)
+	const internalRef = useRef<null | HTMLModalNotificationElement>(null)
 
 	useEffect(() => {
 		const currentRef = getCurrentRef({ internalRef, ref })!

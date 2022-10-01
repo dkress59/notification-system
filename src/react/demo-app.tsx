@@ -2,12 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import {
-	BannerNotification as HTMLBannerNotification,
-	ModalNotification as HTMLModalNotification,
-	NotificationArea as HTMLNotificationArea,
-} from ':core/components'
-import { NotificationType } from ':core/types'
-
+	HTMLBannerNotificationElement,
+	HTMLModalNotificationElement,
+	HTMLNotificationAreaElement,
+} from '../core/components'
+import { NotificationType } from '../core/types'
 import { BannerArea } from './components/banner-area'
 import { BannerNotification } from './components/banner-notification'
 import { ModalNotification } from './components/modal-notification'
@@ -17,9 +16,9 @@ import { ToastNotification } from './components/toast-notification'
 function DemoApp() {
 	const [forceReRender, setForceReRender] = useState(false)
 	const [bannerChild2, setBannerChild2] = useState(false)
-	const notificationAreaRef = useRef<null | HTMLNotificationArea>(null)
-	const bannerRef = useRef<null | HTMLBannerNotification>(null)
-	const modalRef = useRef<null | HTMLModalNotification>(null)
+	const notificationAreaRef = useRef<null | HTMLNotificationAreaElement>(null)
+	const bannerRef = useRef<null | HTMLBannerNotificationElement>(null)
+	const modalRef = useRef<null | HTMLModalNotificationElement>(null)
 
 	useEffect(() => {
 		const to1 = setTimeout(() => setBannerChild2(true), 2000)

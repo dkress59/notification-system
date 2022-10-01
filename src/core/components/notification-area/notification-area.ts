@@ -1,14 +1,14 @@
 import { SpawnModalArgs, SpawnToastArgs } from '../../types'
 import { getStyleElement } from '../../utils'
-import { ModalNotification } from '../modal-notification/modal-notification'
-import { ToastNotification } from '../toast-notification/toast-notification'
+import { HTMLModalNotificationElement } from '../modal-notification/modal-notification'
+import { HTMLToastNotificationElement } from '../toast-notification/toast-notification'
 import css from './notification-area.scss'
 
-export class NotificationArea extends HTMLElement {
+export class HTMLNotificationAreaElement extends HTMLElement {
 	public shadowRoot: ShadowRoot
 
-	private modal?: ModalNotification
-	private toasts: ToastNotification[] = []
+	private modal?: HTMLModalNotificationElement
+	private toasts: HTMLToastNotificationElement[] = []
 
 	constructor() {
 		super()
@@ -87,4 +87,4 @@ export class NotificationArea extends HTMLElement {
 	}
 }
 
-customElements.define('notification-area', NotificationArea)
+customElements.define('notification-area', HTMLNotificationAreaElement)

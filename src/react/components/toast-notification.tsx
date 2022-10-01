@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 
-import { BannerNotification as HTMLBannerNotification } from ':core/components'
-import { NotificationEvent } from ':core/types'
+import { HTMLToastNotificationElement } from '../../core/components'
+import { NotificationEvent } from '../../core/types'
 
-import { BannerNotificationProps } from '../types'
+import { ToastNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
-export function BannerNotification({
+export function ToastNotification({
 	autoHide,
 	autoHideAfterMs,
 	children,
@@ -14,11 +14,11 @@ export function BannerNotification({
 	onDismiss,
 	type,
 	ref,
-}: BannerNotificationProps) {
-	const internalRef = useRef<null | HTMLBannerNotification>(null)
+}: ToastNotificationProps) {
+	const internalRef = useRef<null | HTMLToastNotificationElement>(null)
 
 	useEffect(() => {
-		const currentRef = getCurrentRef<HTMLBannerNotification>({
+		const currentRef = getCurrentRef<HTMLToastNotificationElement>({
 			internalRef,
 			ref,
 		})!
@@ -26,20 +26,20 @@ export function BannerNotification({
 		const dismissAction = onDismiss ?? (() => null)
 
 		currentRef.addEventListener(
-			NotificationEvent.BANNER_DISMISSED,
+			NotificationEvent.TOAST_DISMISSED,
 			dismissAction,
 		)
 
 		return () => {
 			currentRef.removeEventListener(
-				NotificationEvent.BANNER_DISMISSED,
+				NotificationEvent.TOAST_DISMISSED,
 				dismissAction,
 			)
 		}
 	})
 
 	return (
-		<banner-notification
+		<toast-notification
 			auto-hide={!!autoHide}
 			auto-hide-after-ms={autoHideAfterMs}
 			headline={headline}
@@ -47,6 +47,6 @@ export function BannerNotification({
 			type={type}
 		>
 			{children}
-		</banner-notification>
+		</toast-notification>
 	)
 }

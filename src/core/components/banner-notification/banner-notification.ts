@@ -1,9 +1,9 @@
 import { NotificationEvent } from '../../types'
 import { getStyleElement } from '../../utils'
-import { ToastNotification } from '../toast-notification/toast-notification'
+import { HTMLToastNotificationElement } from '../toast-notification/toast-notification'
 import css from './banner-notification.scss'
 
-export class BannerNotification extends ToastNotification {
+export class HTMLBannerNotificationElement extends HTMLToastNotificationElement {
 	_getStyle() {
 		return getStyleElement(css)
 	}
@@ -29,4 +29,4 @@ export class BannerNotification extends ToastNotification {
 	}
 }
 
-customElements.define('banner-notification', BannerNotification)
+customElements.define('banner-notification', HTMLBannerNotificationElement)

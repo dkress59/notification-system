@@ -8,7 +8,7 @@ import {
 } from '../../utils'
 import css from './modal-notification.scss'
 
-export class ModalNotification extends HTMLElement {
+export class HTMLModalNotificationElement extends HTMLElement {
 	public shadowRoot: ShadowRoot
 
 	/**
@@ -199,4 +199,4 @@ export class ModalNotification extends HTMLElement {
 	}
 }
 
-customElements.define('modal-notification', ModalNotification)
+customElements.define('modal-notification', HTMLModalNotificationElement)

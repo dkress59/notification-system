@@ -1,43 +1,26 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "baseUrl": ".",
-    "declaration": false,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "jsx": "react",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "target": "es2017",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "outDir": "dist",
-    "paths": {
-      ":core/*": [
-        "./core/src/*"
-      ],
-      ":react/*": [
-        "./react/src/*"
-      ],
-    },
-		"types": [
-			"jest",
-			"node"
-		]
-  },
-  "include": [
-    "__mocks__",
-    "core",
-    "react",
-    "tests",
-    ".eslintrc.js",
-    "jest.config.ts",
-    "webpack.config.ts"
-  ]
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"allowUnreachableCode": false,
+		"baseUrl": ".",
+		"esModuleInterop": true,
+		"jsx": "react",
+		"lib": ["dom", "es2017"],
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"target": "es2017",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strictNullChecks": true,
+		"outDir": "dist",
+		"types": ["jest", "node"]
+	},
+	"include": [
+		"__mocks__",
+		"src",
+		"tests",
+		".eslintrc.js",
+		"jest.config.ts",
+		"webpack.config.ts"
+	]
 }

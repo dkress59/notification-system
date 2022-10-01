@@ -1,12 +1,12 @@
 import { HTMLAttributes, MutableRefObject, PropsWithChildren } from 'react'
 
 import {
-	BannerArea,
-	BannerNotification,
-	ModalNotification,
-	NotificationArea,
-	ToastNotification,
-} from ':core/components'
+	HTMLBannerAreaElement,
+	HTMLBannerNotificationElement,
+	HTMLModalNotificationElement,
+	HTMLNotificationAreaElement,
+	HTMLToastNotificationElement,
+} from '../core/components'
 import {
 	BannerAttributes,
 	ModalAttributes,
@@ -14,32 +14,27 @@ import {
 	SpawnModalArgs,
 	SpawnToastArgs,
 	ToastAttributes,
-} from ':core/types'
-
-type HtmlElementToReactNode<T = unknown> = HTMLAttributes<T> &
-	PropsWithChildren<T> & {
-		ref?: MutableRefObject<null | T>
-	}
+} from '../core/types'
 
 export type BannerAreaProps = PropsWithChildren & {
-	ref?: MutableRefObject<null | BannerArea>
+	ref?: MutableRefObject<null | HTMLBannerAreaElement>
 }
 
 export type NotificationAreaProps = PropsWithChildren & {
-	ref?: MutableRefObject<null | NotificationArea>
+	ref?: MutableRefObject<null | HTMLNotificationAreaElement>
 }
 
 export interface BannerNotificationProps
 	extends PropsWithChildren,
 		Omit<SpawnBannerArgs, 'content'> {
 	onDismiss?: () => void
-	ref?: MutableRefObject<null | BannerNotification>
+	ref?: MutableRefObject<null | HTMLBannerNotificationElement>
 }
 
 export type ToastNotificationProps = PropsWithChildren<
 	Omit<SpawnToastArgs, 'content'> & {
 		onDismiss?: () => void
-		ref?: MutableRefObject<null | ToastNotification>
+		ref?: MutableRefObject<null | HTMLToastNotificationElement>
 	}
 >
 
@@ -49,8 +44,13 @@ export interface ModalNotificationProps
 	onConfirm?: () => void
 	onDecline?: () => void
 	onDismiss?: () => void
-	ref?: MutableRefObject<null | ModalNotification>
+	ref?: MutableRefObject<null | HTMLModalNotificationElement>
 }
+
+type HtmlElementToReactNode<T = unknown> = HTMLAttributes<T> &
+	PropsWithChildren<T> & {
+		ref?: MutableRefObject<null | T>
+	}
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
@@ -60,7 +60,6 @@ declare global {
 			['notification-area']: HtmlElementToReactNode
 			['banner-notification']: HtmlElementToReactNode<BannerAttributes>
 			['modal-notification']: HtmlElementToReactNode<ModalAttributes>
-
 			['toast-notification']: HtmlElementToReactNode<ToastAttributes>
 		}
 	}

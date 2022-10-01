@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom'
 
-import { NotificationType } from ':core/types'
+import { NotificationType } from '../../src/core/types'
 
 describe('<banner-area />', () => {
 	beforeEach(() => {

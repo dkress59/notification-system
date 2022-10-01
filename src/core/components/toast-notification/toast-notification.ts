@@ -8,7 +8,7 @@ import {
 } from '../../utils'
 import css from './toast-notification.scss'
 
-export class ToastNotification extends HTMLElement {
+export class HTMLToastNotificationElement extends HTMLElement {
 	public shadowRoot: ShadowRoot
 	public element: this
 
@@ -142,4 +142,4 @@ export class ToastNotification extends HTMLElement {
 	}
 }
 
-customElements.define('toast-notification', ToastNotification)
+customElements.define('toast-notification', HTMLToastNotificationElement)

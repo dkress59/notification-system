@@ -41,8 +41,8 @@ export default function webpackConfig(
 		devtool: isProduction ? false : 'inline-source-map',
 
 		entry: [
-			path.resolve(__dirname, 'src', 'index.ts'),
-			path.resolve(__dirname, 'src', 'demo-app.tsx'),
+			path.resolve(__dirname, 'react', 'index.ts'),
+			path.resolve(__dirname, 'react', 'demo-app.tsx'),
 		],
 
 		mode: isProduction ? 'production' : 'development',
@@ -61,11 +61,8 @@ export default function webpackConfig(
 				},
 			],
 		},
+
 		resolve: {
-			alias: {
-				':core': path.resolve(__dirname, '..', 'core', 'src'),
-				':react': path.resolve(__dirname, '..', 'react', 'src'),
-			},
 			extensions: ['.tsx', '.ts', '.js'],
 		},
 
@@ -91,10 +88,10 @@ export default function webpackConfig(
 		plugins: [
 			new HtmlWebpackPlugin({
 				favicon: false,
-				filename: 'index.html',
+				filename: isBuild ? 'demo.html' : 'index.html',
 				inject: true,
 				minify: false,
-				template: path.resolve(__dirname, 'src', 'index.html'),
+				template: path.resolve(__dirname, 'react', 'demo.html'),
 				xhtml: true,
 			}),
 		],
