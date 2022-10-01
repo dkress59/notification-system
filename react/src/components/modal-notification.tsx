@@ -1,12 +1,12 @@
 import React, { forwardRef, useEffect, useRef } from 'react'
 
-import { NotificationEvent } from ':core/types'
-
+import { Elements } from '../../../core/src/components'
+import { NotificationEvent } from '../../../core/src/types'
 import { ModalNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
 export const ModalNotification = forwardRef<
-	HTMLModalNotificationElement,
+	Elements.HTMLModalNotificationElement,
 	ModalNotificationProps
 >(
 	(
@@ -25,7 +25,8 @@ export const ModalNotification = forwardRef<
 		},
 		ref,
 	) => {
-		const internalRef = useRef<null | HTMLModalNotificationElement>(null)
+		const internalRef =
+			useRef<null | Elements.HTMLModalNotificationElement>(null)
 
 		useEffect(() => {
 			const currentRef = getCurrentRef({ internalRef, ref })!

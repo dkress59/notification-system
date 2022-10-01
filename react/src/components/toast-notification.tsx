@@ -1,15 +1,17 @@
 import React, { forwardRef, useEffect, useRef } from 'react'
 
-import { NotificationEvent } from ':core/types'
-
+import { Elements } from '../../../core/src/components'
+import { NotificationEvent } from '../../../core/src/types'
 import { ToastNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
 export const ToastNotification = forwardRef<
-	HTMLToastNotificationElement,
+	Elements.HTMLToastNotificationElement,
 	ToastNotificationProps
 >(({ autoHide, autoHideAfterMs, children, headline, onDismiss, type }, ref) => {
-	const internalRef = useRef<null | HTMLToastNotificationElement>(null)
+	const internalRef = useRef<null | Elements.HTMLToastNotificationElement>(
+		null,
+	)
 
 	useEffect(() => {
 		const currentRef = getCurrentRef({ internalRef, ref })!

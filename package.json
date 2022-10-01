@@ -13,7 +13,7 @@
   "scripts": {
     "build": "yarn workspace core build",
     "start": "yarn workspace core start",
-    "check:script": "eslint  --fix-dry-run .",
+    "check:script": "eslint --fix-dry-run .",
     "check:style": "stylelint '**/*.scss'",
     "fix:script": "eslint --fix .",
     "fix:style": "stylelint --fix --quiet '**/*.scss'",

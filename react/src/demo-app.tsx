@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { NotificationType } from ':core/types'
+import { Elements } from ':core/components'
 
+import { NotificationType } from '../../core/src/types'
 import { BannerArea } from './components/banner-area'
 import { BannerNotification } from './components/banner-notification'
 import { ModalNotification } from './components/modal-notification'
@@ -12,9 +13,12 @@ import { ToastNotification } from './components/toast-notification'
 function DemoApp() {
 	const [forceReRender, setForceReRender] = useState(false)
 	const [bannerChild2, setBannerChild2] = useState(false)
-	const notificationAreaRef = useRef<null | HTMLNotificationAreaElement>(null)
-	const bannerRef = useRef<null | HTMLBannerNotificationElement>(null)
-	const modalRef = useRef<null | HTMLModalNotificationElement>(null)
+	const notificationAreaRef =
+		useRef<null | Elements.HTMLNotificationAreaElement>(null)
+	const bannerRef = useRef<null | Elements.HTMLBannerNotificationElement>(
+		null,
+	)
+	const modalRef = useRef<null | Elements.HTMLModalNotificationElement>(null)
 
 	useEffect(() => {
 		notificationAreaRef.current?.spawnModal({

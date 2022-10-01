@@ -95,7 +95,7 @@ export namespace Components {
 		"type": NotificationType;
 	}
 }
-declare global {
+export namespace Elements {
 	interface HTMLBannerAreaElement extends Components.BannerArea, HTMLElement {
 	}
 	var HTMLBannerAreaElement: {

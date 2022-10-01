@@ -1,3 +1,5 @@
+import { Elements } from ':core/components'
+
 import { SpawnBannerProps } from '../../types'
 import { getStyleElement } from '../../utils'
 import css from './banner-area.scss'
@@ -5,7 +7,7 @@ import css from './banner-area.scss'
 export class BannerArea extends HTMLElement {
 	public shadowRoot: ShadowRoot
 
-	private banners: HTMLBannerNotificationElement[] = []
+	private banners: Elements.HTMLBannerNotificationElement[] = []
 
 	constructor() {
 		super()
@@ -26,7 +28,9 @@ export class BannerArea extends HTMLElement {
 		headline,
 		type,
 	}: SpawnBannerProps): void {
-		const newBanner = document.createElement('banner-notification')
+		const newBanner = <Elements.HTMLBannerNotificationElement>(
+			document.createElement('banner-notification')
+		)
 		if (autoHide !== undefined)
 			newBanner.setAttribute(
 				'auto-hide',

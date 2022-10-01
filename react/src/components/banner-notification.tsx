@@ -1,15 +1,17 @@
 import React, { forwardRef, useEffect, useRef } from 'react'
 
-import { NotificationEvent } from ':core/types'
-
+import { Elements } from '../../../core/src/components'
+import { NotificationEvent } from '../../../core/src/types'
 import { BannerNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
 export const BannerNotification = forwardRef<
-	HTMLBannerNotificationElement,
+	Elements.HTMLBannerNotificationElement,
 	BannerNotificationProps
 >(({ autoHide, autoHideAfterMs, children, headline, onDismiss, type }, ref) => {
-	const internalRef = useRef<null | HTMLBannerNotificationElement>(null)
+	const internalRef = useRef<null | Elements.HTMLBannerNotificationElement>(
+		null,
+	)
 
 	useEffect(() => {
 		const currentRef = getCurrentRef({ internalRef, ref })!

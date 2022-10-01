@@ -1,25 +1,31 @@
 import { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from 'react'
 
-import { SpawnBannerProps, SpawnModalProps, SpawnToastProps } from ':core/types'
+import { Elements } from '../../core/src/components'
+import {
+	SpawnBannerProps,
+	SpawnModalProps,
+	SpawnToastProps,
+} from '../../core/src/types'
 
 type CustomHTMLAttributes<
 	T,
 	K = void | Record<string, unknown>,
 > = DetailedHTMLProps<HTMLAttributes<T> & K, T>
 
-export type BannerAreaAttributes = CustomHTMLAttributes<HTMLBannerAreaElement>
+export type BannerAreaAttributes =
+	CustomHTMLAttributes<Elements.HTMLBannerAreaElement>
 
 export type NotificationAreaAttributes =
-	CustomHTMLAttributes<HTMLNotificationAreaElement>
+	CustomHTMLAttributes<Elements.HTMLNotificationAreaElement>
 
 export type BannerNotificationAttributes =
-	CustomHTMLAttributes<HTMLBannerNotificationElement>
+	CustomHTMLAttributes<Elements.HTMLBannerNotificationElement>
 
 export type ModalNotificationAttributes =
-	CustomHTMLAttributes<HTMLModalNotificationElement>
+	CustomHTMLAttributes<Elements.HTMLModalNotificationElement>
 
 export type ToastNotificationAttributes =
-	CustomHTMLAttributes<HTMLToastNotificationElement>
+	CustomHTMLAttributes<Elements.HTMLToastNotificationElement>
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace

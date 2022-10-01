@@ -1,5 +1,6 @@
 import { fireEvent, screen } from '@testing-library/dom'
 
+import { Elements } from ':core/components'
 import { NotificationEvent, NotificationType } from ':core/types'
 import { getIconElement } from ':core/utils'
 
@@ -89,7 +90,9 @@ describe('<toast-notification />', () => {
 	})
 	it('can be dismissed programmatically', () => {
 		jest.useFakeTimers()
-		const notification = document.createElement('toast-notification')
+		const notification = <Elements.HTMLToastNotificationElement>(
+			document.createElement('toast-notification')
+		)
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')
@@ -102,7 +105,9 @@ describe('<toast-notification />', () => {
 	})
 	it('fires "toastDismissed" event', () => {
 		const mockCallback = jest.fn()
-		const notification = document.createElement('toast-notification')
+		const notification = <Elements.HTMLToastNotificationElement>(
+			document.createElement('toast-notification')
+		)
 		notification.setAttribute('data-testid', 'notification')
 		document.body.appendChild(notification)
 		const element = screen.getByTestId('notification')

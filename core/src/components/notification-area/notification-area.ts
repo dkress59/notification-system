@@ -1,3 +1,5 @@
+import { Elements } from ':core/components'
+
 import { SpawnModalProps, SpawnToastProps } from '../../types'
 import { getStyleElement } from '../../utils'
 import css from './notification-area.scss'
@@ -5,8 +7,8 @@ import css from './notification-area.scss'
 export class NotificationArea extends HTMLElement {
 	public shadowRoot: ShadowRoot
 
-	private modal?: HTMLModalNotificationElement
-	private toasts: HTMLToastNotificationElement[] = []
+	private modal?: Elements.HTMLModalNotificationElement
+	private toasts: Elements.HTMLToastNotificationElement[] = []
 
 	constructor() {
 		super()
@@ -27,7 +29,9 @@ export class NotificationArea extends HTMLElement {
 		headline,
 		type,
 	}: SpawnToastProps): void {
-		const newToast = document.createElement('toast-notification')
+		const newToast = <Elements.HTMLToastNotificationElement>(
+			document.createElement('toast-notification')
+		)
 		if (autoHide !== undefined)
 			newToast.setAttribute(
 				'auto-hide',
@@ -55,7 +59,9 @@ export class NotificationArea extends HTMLElement {
 		labelConfirm,
 		labelDecline,
 	}: SpawnModalProps): void {
-		const newModal = document.createElement('modal-notification')
+		const newModal = <Elements.HTMLModalNotificationElement>(
+			document.createElement('modal-notification')
+		)
 		if (condition !== undefined)
 			newModal.setAttribute('condition', String(condition))
 		if (headline) newModal.setAttribute('headline', headline)
