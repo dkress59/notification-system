@@ -25,8 +25,8 @@
 		"test": "jest --verbose --runInBand",
 		"test:watch": "jest --watchAll --runInBand",
 		"postinstall": "husky install",
-		"prepack": "pinst --disable",
-		"postpack": "pinst --enable"
+		"prepack": "yarn pinst --disable",
+		"postpack": "yarn pinst --enable"
 	},
 	"devDependencies": {
 		"@jest/types": "29.1.2",
