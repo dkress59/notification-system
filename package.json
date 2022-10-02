@@ -97,5 +97,6 @@
 		"*.{json,js,jsx,ts,tsx}": [
 			"yarn prettier --write"
 		]
-	}
+	},
+	"packageManager": "yarn@3.2.3"
 }
