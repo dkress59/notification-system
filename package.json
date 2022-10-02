@@ -1,6 +1,6 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha3",
+	"version": "0.0.1-alpha4",
 	"description": "Notification System Web Components",
 	"files": [
 		"./dist",
@@ -24,7 +24,9 @@
 		"fix:style": "stylelint --fix --quiet '**/*.scss'",
 		"test": "jest --verbose --runInBand",
 		"test:watch": "jest --watchAll --runInBand",
-		"postinstall": "husky install"
+		"postinstall": "husky install",
+		"prepack": "pinst --disable",
+		"postpack": "pinst --enable"
 	},
 	"devDependencies": {
 		"@jest/types": "29.1.2",
@@ -60,6 +62,7 @@
 		"husky": "8.0.1",
 		"jest": "29.1.2",
 		"jest-environment-jsdom": "29.1.2",
+		"pinst": "3.0.0",
 		"postcss": "8.4.17",
 		"postcss-scss": "4.0.5",
 		"prettier": "2.7.1",

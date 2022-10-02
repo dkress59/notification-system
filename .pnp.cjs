@@ -66,6 +66,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["jest", "virtual:a5f75faba1be90512d375908f9326deb7a710425f1e1047abb34725942470a02a0d106d2ebec9f4948a14f307c820dd38d2d1a71bcbf4b1ff913f5cadaf3eb58#npm:29.1.2"],\
             ["jest-environment-jsdom", "npm:29.1.2"],\
+            ["pinst", "npm:3.0.0"],\
             ["postcss", "npm:8.4.17"],\
             ["postcss-scss", "virtual:a5f75faba1be90512d375908f9326deb7a710425f1e1047abb34725942470a02a0d106d2ebec9f4948a14f307c820dd38d2d1a71bcbf4b1ff913f5cadaf3eb58#npm:4.0.5"],\
             ["prettier", "npm:2.7.1"],\
@@ -8171,6 +8172,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["jest", "virtual:a5f75faba1be90512d375908f9326deb7a710425f1e1047abb34725942470a02a0d106d2ebec9f4948a14f307c820dd38d2d1a71bcbf4b1ff913f5cadaf3eb58#npm:29.1.2"],\
             ["jest-environment-jsdom", "npm:29.1.2"],\
+            ["pinst", "npm:3.0.0"],\
             ["postcss", "npm:8.4.17"],\
             ["postcss-scss", "virtual:a5f75faba1be90512d375908f9326deb7a710425f1e1047abb34725942470a02a0d106d2ebec9f4948a14f307c820dd38d2d1a71bcbf4b1ff913f5cadaf3eb58#npm:4.0.5"],\
             ["prettier", "npm:2.7.1"],\
@@ -8810,6 +8812,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["pinkie-promise", "npm:2.0.1"],\
             ["pinkie", "npm:2.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["pinst", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/pinst-npm-3.0.0-5d2b6c1dda-4ae48a6a60.zip/node_modules/pinst/",\
+          "packageDependencies": [\
+            ["pinst", "npm:3.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
