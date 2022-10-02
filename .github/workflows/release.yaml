@@ -22,7 +22,7 @@ jobs:
       - run: yarn bundle
       - run: yarn build
       - name: Prepare "dist" folder
-        run: cp package.json LICENSE README.md dist
+        run: mv package.json LICENSE README.md dist
       - name: 'Publish to NPM'
         run: npm publish ./dist
         env:
