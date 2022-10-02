@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - '*'
+    branches: [ web-components ]
 
 jobs:
   build:
@@ -18,7 +19,8 @@ jobs:
       - run: yarn npm audit
       - run: yarn check:script
       - run: yarn test
-      - run: yarn build --mode production
+      - run: yarn bundle
+      - run: yarn build
       - name: 'Publish to NPM'
         run: npm publish
         env:
