@@ -21,9 +21,9 @@ jobs:
       #- run: yarn test
       - run: yarn bundle
       - run: yarn build
-      - name: Prepare "dist" folder
-        run: mv package.json yarn.lock LICENSE README.md dist
+      - name: Prepare distribution
+        run: mv dist/* .
       - name: 'Publish to NPM'
-        run: npm publish ./dist
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

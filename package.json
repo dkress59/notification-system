@@ -2,6 +2,13 @@
 	"name": "multi-notification-system",
 	"version": "0.0.1-alpha5",
 	"description": "Notification System Web Components",
+	"files": [
+		"./core",
+		"./react",
+		"./core-bundle.js",
+		"./src/core",
+		"./src/react"
+	],
 	"main": "./core/index.js",
 	"scripts": {
 		"bundle": "webpack -c ./src/webpack.config.core.ts --mode production",
