@@ -12,7 +12,7 @@
 	"main": "./core/index.js",
 	"scripts": {
 		"bundle": "webpack -c ./src/webpack.config.core.ts --mode production",
-		"build": "webpack -c ./src/webpack.config.react.ts --mode production",
+		"build": "tsc --project tsconfig.build.json --outDir ./dist",
 		"start": "webpack serve -c ./src/webpack.config.core.ts",
 		"start:react": "webpack serve -c ./src/webpack.config.react.ts",
 		"check:script": "eslint --fix-dry-run .",

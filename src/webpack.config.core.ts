@@ -42,12 +42,12 @@ export default function webpackConfig(
 		module: {
 			rules: [
 				{
-					test: /\.s?css$/i,
+					test: /\.s?css?$/i,
 					use: ['css-loader', 'sass-loader'],
 					exclude: /node_modules/,
 				},
 				{
-					test: /\.(t|j)s$/i,
+					test: /\.(t|j)s?$/i,
 					use: 'ts-loader',
 					exclude: /node_modules/,
 				},
@@ -55,7 +55,7 @@ export default function webpackConfig(
 		},
 
 		resolve: {
-			extensions: ['.ts'],
+			extensions: ['.ts', '.js'],
 		},
 
 		output: isBuild
