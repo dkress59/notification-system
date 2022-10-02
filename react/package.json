@@ -1,0 +1,6 @@
+{
+	"name": "multi-notification-system/react",
+	"private": true,
+	"main": "../dist/react/index.js",
+	"types": "../src/react/types.ts"
+}
