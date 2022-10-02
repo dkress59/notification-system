@@ -1,18 +1,8 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha4",
+	"version": "0.0.1-alpha5",
 	"description": "Notification System Web Components",
-	"files": [
-		"./dist",
-		"./src/core",
-		"./src/react"
-	],
-	"main": "./dist/core/index.js",
-	"exports": {
-		".": "./dist/core/index.js",
-		"./react": "./dist/react/index.js",
-		"./bundle": "./dist/core-bundle.js"
-	},
+	"main": "./core/index.js",
 	"scripts": {
 		"bundle": "webpack -c ./src/webpack.config.core.ts --mode production",
 		"build": "tsc --project tsconfig.build.json --outDir ./dist",
