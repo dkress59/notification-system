@@ -40,10 +40,15 @@ export default function webpackConfig(
 
 		devtool: isProduction ? false : 'inline-source-map',
 
-		entry: [
-			path.resolve(__dirname, 'react', 'index.ts'),
-			path.resolve(__dirname, 'react', 'demo-app.tsx'),
-		],
+		entry: !isBuild
+			? [
+					path.resolve(__dirname, 'react', 'index.ts'),
+					path.resolve(__dirname, 'react', 'demo-app.tsx'),
+			  ]
+			: {
+					core: path.resolve(__dirname, 'core', 'index.ts'),
+					react: path.resolve(__dirname, 'react', 'index.ts'),
+			  },
 
 		mode: isProduction ? 'production' : 'development',
 
@@ -56,7 +61,14 @@ export default function webpackConfig(
 				},
 				{
 					test: /\.(t|j)sx?$/i,
-					use: 'ts-loader',
+					use: [
+						{
+							loader: 'ts-loader',
+							options: {
+								configFile: 'tsconfig.build.json',
+							},
+						},
+					],
 					exclude: /node_modules/,
 				},
 			],
@@ -80,20 +92,22 @@ export default function webpackConfig(
 
 		output: isBuild
 			? {
-					path: path.resolve(__dirname, '..', 'dist', 'react'),
-					filename: 'static/[name].[contenthash].js',
+					path: path.resolve(__dirname, '..', 'dist'),
+					//filename: 'static/[name].[contenthash].js',
 			  }
 			: undefined,
 
-		plugins: [
-			new HtmlWebpackPlugin({
-				favicon: false,
-				filename: isBuild ? 'demo.html' : 'index.html',
-				inject: true,
-				minify: false,
-				template: path.resolve(__dirname, 'react', 'demo.html'),
-				xhtml: true,
-			}),
-		],
+		plugins: !isBuild
+			? [
+					new HtmlWebpackPlugin({
+						favicon: false,
+						filename: 'index.html',
+						inject: true,
+						minify: false,
+						template: path.resolve(__dirname, 'react', 'demo.html'),
+						xhtml: true,
+					}),
+			  ]
+			: [],
 	}
 }
