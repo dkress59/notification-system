@@ -16,11 +16,13 @@ jobs:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
       - run: yarn
-      - run: yarn npm audit
-      - run: yarn check:script
-      - run: yarn test
+      #- run: yarn npm audit
+      #- run: yarn check:script
+      #- run: yarn test
       - run: yarn bundle
       - run: yarn build
+      - name: Prepare distribution
+        run: mv dist/* .
       - name: 'Publish to NPM'
         run: npm publish
         env:

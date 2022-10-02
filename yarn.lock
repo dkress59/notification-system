@@ -6360,6 +6360,7 @@ __metadata:
     husky: 8.0.1
     jest: 29.1.2
     jest-environment-jsdom: 29.1.2
+    pinst: 3.0.0
     postcss: 8.4.17
     postcss-scss: 4.0.5
     prettier: 2.7.1
@@ -6367,6 +6368,7 @@ __metadata:
     react-dom: 18.2.0
     sass: 1.55.0
     sass-loader: 13.0.2
+    style-loader: 3.3.1
     stylelint: 14.13.0
     stylelint-config-prettier-scss: 0.0.1
     stylelint-config-recess-order: 3.0.0
@@ -6929,6 +6931,15 @@ __metadata:
   version: 2.0.4
   resolution: "pinkie@npm:2.0.4"
   checksum: b12b10afea1177595aab036fc220785488f67b4b0fc49e7a27979472592e971614fa1c728e63ad3e7eb748b4ec3c3dbd780819331dad6f7d635c77c10537b9db
+  languageName: node
+  linkType: hard
+
+"pinst@npm:3.0.0":
+  version: 3.0.0
+  resolution: "pinst@npm:3.0.0"
+  bin:
+    pinst: bin.js
+  checksum: 4ae48a6a60f79c37071233af51b4d91bfc85cfa3c12b66ccda60cdb642b4d14a4ab0cb3587afc55b1f6192cea1772a5e4822026a0d0d3528296edef00cc2d61f
   languageName: node
   linkType: hard
 
@@ -8180,6 +8191,15 @@ __metadata:
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 492f73e27268f9b1c122733f28ecb0e7e8d8a531a6662efbd08e22cccb3f9475e90a1b82cab06a392f6afae6d2de636f977e231296400d0ec5304ba70f166443
+  languageName: node
+  linkType: hard
+
+"style-loader@npm:3.3.1":
+  version: 3.3.1
+  resolution: "style-loader@npm:3.3.1"
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: 470feef680f59e2fce4d6601b5c55b88c01ad8d1dd693c528ffd591ff5fd7c01a4eff3bdbe62f26f847d6bd2430c9ab594be23307cfe7a3446ab236683f0d066
   languageName: node
   linkType: hard
 
