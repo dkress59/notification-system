@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
 		"declaration": true,
-		// "emitDeclarationOnly": true,
+		"emitDeclarationOnly": true,
 		"esModuleInterop": false,
-		"rootDir": "src"
+		"rootDir": "src",
+		"outFile": "./dist/index.js"
 	},
 	"extends": "./tsconfig.json",
 	"include": ["src/core", "src/react"]

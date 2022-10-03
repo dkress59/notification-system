@@ -1,6 +1,6 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha14",
+	"version": "0.0.1-alpha15",
 	"description": "Notification System Web Components",
 	"files": [
 		"./core",
