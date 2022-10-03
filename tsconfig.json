@@ -21,6 +21,6 @@
 		"tests",
 		".eslintrc.js",
 		"jest.config.ts",
-		"webpack.config.ts"
+		"**/webpack.config*.ts"
 	]
 }

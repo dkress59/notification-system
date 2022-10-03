@@ -1,6 +1,6 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha9",
+	"version": "0.0.1-alpha11",
 	"description": "Notification System Web Components",
 	"files": [
 		"./core",
@@ -11,10 +11,11 @@
 	],
 	"main": "./core/index.js",
 	"scripts": {
-		"bundle": "webpack -c ./src/webpack.config.core.ts --mode production",
-		"build": "webpack -c ./src/webpack.config.react.ts --mode production",
-		"start": "webpack serve -c ./src/webpack.config.core.ts",
-		"start:react": "webpack serve -c ./src/webpack.config.react.ts",
+		"bundle": "webpack -c ./src/webpack.config.bundle.ts --mode production",
+		"build": "webpack -c ./src/webpack.config.build.ts --mode production",
+		"build:dts": "tsc --project tsconfig.build.json",
+		"start": "webpack serve -c ./src/webpack.config.bundle.ts",
+		"start:react": "webpack serve -c ./src/webpack.config.build.ts",
 		"check:script": "eslint --fix-dry-run .",
 		"check:style": "stylelint '**/*.scss'",
 		"fix:script": "eslint --fix .",

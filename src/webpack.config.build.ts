@@ -46,8 +46,76 @@ export default function webpackConfig(
 					path.resolve(__dirname, 'react', 'demo-app.tsx'),
 			  ]
 			: {
-					'core/index': path.resolve(__dirname, 'core/index.ts'),
-					'react/index': path.resolve(__dirname, 'react/index.ts'),
+					'core/components/banner-area/banner-area': path.resolve(
+						__dirname,
+						'core',
+						'components',
+						'banner-area',
+						'banner-area.ts',
+					),
+					'core/components/banner-notification/banner-notification':
+						path.resolve(
+							__dirname,
+							'core',
+							'components',
+							'banner-notification',
+							'banner-notification.ts',
+						),
+					'core/components/modal-notification/modal-notification':
+						path.resolve(
+							__dirname,
+							'core',
+							'components',
+							'modal-notification',
+							'modal-notification.ts',
+						),
+					'core/components/notification-area/notification-area':
+						path.resolve(
+							__dirname,
+							'core',
+							'components',
+							'notification-area',
+							'notification-area.ts',
+						),
+					'core/components/toast-notification/toast-notification':
+						path.resolve(
+							__dirname,
+							'core',
+							'components',
+							'toast-notification',
+							'toast-notification.ts',
+						),
+
+					'react/components/banner-area': path.resolve(
+						__dirname,
+						'react',
+						'components',
+						'banner-area.tsx',
+					),
+					'react/components/banner-notification': path.resolve(
+						__dirname,
+						'react',
+						'components',
+						'banner-notification.tsx',
+					),
+					'react/components/modal-notification': path.resolve(
+						__dirname,
+						'react',
+						'components',
+						'modal-notification.tsx',
+					),
+					'react/components/notification-area': path.resolve(
+						__dirname,
+						'react',
+						'components',
+						'notification-area.tsx',
+					),
+					'react/components/toast-notification': path.resolve(
+						__dirname,
+						'react',
+						'components',
+						'toast-notification.tsx',
+					),
 			  },
 
 		mode: isProduction ? 'production' : 'development',
