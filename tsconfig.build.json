@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"declaration": true,
-		"emitDeclarationOnly": true,
+		// "emitDeclarationOnly": true,
 		"esModuleInterop": false,
 		"rootDir": "src"
 	},

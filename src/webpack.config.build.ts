@@ -86,7 +86,7 @@ export default function webpackConfig(
 							'toast-notification.ts',
 						),
 
-					'react/components/banner-area': path.resolve(
+					/* 'react/components/banner-area': path.resolve(
 						__dirname,
 						'react',
 						'components',
@@ -115,7 +115,7 @@ export default function webpackConfig(
 						'react',
 						'components',
 						'toast-notification.tsx',
-					),
+					), */
 			  },
 
 		mode: isProduction ? 'production' : 'development',
