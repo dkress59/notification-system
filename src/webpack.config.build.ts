@@ -129,7 +129,7 @@ export default function webpackConfig(
 				},
 				{
 					test: /\.(t|j)sx?$/i,
-					use: 'ts-loader',
+					use: isBuild ? 'babel-loader' : 'ts-loader',
 					exclude: /node_modules/,
 				},
 			],
