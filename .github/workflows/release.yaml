@@ -22,8 +22,6 @@ jobs:
       - run: yarn bundle
       - run: yarn build:dts
       - run: yarn build
-      - name: Prepare distribution
-        run: mv dist/* .
       - name: 'Publish to NPM'
         run: npm publish
         env:

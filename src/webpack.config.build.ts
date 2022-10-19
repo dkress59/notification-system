@@ -46,14 +46,8 @@ export default function webpackConfig(
 					path.resolve(__dirname, 'react', 'demo-app.tsx'),
 			  ]
 			: {
-					'core/components/banner-area/banner-area': path.resolve(
-						__dirname,
-						'core',
-						'components',
-						'banner-area',
-						'banner-area.ts',
-					),
-					'core/components/banner-notification/banner-notification':
+					index: path.resolve(__dirname, 'core', 'index.ts'),
+					/** 'core/components/banner-notification/banner-notification':
 						path.resolve(
 							__dirname,
 							'core',
@@ -84,9 +78,10 @@ export default function webpackConfig(
 							'components',
 							'toast-notification',
 							'toast-notification.ts',
-						),
+						), */
 
-					'react/components/banner-area': path.resolve(
+					react: path.resolve(__dirname, 'react', 'index.ts'),
+					/* 'react/components/banner-area': path.resolve(
 						__dirname,
 						'react',
 						'components',
@@ -115,7 +110,7 @@ export default function webpackConfig(
 						'react',
 						'components',
 						'toast-notification.tsx',
-					),
+					), */
 			  },
 
 		mode: isProduction ? 'production' : 'development',
@@ -129,7 +124,16 @@ export default function webpackConfig(
 				},
 				{
 					test: /\.(t|j)sx?$/i,
-					use: isBuild ? 'babel-loader' : 'ts-loader',
+					use: {
+						loader: 'ts-loader',
+						/* options: {
+							configFile: path.resolve(
+								__dirname,
+								'..',
+								'tsconfig.build.json',
+							),
+						}, */
+					},
 					exclude: /node_modules/,
 				},
 			],
@@ -139,7 +143,7 @@ export default function webpackConfig(
 			extensions: ['.tsx', '.ts', '.js'],
 		},
 
-		optimization: {
+		/* optimization: {
 			splitChunks: {
 				cacheGroups: {
 					commons: {
@@ -149,7 +153,7 @@ export default function webpackConfig(
 					},
 				},
 			},
-		},
+		}, */
 
 		output: isBuild
 			? {

@@ -1,19 +1,32 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha15",
+	"version": "0.0.1-alpha16",
 	"description": "Notification System Web Components",
 	"files": [
-		"./core",
-		"./react",
-		"./core-bundle.js",
-		"./src/core",
-		"./src/react"
+		"./dist"
 	],
-	"main": "./core/index.js",
+	"main": "./dist/index.js",
+	"typings": "dist/index",
+	"browserslist": [
+		"last 2 chrome versions",
+		"last 2 safari versions",
+		"last 2 firefox versions",
+		"ie >= 11",
+		"last 2 edge versions",
+		"> 0.5%"
+	],
+	"lint-staged": {
+		"*.{scss,css}": [
+			"yarn stylelint --fix --quiet"
+		],
+		"*.{json,js,jsx,ts,tsx}": [
+			"yarn prettier --write"
+		]
+	},
 	"scripts": {
 		"bundle": "webpack -c ./src/webpack.config.bundle.ts --mode production",
 		"build": "webpack -c ./src/webpack.config.build.ts --mode production",
-		"build:dts": "tsc --project tsconfig.build.json",
+		"build:dts": "tsc --project tsconfig.react.json && tsc --project tsconfig.core.json",
 		"start": "webpack serve -c ./src/webpack.config.bundle.ts",
 		"start:react": "webpack serve -c ./src/webpack.config.build.ts",
 		"check:script": "eslint --fix-dry-run .",
@@ -26,6 +39,8 @@
 		"prepack": "yarn pinst --disable",
 		"postpack": "yarn pinst --enable"
 	},
+	"license": "MIT",
+	"packageManager": "yarn@3.2.3",
 	"devDependencies": {
 		"@babel/core": "7.19.3",
 		"@babel/preset-env": "7.19.3",
@@ -93,23 +108,5 @@
 		"webpack": "5.74.0",
 		"webpack-cli": "4.10.0",
 		"webpack-dev-server": "4.11.1"
-	},
-	"license": "MIT",
-	"lint-staged": {
-		"*.{scss,css}": [
-			"yarn stylelint --fix --quiet"
-		],
-		"*.{json,js,jsx,ts,tsx}": [
-			"yarn prettier --write"
-		]
-	},
-	"browserslist": [
-		"last 2 chrome versions",
-		"last 2 safari versions",
-		"last 2 firefox versions",
-		"ie >= 11",
-		"last 2 edge versions",
-		"> 0.5%"
-	],
-	"packageManager": "yarn@3.2.3"
+	}
 }

@@ -62,7 +62,7 @@ export default function webpackConfig(
 			? {
 					path: path.resolve(__dirname, '..', 'dist'),
 					publicPath: '',
-					filename: 'core-bundle.js',
+					filename: 'bundle.js',
 			  }
 			: undefined,
 
