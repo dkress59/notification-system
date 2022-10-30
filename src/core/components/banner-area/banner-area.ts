@@ -4,8 +4,6 @@ import { HTMLBannerNotificationElement } from '../banner-notification/banner-not
 import css from './banner-area.scss'
 
 export class HTMLBannerAreaElement extends HTMLElement {
-	public shadowRoot: ShadowRoot
-
 	private banners: HTMLBannerNotificationElement[] = []
 
 	constructor() {
@@ -50,11 +48,11 @@ export class HTMLBannerAreaElement extends HTMLElement {
 	}
 
 	_render(): void {
-		this.shadowRoot.innerHTML = ''
+		if (this.shadowRoot) this.shadowRoot.innerHTML = ''
 
-		this.shadowRoot.appendChild(this._getStyle())
-		this.shadowRoot.appendChild(document.createElement('slot'))
-		this.banners.forEach(banner => this.shadowRoot.appendChild(banner))
+		this.shadowRoot?.appendChild(this._getStyle())
+		this.shadowRoot?.appendChild(document.createElement('slot'))
+		this.banners.forEach(banner => this.shadowRoot?.appendChild(banner))
 	}
 }
 

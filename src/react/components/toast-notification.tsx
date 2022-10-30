@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 
 import { HTMLToastNotificationElement } from '../../core/components'
 import { NotificationEvent } from '../../core/types'
-
 import { ToastNotificationProps } from '../types'
 import { getCurrentRef } from '../util'
 
@@ -13,14 +12,14 @@ export function ToastNotification({
 	headline,
 	onDismiss,
 	type,
-	ref,
+	forwardRef,
 }: ToastNotificationProps) {
 	const internalRef = useRef<null | HTMLToastNotificationElement>(null)
 
 	useEffect(() => {
 		const currentRef = getCurrentRef<HTMLToastNotificationElement>({
 			internalRef,
-			ref,
+			ref: forwardRef,
 		})!
 
 		const dismissAction = onDismiss ?? (() => null)
@@ -43,7 +42,7 @@ export function ToastNotification({
 			auto-hide={!!autoHide}
 			auto-hide-after-ms={autoHideAfterMs}
 			headline={headline}
-			ref={ref ?? internalRef}
+			ref={forwardRef ?? internalRef}
 			type={type}
 		>
 			{children}

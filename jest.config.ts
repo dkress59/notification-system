@@ -1,4 +1,4 @@
-import { InitialOptionsTsJest, pathsToModuleNameMapper } from 'ts-jest'
+import { JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest'
 
 const mappedModuleNames = pathsToModuleNameMapper(
 	{
@@ -10,7 +10,7 @@ const mappedModuleNames = pathsToModuleNameMapper(
 	},
 )
 
-export default (): InitialOptionsTsJest => ({
+export default (): JestConfigWithTsJest => ({
 	cacheDirectory: '.jest/cache',
 	collectCoverage: true,
 	collectCoverageFrom: ['**/src/**/*.(ts|tsx)'],

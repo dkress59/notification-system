@@ -101,7 +101,7 @@ describe('<notification-area />', () => {
 		const modal = screen
 			.getByTestId('notification-area')
 			.shadowRoot!.querySelector('modal-notification')!
-		const confirmButton = modal.shadowRoot.querySelector(
+		const confirmButton = modal.shadowRoot!.querySelector(
 			'footer button.confirm',
 		)!
 		expect(confirmButton).toHaveAttribute('disabled', '')

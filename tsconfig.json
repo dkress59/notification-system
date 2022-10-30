@@ -7,22 +7,16 @@
 		"baseUrl": ".",
 		"esModuleInterop": true,
 		"jsx": "react",
-		"lib": ["dom", "ES5"],
+		"lib": ["dom", "ES2015"],
 		"moduleResolution": "node",
 		"module": "commonjs",
-		"target": "ES5",
+		"target": "ES2015",
+		"noEmit": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"strictNullChecks": true,
 		"outDir": "dist",
 		"types": ["jest", "node"]
 	},
-	"include": [
-		"__mocks__",
-		"src",
-		"tests",
-		".eslintrc.js",
-		"jest.config.ts",
-		"**/webpack.config*.ts"
-	]
+	"include": ["__mocks__", "src", "tests", ".eslintrc.js", "jest.config.ts"]
 }

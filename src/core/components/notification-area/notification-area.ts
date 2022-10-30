@@ -5,8 +5,6 @@ import { HTMLToastNotificationElement } from '../toast-notification/toast-notifi
 import css from './notification-area.scss'
 
 export class HTMLNotificationAreaElement extends HTMLElement {
-	public shadowRoot: ShadowRoot
-
 	private modal?: HTMLModalNotificationElement
 	private toasts: HTMLToastNotificationElement[] = []
 
@@ -78,12 +76,12 @@ export class HTMLNotificationAreaElement extends HTMLElement {
 	}
 
 	_render(): void {
-		this.shadowRoot.innerHTML = ''
+		if (this.shadowRoot) this.shadowRoot.innerHTML = ''
 
-		this.shadowRoot.appendChild(this._getStyle())
-		this.shadowRoot.appendChild(document.createElement('slot'))
-		this.toasts.forEach(toast => this.shadowRoot.appendChild(toast))
-		if (this.modal) this.shadowRoot.appendChild(this.modal)
+		this.shadowRoot?.appendChild(this._getStyle())
+		this.shadowRoot?.appendChild(document.createElement('slot'))
+		this.toasts.forEach(toast => this.shadowRoot?.appendChild(toast))
+		if (this.modal) this.shadowRoot?.appendChild(this.modal)
 	}
 }
 

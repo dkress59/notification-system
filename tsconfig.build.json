@@ -1,10 +1,12 @@
 {
 	"compilerOptions": {
+		"isolatedModules": false,
 		"declaration": true,
 		//"emitDeclarationOnly": true,
 		"esModuleInterop": false,
-		"rootDir": "src"
-		//"outFile": "./dist/index.js"
+		"rootDir": "src",
+		"module": "AMD",
+		"noEmit": true
 	},
 	"extends": "./tsconfig.json",
 	"include": ["src/core", "src/react"]

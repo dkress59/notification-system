@@ -9,8 +9,6 @@ import {
 import css from './modal-notification.scss'
 
 export class HTMLModalNotificationElement extends HTMLElement {
-	public shadowRoot: ShadowRoot
-
 	/**
 	 * If provided, the modal will be rendered with a headline
 	 * which is styled slightly more prominent than the body text.
@@ -185,17 +183,17 @@ export class HTMLModalNotificationElement extends HTMLElement {
 			(this.getAttribute('type') as NotificationType | null) ??
 			NotificationType.SUCCESS
 
-		this.shadowRoot.innerHTML = ''
-		this.shadowRoot.appendChild(this._getStyle())
+		if (this.shadowRoot) this.shadowRoot.innerHTML = ''
+		this.shadowRoot?.appendChild(this._getStyle())
 		if (this._getHeadline())
-			this.shadowRoot.appendChild(this._getHeadline()!)
-		this.shadowRoot.appendChild(this._getIcon())
+			this.shadowRoot?.appendChild(this._getHeadline()!)
+		this.shadowRoot?.appendChild(this._getIcon())
 		const slotSection = document.createElement('section')
 		slotSection.appendChild(document.createElement('slot'))
-		this.shadowRoot.appendChild(slotSection)
-		this.shadowRoot.appendChild(this._getButton())
+		this.shadowRoot?.appendChild(slotSection)
+		this.shadowRoot?.appendChild(this._getButton())
 		if (this.showConfirm || this.showDecline)
-			this.shadowRoot.appendChild(this._getFooter())
+			this.shadowRoot?.appendChild(this._getFooter())
 	}
 }
 

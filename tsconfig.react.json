@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"jsx": "react",
+		//"rootDir": "src/react",
+		"noEmit": false,
+		"outFile": "./dist/react/index.js"
+	},
+	"extends": "./tsconfig.build.json"
+	//"include": ["src/react",]
+}

@@ -12,14 +12,14 @@ export function BannerNotification({
 	headline,
 	onDismiss,
 	type,
-	ref,
+	forwardRef,
 }: BannerNotificationProps) {
 	const internalRef = useRef<null | HTMLBannerNotificationElement>(null)
 
 	useEffect(() => {
 		const currentRef = getCurrentRef<HTMLBannerNotificationElement>({
 			internalRef,
-			ref,
+			ref: forwardRef,
 		})!
 
 		const dismissAction = onDismiss ?? (() => null)
@@ -42,7 +42,7 @@ export function BannerNotification({
 			auto-hide={!!autoHide}
 			auto-hide-after-ms={autoHideAfterMs}
 			headline={headline}
-			ref={ref ?? internalRef}
+			ref={forwardRef ?? internalRef}
 			type={type}
 		>
 			{children}

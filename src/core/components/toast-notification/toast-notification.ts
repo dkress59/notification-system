@@ -9,7 +9,6 @@ import {
 import css from './toast-notification.scss'
 
 export class HTMLToastNotificationElement extends HTMLElement {
-	public shadowRoot: ShadowRoot
 	public element: this
 
 	/**
@@ -129,16 +128,16 @@ export class HTMLToastNotificationElement extends HTMLElement {
 		const headline = this.element.getAttribute('headline')
 		if (headline) this.element.headline = headline
 
-		this.element.shadowRoot.innerHTML = ''
-		this.element.shadowRoot.appendChild(this.element._getStyle())
+		if (this.element.shadowRoot) this.element.shadowRoot.innerHTML = ''
+		this.element.shadowRoot?.appendChild(this.element._getStyle())
 		if (this.element._getHeadline())
-			this.element.shadowRoot.appendChild(this.element._getHeadline()!)
-		this.element.shadowRoot.appendChild(this.element._getIcon())
+			this.element.shadowRoot?.appendChild(this.element._getHeadline()!)
+		this.element.shadowRoot?.appendChild(this.element._getIcon())
 		const slotSection = document.createElement('section')
 		slotSection.appendChild(document.createElement('slot'))
-		this.element.shadowRoot.appendChild(slotSection)
+		this.element.shadowRoot?.appendChild(slotSection)
 		if (this.element._getButton())
-			this.element.shadowRoot.appendChild(this.element._getButton()!)
+			this.element.shadowRoot?.appendChild(this.element._getButton()!)
 	}
 }
 

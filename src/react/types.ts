@@ -17,24 +17,24 @@ import {
 } from '../core/types'
 
 export type BannerAreaProps = PropsWithChildren & {
-	ref?: MutableRefObject<null | HTMLBannerAreaElement>
+	forwardRef?: MutableRefObject<null | HTMLBannerAreaElement>
 }
 
 export type NotificationAreaProps = PropsWithChildren & {
-	ref?: MutableRefObject<null | HTMLNotificationAreaElement>
+	forwardRef?: MutableRefObject<null | HTMLNotificationAreaElement>
 }
 
 export interface BannerNotificationProps
 	extends PropsWithChildren,
 		Omit<SpawnBannerArgs, 'content'> {
 	onDismiss?: () => void
-	ref?: MutableRefObject<null | HTMLBannerNotificationElement>
+	forwardRef?: MutableRefObject<null | HTMLBannerNotificationElement>
 }
 
 export type ToastNotificationProps = PropsWithChildren<
 	Omit<SpawnToastArgs, 'content'> & {
 		onDismiss?: () => void
-		ref?: MutableRefObject<null | HTMLToastNotificationElement>
+		forwardRef?: MutableRefObject<null | HTMLToastNotificationElement>
 	}
 >
 
@@ -44,7 +44,7 @@ export interface ModalNotificationProps
 	onConfirm?: () => void
 	onDecline?: () => void
 	onDismiss?: () => void
-	ref?: MutableRefObject<null | HTMLModalNotificationElement>
+	forwardRef?: MutableRefObject<null | HTMLModalNotificationElement>
 }
 
 type HtmlElementToReactNode<T = unknown> = HTMLAttributes<T> &

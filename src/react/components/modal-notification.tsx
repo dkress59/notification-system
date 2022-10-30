@@ -17,12 +17,12 @@ export function ModalNotification({
 	showConfirm,
 	showDecline,
 	type,
-	ref,
+	forwardRef,
 }: ModalNotificationProps) {
 	const internalRef = useRef<null | HTMLModalNotificationElement>(null)
 
 	useEffect(() => {
-		const currentRef = getCurrentRef({ internalRef, ref })!
+		const currentRef = getCurrentRef({ internalRef, ref: forwardRef })!
 
 		const confirmAction = onConfirm ?? (() => null)
 		const declineAction = onDecline ?? (() => null)
@@ -63,7 +63,7 @@ export function ModalNotification({
 			headline={headline}
 			label-confirm={labelConfirm}
 			label-decline={labelDecline}
-			ref={ref ?? internalRef}
+			ref={forwardRef ?? internalRef}
 			show-confirm={showConfirm ?? !!labelConfirm}
 			show-decline={showDecline ?? !!labelDecline}
 			type={type}

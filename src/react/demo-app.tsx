@@ -34,7 +34,7 @@ function DemoApp() {
 			<BannerArea>
 				<BannerNotification
 					headline="some headline"
-					ref={bannerRef}
+					forwardRef={bannerRef}
 					type={NotificationType.ERROR}
 				>
 					demo content
@@ -50,7 +50,7 @@ function DemoApp() {
 				)}
 			</BannerArea>
 			{forceReRender && <>Re-Rendered</>}
-			<NotificationArea ref={notificationAreaRef}>
+			<NotificationArea forwardRef={notificationAreaRef}>
 				<ToastNotification
 					headline="Info Toast"
 					type={NotificationType.INFO}
@@ -67,7 +67,7 @@ function DemoApp() {
 					condition={true}
 					labelConfirm="Accept"
 					onConfirm={() => alert('modal confirmed!')}
-					ref={modalRef}
+					forwardRef={modalRef}
 				>
 					Modal content
 				</ModalNotification>
