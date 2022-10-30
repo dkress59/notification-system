@@ -1,6 +1,6 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha17",
+	"version": "0.0.1-alpha18",
 	"description": "Notification System Web Components",
 	"lint-staged": {
 		"*.{scss,css}": [
@@ -12,7 +12,7 @@
 	},
 	"type": "module",
 	"files": [
-		"dist/core"
+		"dist"
 	],
 	"main": "./dist/core/index.umd.cjs",
 	"module": "./dist/core/index.js",
