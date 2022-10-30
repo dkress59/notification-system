@@ -41,7 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__preset-env", "npm:7.9.2"],\
             ["@types/eslint", "npm:8.4.9"],\
             ["@types/jest", "npm:29.2.0"],\
-            ["@types/node", "npm:18.11.7"],\
+            ["@types/node", "npm:18.11.8"],\
             ["@types/prettier", "npm:2.7.1"],\
             ["@types/react", "npm:18.0.24"],\
             ["@types/react-dom", "npm:18.0.8"],\
@@ -3665,6 +3665,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-18.11.7-0cf2ce3a09-69d630825c.zip/node_modules/@types/node/",\
           "packageDependencies": [\
             ["@types/node", "npm:18.11.7"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:18.11.8", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.11.8-5b4d1461bd-60b358f97c.zip/node_modules/@types/node/",\
+          "packageDependencies": [\
+            ["@types/node", "npm:18.11.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -8912,7 +8919,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/babel__preset-env", "npm:7.9.2"],\
             ["@types/eslint", "npm:8.4.9"],\
             ["@types/jest", "npm:29.2.0"],\
-            ["@types/node", "npm:18.11.7"],\
+            ["@types/node", "npm:18.11.8"],\
             ["@types/prettier", "npm:2.7.1"],\
             ["@types/react", "npm:18.0.24"],\
             ["@types/react-dom", "npm:18.0.8"],\
@@ -11128,7 +11135,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@tsconfig/node12", "npm:1.0.11"],\
             ["@tsconfig/node14", "npm:1.0.3"],\
             ["@tsconfig/node16", "npm:1.0.3"],\
-            ["@types/node", "npm:18.11.7"],\
+            ["@types/node", "npm:18.11.8"],\
             ["@types/swc__core", null],\
             ["@types/swc__wasm", null],\
             ["@types/typescript", null],\
