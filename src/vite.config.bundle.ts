@@ -1,12 +1,12 @@
 import path from 'path'
-import { defineConfig, UserConfigExport } from 'vite'
-import { coreConfig } from './vite.config.core'
+import { defineConfig, UserConfigFn } from 'vite'
+import { getCoreConfig } from './vite.config.core'
 
-const bundleConfig: UserConfigExport = {
-	...coreConfig,
+const bundleConfig: UserConfigFn = args => ({
+	...getCoreConfig(args),
 	build: {
 		// @ts-ignore
-		...coreConfig.build,
+		...getCoreConfig(args).build,
 		lib: {
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'core/index.ts'),
@@ -17,6 +17,6 @@ const bundleConfig: UserConfigExport = {
 		outDir: path.resolve(__dirname, '../dist'),
 		target: 'modules',
 	},
-}
+})
 
 export default defineConfig(bundleConfig)

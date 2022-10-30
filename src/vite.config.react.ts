@@ -1,16 +1,16 @@
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import { defineConfig, UserConfigExport } from 'vite'
-import { coreConfig } from './vite.config.core'
+import { defineConfig, UserConfigFn } from 'vite'
+import { getCoreConfig } from './vite.config.core'
 
 const root = path.resolve(__dirname, 'react')
 
-const reactConfig: UserConfigExport = {
-	...coreConfig,
+const reactConfig: UserConfigFn = args => ({
+	...getCoreConfig(args),
 	root,
 	build: {
 		// @ts-ignore
-		...coreConfig.build,
+		...getCoreConfig(args).build,
 		lib: {
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'react/index.ts'),
@@ -34,6 +34,6 @@ const reactConfig: UserConfigExport = {
 		target: 'es2015',
 	},
 	plugins: [react()],
-}
+})
 
 export default defineConfig(reactConfig)

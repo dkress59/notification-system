@@ -1,13 +1,14 @@
 import path from 'path'
 import fs from 'fs'
-import { defineConfig, UserConfigExport } from 'vite'
+import { defineConfig, UserConfigFn } from 'vite'
 
 const root = path.resolve(__dirname, 'core')
 const dist = path.resolve(__dirname, '..', 'dist')
 const bundle = path.resolve(dist, 'bundle.js')
 
-export const coreConfig: UserConfigExport = {
-	appType: 'custom',
+export const getCoreConfig: UserConfigFn = ({ command }) => ({
+	appType: command === 'build' ? 'custom' : 'spa',
+	cacheDir: path.resolve(__dirname, '..', '.yarn/.vite-cache'),
 	root,
 	publicDir: fs.existsSync(bundle) ? dist : false,
 	server: {
@@ -26,6 +27,6 @@ export const coreConfig: UserConfigExport = {
 		outDir: path.resolve(__dirname, '../dist/core'),
 		target: 'es2015',
 	},
-}
+})
 
-export default defineConfig(coreConfig)
+export default defineConfig(getCoreConfig)
