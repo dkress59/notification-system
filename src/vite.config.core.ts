@@ -7,6 +7,7 @@ const dist = path.resolve(__dirname, '..', 'dist')
 const bundle = path.resolve(dist, 'bundle.js')
 
 export const coreConfig: UserConfigExport = {
+	appType: 'custom',
 	root,
 	publicDir: fs.existsSync(bundle) ? dist : false,
 	server: {

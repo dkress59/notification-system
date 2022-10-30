@@ -9,6 +9,8 @@ const reactConfig: UserConfigExport = {
 	...coreConfig,
 	root,
 	build: {
+		// @ts-ignore
+		...coreConfig.build,
 		lib: {
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'react/index.ts'),

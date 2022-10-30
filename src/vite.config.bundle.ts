@@ -5,6 +5,8 @@ import { coreConfig } from './vite.config.core'
 const bundleConfig: UserConfigExport = {
 	...coreConfig,
 	build: {
+		// @ts-ignore
+		...coreConfig.build,
 		lib: {
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'core/index.ts'),
