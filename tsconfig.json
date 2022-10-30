@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"isolatedModules": true,
+		"skipLibCheck": false,
 		"allowSyntheticDefaultImports": true,
 		"allowUnreachableCode": false,
 		"baseUrl": ".",

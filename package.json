@@ -25,9 +25,9 @@
 	},
 	"scripts": {
 		"bundle": "webpack -c ./src/webpack.config.bundle.ts --mode production",
-		"build": "webpack -c ./src/webpack.config.build.ts --mode production",
+		"build": "yarn vite build --config ./src/vite.config.core.ts ./src/core",
 		"build:dts": "tsc --project tsconfig.react.json && tsc --project tsconfig.core.json",
-		"start": "webpack serve -c ./src/webpack.config.bundle.ts",
+		"start": "yarn vite --config ./src/vite.config.core.ts ./src/core",
 		"start:react": "webpack serve -c ./src/webpack.config.build.ts",
 		"check:script": "eslint --fix-dry-run .",
 		"check:style": "stylelint '**/*.scss'",
@@ -62,6 +62,7 @@
 		"@types/testing-library__jest-dom": "5.14.5",
 		"@typescript-eslint/eslint-plugin": "5.41.0",
 		"@typescript-eslint/parser": "5.41.0",
+		"@vitejs/plugin-react": "^2.2.0",
 		"babel-loader": "8.2.5",
 		"clean-webpack-plugin": "4.0.0",
 		"core-js": "3.26.0",
@@ -105,6 +106,7 @@
 		"ts-loader": "9.4.1",
 		"ts-node": "10.9.1",
 		"typescript": "4.8.4",
+		"vite": "^3.2.1",
 		"webpack": "5.74.0",
 		"webpack-cli": "4.10.0",
 		"webpack-dev-server": "4.11.1"
