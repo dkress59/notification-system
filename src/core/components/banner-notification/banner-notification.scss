@@ -1,0 +1,27 @@
+@import "../../css/global.scss";
+@import "../../css/utils.scss";
+
+:host {
+  @extend %custom-banner;
+
+  position: relative;
+  width: 100%;
+  transform-origin: top;
+}
+
+:host([type="success"]),
+:host(:not([type])) {
+  @extend %custom-banner-type-success;
+}
+
+:host([type="info"]) {
+  @extend %custom-banner-type-info;
+}
+
+:host([type="error"]) {
+  @extend %custom-banner-type-error;
+}
+
+:host([type="warning"]) {
+  @extend %custom-banner-type-warning;
+}

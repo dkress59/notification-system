@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<notification-area /> can spawn a modal-notification (with defaults) 1`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style><slot></slot><modal-notification aria-role="dialog" style="transition: none;" class="hidden">mock_content</modal-notification>"
+`;
+
+exports[`<notification-area /> can spawn a toast-notification (with defaults) 1`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style><slot></slot><toast-notification aria-role="dialog" style="transition: none;" class="hidden">mock_content</toast-notification>"
+`;
+
+exports[`<notification-area /> matches snapshot 1`] = `
+"<style>mock-style {
+	mock-prop: value;
+}</style><slot></slot>"
+`;

@@ -5,6 +5,13 @@ module.exports = {
 		jest: true,
 	},
 	extends: ['@tool-belt/eslint-config'],
+	ignorePatterns: [
+		'**/.eslintrc.js',
+		'**/coverage/*',
+		'**/build/*',
+		'**/dist/*',
+		'**/*.d.ts'
+	],
 	parserOptions: {
 		project: ['./tsconfig.json'],
 	},
@@ -20,12 +27,8 @@ module.exports = {
 		},
 	},
 	rules: {
-		'@typescript-eslint/no-empty-function': 'off',
 		'curly': 'off',
-		'jam3/no-sanitizer-with-danger': 2,
 		'unused-imports/no-unused-imports': 'error',
-		'eslint-comments/disable-enable-pair': 'off',
-		'jsx-a11y/no-noninteractive-element-interactions': 1,
-		'jsx-a11y/no-noninteractive-element-to-interactive-role': 1,
+		'unused-imports/no-unused-vars': 'error',
 	},
 }

@@ -1,0 +1,38 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - '*'
+    branches: [ web-components ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn
+      - run: yarn npm audit
+      - name: Build Core, React Wrapper & Bundle
+        run: yarn build:prod
+      - name: Prepare Release
+        run: |
+          mv \
+            dist/core/index.js \
+            dist/core/index.umd.cjs \
+            dist/core/index.d.ts \
+            ./
+          mkdir react
+          mv \
+            dist/react/index.js \
+            dist/react/index.umd.cjs \
+            dist/react/index.d.ts \
+            ./react/
+      - name: 'Publish to NPM'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

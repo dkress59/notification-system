@@ -1,6 +1,6 @@
 # Yarn
-.pnp.*
 .yarn/*
+#!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
@@ -13,5 +13,6 @@ coverage
 
 # Misc
 .DS_Store
-build
-node_modules
+dist/
+node_modules/
+

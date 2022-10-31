@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"rootDir": "src/core",
+		"noEmit": false,
+		"outDir": "./dist/core"
+		//"outFile": "./dist/core/index.js"
+	},
+	"extends": "./tsconfig.build.json",
+	"include": ["src/core"]
+}
