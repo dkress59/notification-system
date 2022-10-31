@@ -26,11 +26,12 @@ jobs:
             dist/core/index.umd.cjs \
             dist/core/index.d.ts \
             ./
+          mkdir react
           mv \
             dist/react/index.js \
             dist/react/index.umd.cjs \
             dist/react/index.d.ts \
-            ./react
+            ./react/
       - name: 'Publish to NPM'
         run: npm publish
         env:
