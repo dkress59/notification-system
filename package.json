@@ -1,6 +1,6 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha18",
+	"version": "0.0.1-alpha19",
 	"description": "Notification System Web Components",
 	"lint-staged": {
 		"*.{scss,css}": [
@@ -12,22 +12,30 @@
 	},
 	"type": "module",
 	"files": [
-		"dist"
+		"dist",
+		"./index.umd.cjs",
+		"./index.js",
+		"./index.js",
+		"./index.umd.cjs",
+		"./bundle.js",
+		"./bundle.umd.cjs",
+		"./react/index.js",
+		"./react/index.umd.cjs"
 	],
-	"main": "./dist/core/index.umd.cjs",
-	"module": "./dist/core/index.js",
+	"main": "./index.umd.cjs",
+	"module": "./index.js",
 	"exports": {
 		".": {
-			"import": "./dist/core/index.js",
-			"require": "./dist/core/index.umd.cjs"
+			"import": "./index.js",
+			"require": "./index.umd.cjs"
 		},
 		"./bundle": {
-			"import": "./dist/bundle.js",
-			"require": "./dist/bundle.umd.cjs"
+			"import": "./bundle.js",
+			"require": "./bundle.umd.cjs"
 		},
-		"./dist/react": {
-			"import": "./dist/react/index.js",
-			"require": "./dist/react/index.umd.cjs"
+		"./react": {
+			"import": "./react/index.js",
+			"require": "./react/index.umd.cjs"
 		}
 	},
 	"scripts": {
@@ -110,6 +118,7 @@
 		"ts-loader": "9.4.1",
 		"ts-node": "10.9.1",
 		"typescript": "4.8.4",
-		"vite": "3.2.1"
+		"vite": "3.2.1",
+		"vite-plugin-css-injected-by-js": "^2.1.1"
 	}
 }
