@@ -25,16 +25,17 @@
 			"import": "./dist/bundle.js",
 			"require": "./dist/bundle.umd.cjs"
 		},
-		"./react": {
+		"./dist/react": {
 			"import": "./dist/react/index.js",
 			"require": "./dist/react/index.umd.cjs"
 		}
 	},
 	"scripts": {
-		"build": "tsc && yarn vite build --emptyOutDir --config ./src/vite.config.core.ts ./src/core && tsc --project tsconfig.core.json",
-		"build:react": "tsc && yarn vite build --emptyOutDir --config ./src/vite.config.react.ts ./src/core && tsc --project tsconfig.react.json",
-		"bundle": "tsc && yarn vite build --emptyOutDir --config ./src/vite.config.bundle.ts ./src/core",
-		"build:prod": "yarn bundle && yarn build && yarn build:react",
+		"build:core": "yarn vite build --emptyOutDir --config ./src/vite.config.core.ts ./src/core && tsc --project tsconfig.core.json",
+		"build:react": "yarn vite build --emptyOutDir --config ./src/vite.config.react.ts ./src/react && tsc --project tsconfig.react.json",
+		"build:prod": "tsc && yarn bundle && yarn build:core && yarn build:react && yarn bundle:dts",
+		"bundle": "yarn vite build --emptyOutDir --config ./src/vite.config.bundle.ts ./src/core",
+		"bundle:dts": "yarn dlx dts-bundle --main dist/core/index.d.ts --name multi-notification-system --out index.d.ts && yarn dlx dts-bundle --main dist/react/react/index.d.ts --name multi-notification-system/react --out ../index.d.ts",
 		"dev": "yarn vite --config ./src/vite.config.core.ts ./src/core",
 		"dev:react": "yarn vite --config ./src/vite.config.react.ts ./src/react",
 		"check:script": "eslint --fix-dry-run .",

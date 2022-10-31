@@ -15,7 +15,6 @@ const reactConfig: UserConfigFn = args => ({
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'react/index.ts'),
 			name: 'multi-notification-system/react',
-			// the proper extensions will be added
 			fileName: 'index',
 		},
 		rollupOptions: {
@@ -31,7 +30,6 @@ const reactConfig: UserConfigFn = args => ({
 			},
 		},
 		outDir: path.resolve(__dirname, '../dist/react'),
-		target: 'es2015',
 	},
 	plugins: [react()],
 })

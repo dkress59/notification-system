@@ -1,10 +1,12 @@
 {
 	"compilerOptions": {
+		"isolatedModules": false,
 		"jsx": "react",
 		//"rootDir": "src/react",
 		"noEmit": false,
-		"outFile": "./dist/react/index.js"
+		"outDir": "./dist/react"
+		//"outFile": "./dist/react/index.js"
 	},
 	"extends": "./tsconfig.build.json"
-	//"include": ["src/react",]
+	//"include": ["src/react"]
 }

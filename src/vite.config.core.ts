@@ -17,15 +17,14 @@ export const getCoreConfig: UserConfigFn = ({ command }) => ({
 	build: {
 		cssCodeSplit: false,
 		copyPublicDir: false,
+		formats: ['es', 'umd'],
 		lib: {
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'core/index.ts'),
 			name: 'multi-notification-system',
-			// the proper extensions will be added
 			fileName: 'index',
 		},
 		outDir: path.resolve(__dirname, '../dist/core'),
-		target: 'es2015',
 	},
 })
 

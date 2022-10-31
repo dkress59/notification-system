@@ -7,15 +7,15 @@ const bundleConfig: UserConfigFn = args => ({
 	build: {
 		// @ts-ignore
 		...getCoreConfig(args).build,
+		formats: ['es', 'cjs'],
 		lib: {
 			// Could also be a dictionary or array of multiple entry points
 			entry: path.resolve(__dirname, 'core/index.ts'),
 			name: 'multi-notification-system',
-			// the proper extensions will be added
 			fileName: 'bundle',
 		},
 		outDir: path.resolve(__dirname, '../dist'),
-		target: 'modules',
+		//target: 'modules',
 	},
 })
 

@@ -2,7 +2,8 @@
 	"compilerOptions": {
 		"rootDir": "src/core",
 		"noEmit": false,
-		"outFile": "./dist/core/index.js"
+		"outDir": "./dist/core"
+		//"outFile": "./dist/core/index.js"
 	},
 	"extends": "./tsconfig.build.json",
 	"include": ["src/core"]

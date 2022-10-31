@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"isolatedModules": false,
+		"isolatedModules": true,
 		"declaration": true,
-		//"emitDeclarationOnly": true,
+		"emitDeclarationOnly": true,
 		"esModuleInterop": false,
 		"rootDir": "src",
-		"module": "AMD",
+		//"module": "AMD",
 		"noEmit": true
 	},
 	"extends": "./tsconfig.json",
