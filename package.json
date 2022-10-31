@@ -1,6 +1,6 @@
 {
 	"name": "multi-notification-system",
-	"version": "0.0.1-alpha19",
+	"version": "0.0.1-alpha20",
 	"description": "Notification System Web Components",
 	"lint-staged": {
 		"*.{scss,css}": [
@@ -12,15 +12,15 @@
 	},
 	"type": "module",
 	"files": [
-		"dist",
-		"./index.umd.cjs",
-		"./index.js",
-		"./index.js",
-		"./index.umd.cjs",
-		"./bundle.js",
-		"./bundle.umd.cjs",
-		"./react/index.js",
-		"./react/index.umd.cjs"
+		"index.umd.cjs",
+		"index.js",
+		"index.d.ts",
+		"index.umd.cjs",
+		"bundle.js",
+		"bundle.umd.cjs",
+		"react/index.js",
+		"react/index.d.ts",
+		"react/index.umd.cjs"
 	],
 	"main": "./index.umd.cjs",
 	"module": "./index.js",
