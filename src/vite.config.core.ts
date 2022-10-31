@@ -1,6 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import { defineConfig, UserConfigFn } from 'vite'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 const root = path.resolve(__dirname, 'core')
 const dist = path.resolve(__dirname, '..', 'dist')
@@ -14,6 +15,7 @@ export const getCoreConfig: UserConfigFn = ({ command }) => ({
 	server: {
 		open: true,
 	},
+	plugins: [cssInjectedByJsPlugin()],
 	build: {
 		cssCodeSplit: false,
 		copyPublicDir: false,
